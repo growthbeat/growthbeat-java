@@ -1,4 +1,4 @@
-hub-server-java
+growthbeat-java
 ===============
 
-Hub server side library for Java
+Growthbeat library for Java
