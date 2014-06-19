@@ -4,12 +4,20 @@ import java.util.Date;
 
 public class Connection extends Model {
 
+	private String id;
 	private Date created;
-	private Application application;
-	private Service service;
 	private Account account;
+	private Service service;
 	private Account childAccount;
 	private Credential credential;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Date getCreated() {
 		return created;
@@ -19,12 +27,12 @@ public class Connection extends Model {
 		this.created = created;
 	}
 
-	public Application getApplication() {
-		return application;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setApplication(Application application) {
-		this.application = application;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Service getService() {
@@ -33,14 +41,6 @@ public class Connection extends Model {
 
 	public void setService(Service service) {
 		this.service = service;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public Account getChildAccount() {
