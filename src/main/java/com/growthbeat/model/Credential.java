@@ -13,11 +13,11 @@ public class Credential extends Model {
 	private Date created;
 	private Account account;
 
-	public static List<Credential> getByConnectionIdAndSecretService(String connectionId, String secretService) {
+	public static List<Credential> getByConnectionIdAndServiceSecret(String connectionId, String serviceSecret) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("connectionId", connectionId);
-		params.put("secretService", secretService);
+		params.put("serviceSecret", serviceSecret);
 
 		List<Credential> credentials = get(1, "credentials", params, new TypeReference<List<Credential>>() {
 		});
