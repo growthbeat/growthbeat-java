@@ -50,4 +50,39 @@ public class Credential extends Model {
 		this.account = account;
 	}
 
+	public static Credential findById(String id) {
+		return get(1, String.format("credentials/%s", id), new HashMap<String, Object>(), Credential.class);
+	}
+
+	public static Credential findByAccountId(String accountId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+
+		return get(1, "credentials", params, Credential.class);
+
+	}
+
+	public static Credential create(String accountId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+
+		return post(1, "credentials", params, Credential.class);
+
+	}
+
+	public static Credential deleteById(String id) {
+		return delete(1, String.format("credentials/%s", id), new HashMap<String, Object>(), Credential.class);
+	}
+
+	public static List<Credential> findByConnectionIdAndServiceSecret(String connectionId, String serviceSecret) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("connectionId", connectionId);
+		params.put("serviceSecret", serviceSecret);
+
+		return get(1, "credentials", params, new TypeReference<List<Credential>>() {
+		});
+	}
 }

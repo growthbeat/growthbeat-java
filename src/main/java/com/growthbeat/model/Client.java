@@ -1,6 +1,8 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Client extends Model {
 
@@ -30,6 +32,32 @@ public class Client extends Model {
 
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+
+	public static Client findById(String id) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		return get(1, String.format("clients/%s", id), params, Client.class);
+
+	}
+
+	public static Client findByApplicationId(String applicationId, String id) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("applicationId", applicationId);
+		params.put("id", id);
+
+		return get(1, "clients", params, Client.class);
+
+	}
+
+	public static Client create(String applicationId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("applicationId", applicationId);
+
+		return post(1, "clients", params, Client.class);
+
 	}
 
 }

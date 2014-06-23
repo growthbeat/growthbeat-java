@@ -1,6 +1,8 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Connection extends Model {
 
@@ -57,6 +59,37 @@ public class Connection extends Model {
 
 	public void setCredential(Credential credential) {
 		this.credential = credential;
+	}
+
+	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+		if (serviceId != null)
+			params.put("serviceId", serviceId);
+
+		return get(1, "connections", params, Connection.class);
+
+	}
+
+	public static Connection create(String accountId, String serviceId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+		params.put("serviceId", serviceId);
+
+		return post(1, "connections", params, Connection.class);
+
+	}
+
+	public static Connection deleteByAccountIdAndServiceToken(String accountId, String serviceId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+		params.put("serviceId", serviceId);
+
+		return delete(1, "connections", params, Connection.class);
+
 	}
 
 }

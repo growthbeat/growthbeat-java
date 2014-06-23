@@ -1,6 +1,8 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Service extends Model {
 
@@ -75,6 +77,35 @@ public class Service extends Model {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public static Service findById(String id) {
+		return get(1, String.format("services/%s", id), new HashMap<String, Object>(), Service.class);
+	}
+
+	public static Service findByAccountId(String accountId) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+
+		return get(1, "services", params, Service.class);
+
+	}
+
+	public static Service create(String name, String namespace, String url, String domain) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("namespace", namespace);
+		params.put("url", url);
+		params.put("domain", domain);
+
+		return post(1, "services", params, Service.class);
+
+	}
+
+	public static Service deleteById(String id) {
+		return delete(1, String.format("services/%s", id), new HashMap<String, Object>(), Service.class);
 	}
 
 }
