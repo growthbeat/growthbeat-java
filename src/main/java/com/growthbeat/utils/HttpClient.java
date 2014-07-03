@@ -19,6 +19,9 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
+import com.growthbeat.GrowthbeatException;
 
 public class HttpClient {
 
@@ -96,34 +99,27 @@ public class HttpClient {
 
 	private String request(final HttpUriRequest httpRequest) {
 
+		String body = null;
+
 		HttpResponse httpResponse = null;
 		try {
 			httpResponse = httpClient.execute(httpRequest);
-		} catch (IOException e) {
-			// TODO 例外処理
-		}
-
-		String body = null;
-		try {
 			InputStream inputStream = httpResponse.getEntity().getContent();
 			body = IOUtils.toString(inputStream);
 		} catch (IOException e) {
-			// TODO 例外処理
+			throw new GrowthbeatException(e);
 		} finally {
 			try {
-				httpResponse.getEntity().consumeContent();
+				EntityUtils.consume(httpResponse.getEntity());
 			} catch (IOException e) {
-				// TODO 例外処理
 			}
 		}
 
 		int statusCode = httpResponse.getStatusLine().getStatusCode();
-		if (statusCode < 200 || statusCode >= 300) {
-			// TODO 例外処理
-		}
+		if (statusCode < 200 || statusCode >= 300)
+			throw new GrowthbeatException("Invalid status code: " + statusCode);
 
 		return body;
 
 	}
-
 }
