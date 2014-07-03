@@ -55,10 +55,10 @@ public class Action extends Model {
 		return post("1/actions", params, Action.class);
 	}
 
-	static Action deleteById(String id, String credentialId) {
+	static void deleteById(String id, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("id", id);
-		return delete("1/actions", params, Action.class);
+		delete("1/actions", params, Action.class);
 	}
 
 }

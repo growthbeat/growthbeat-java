@@ -53,8 +53,8 @@ public class Resource extends Model {
 		return post("1/resources", params, Resource.class);
 	}
 
-	public static Resource deleteById(String id, String credentialId) {
-		return delete(String.format("1/resources/%s", id), makeParams(credentialId), Resource.class);
+	public static void deleteById(String id, String credentialId) {
+		delete(String.format("1/resources/%s", id), makeParams(credentialId), Resource.class);
 	}
 
 }

@@ -1,7 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.type.TypeReference;
 
 public class Service extends Model {
 
@@ -82,10 +85,11 @@ public class Service extends Model {
 		return get(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
 	}
 
-	public static Service findByAccountId(String accountId, String credentialId) {
+	public static List<Service> findByAccountId(String accountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		return get("1/services", params, Service.class);
+		return get("1/services", params, new TypeReference<List<Service>>() {
+		});
 	}
 
 	public static Service create(String name, String namespace, String url, String domain, String credentialId) {
@@ -97,8 +101,8 @@ public class Service extends Model {
 		return post("1/services", params, Service.class);
 	}
 
-	public static Service deleteById(String id, String credentialId) {
-		return delete(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
+	public static void deleteById(String id, String credentialId) {
+		delete(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
 	}
 
 }

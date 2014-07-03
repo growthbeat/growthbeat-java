@@ -1,7 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.type.TypeReference;
 
 public class Application extends Model {
 
@@ -37,10 +40,11 @@ public class Application extends Model {
 		return get(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
 	}
 
-	public static Application findByAccountId(String accounId, String credentialId) {
+	public static List<Application> findByAccountId(String accounId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accounId);
-		return get("1/applications", params, Application.class);
+		return get("1/applications", params, new TypeReference<List<Application>>() {
+		});
 	}
 
 	public static Application update(String id, String name, String credentialId) {
@@ -49,7 +53,7 @@ public class Application extends Model {
 		return put(String.format("1/applications/%s", id), params, Application.class);
 	}
 
-	public static Application deleteByid(String id, String credentialId) {
-		return delete(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
+	public static void deleteByid(String id, String credentialId) {
+		delete(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
 	}
 }

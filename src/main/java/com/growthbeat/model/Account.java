@@ -31,8 +31,7 @@ public class Account extends Model {
 		return post("1/accounts", makeParams(credentialId), Account.class);
 	}
 
-	public static Account deleteById(String id, String credentialId) {
-		return delete(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
+	public static void deleteById(String id, String credentialId) {
+		delete(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
 	}
-
 }

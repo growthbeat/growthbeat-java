@@ -1,7 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.type.TypeReference;
 
 public class Permission extends Model {
 
@@ -51,23 +54,26 @@ public class Permission extends Model {
 		this.action = action;
 	}
 
-	public static Permission findByAccountId(String accountId, String credentialId) {
+	public static List<Permission> findByAccountId(String accountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		return get("1/permissions", params, Permission.class);
+		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		});
 	}
 
-	public static Permission findByTargetAccountId(String targetAccountId, String credentialId) {
+	public static List<Permission> findByTargetAccountId(String targetAccountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("targetAccountId", targetAccountId);
-		return get("1/permissions", params, Permission.class);
+		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		});
 	}
 
-	public static Permission findByAccountIdAndTargetAccountId(String accountId, String targetAccountId, String credentialId) {
+	public static List<Permission> findByAccountIdAndTargetAccountId(String accountId, String targetAccountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
-		return get("1/permissions", params, Permission.class);
+		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		});
 	}
 
 	public static Permission create(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {

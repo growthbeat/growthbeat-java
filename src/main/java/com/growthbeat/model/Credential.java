@@ -40,10 +40,11 @@ public class Credential extends Model {
 		return get(String.format("1/credentials/%s", id), makeParams(credentialId), Credential.class);
 	}
 
-	public static Credential findByAccountId(String accountId, String credentialId) {
+	public static List<Credential> findByAccountId(String accountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		return get("1/credentials", params, Credential.class);
+		return get("1/credentials", params, new TypeReference<List<Credential>>() {
+		});
 	}
 
 	public static Credential create(String accountId, String credentialId) {
@@ -52,8 +53,8 @@ public class Credential extends Model {
 		return post("1/credentials", params, Credential.class);
 	}
 
-	public static Credential deleteById(String id, String credentialId) {
-		return delete(String.format("1/credentials/%s", id), makeParams(credentialId), Credential.class);
+	public static void deleteById(String id, String credentialId) {
+		delete(String.format("1/credentials/%s", id), makeParams(credentialId), Credential.class);
 	}
 
 	public static List<Credential> findBySessionId(String sessionId, String credentialId) {
