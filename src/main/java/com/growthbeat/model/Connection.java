@@ -13,7 +13,6 @@ public class Connection extends Model {
 	private Account account;
 	private Service service;
 	private Account childAccount;
-	private Credential credential;
 
 	public String getId() {
 		return id;
@@ -53,14 +52,6 @@ public class Connection extends Model {
 
 	public void setChildAccount(Account childAccount) {
 		this.childAccount = childAccount;
-	}
-
-	public Credential getCredential() {
-		return credential;
-	}
-
-	public void setCredential(Credential credential) {
-		this.credential = credential;
 	}
 
 	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId, String credentialId) {
