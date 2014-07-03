@@ -58,7 +58,7 @@ public class Credential extends Model {
 	}
 
 	public static List<Credential> findBySessionId(String sessionId, String credentialId) {
-		Map<String, Object> params = makeParams(sessionId);
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("sessionId", sessionId);
 		return get("1/credentials", params, new TypeReference<List<Credential>>() {
 		});

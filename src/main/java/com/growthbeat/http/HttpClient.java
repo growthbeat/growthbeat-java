@@ -3,6 +3,7 @@ package com.growthbeat.http;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public class HttpClient {
 	}
 
 	private List<NameValuePair> convertNameValuePairs(Map<String, Object> params) {
-		List<NameValuePair> nameValuePairs = convertNameValuePairs(params);
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		for (Map.Entry<String, Object> entry : params.entrySet())
 			nameValuePairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
 		return nameValuePairs;
