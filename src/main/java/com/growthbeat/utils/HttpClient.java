@@ -2,13 +2,12 @@ package com.growthbeat.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -18,7 +17,6 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import com.growthbeat.GrowthbeatException;
@@ -28,8 +26,7 @@ public class HttpClient {
 	private static HttpClient instance = new HttpClient();
 
 	private org.apache.http.client.HttpClient httpClient = null;
-	private String baseUrl = "http://api.localhost:8085/";
-	private String credentialSecret = null;
+	private String baseUrl = "https://api.growthbeat.com/";
 
 	private HttpClient() {
 		super();
@@ -44,24 +41,11 @@ public class HttpClient {
 		this.baseUrl = baseUrl;
 	}
 
-	public void setCredentialSecret(String credentialSecret) {
-		this.credentialSecret = credentialSecret;
-	}
-
 	public String get(String path, Map<String, Object> params) {
-
-		if (credentialSecret != null)
-			params.put("secret", credentialSecret);
-
-		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-		for (Map.Entry<String, Object> entry : params.entrySet())
-			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
-
-		String query = URLEncodedUtils.format(parameters, Charset.defaultCharset());
-		HttpGet httpGet = new HttpGet(String.format("%s%s%s%s", baseUrl, path, query.isEmpty() ? "" : "?", query));
+		String query = URLEncodedUtils.format(convertNameValuePairs(params), Charset.defaultCharset());
+		HttpGet httpGet = new HttpGet(String.format("%s%s%s", baseUrl, path, (query.isEmpty() ? "" : "?" + query)));
 		httpGet.setHeader("Accept", "application/json");
 		return request(httpGet);
-
 	}
 
 	public String post(String path, Map<String, Object> params) {
@@ -77,24 +61,18 @@ public class HttpClient {
 	}
 
 	private String request(String method, String path, Map<String, Object> params) {
-
-		if (credentialSecret != null)
-			params.put("secret", credentialSecret);
-
-		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-		for (Map.Entry<String, Object> entry : params.entrySet())
-			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
-
 		HttpRequest httpRequest = new HttpRequest(String.format("%s%s", baseUrl, path));
 		httpRequest.setMethod(method);
 		httpRequest.setHeader("Accept", "application/json");
-		try {
-			httpRequest.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
-		} catch (UnsupportedEncodingException e) {
-		}
-
+		httpRequest.setEntity(new UrlEncodedFormEntity(convertNameValuePairs(params), Consts.UTF_8));
 		return request(httpRequest);
+	}
 
+	private List<NameValuePair> convertNameValuePairs(Map<String, Object> params) {
+		List<NameValuePair> nameValuePairs = convertNameValuePairs(params);
+		for (Map.Entry<String, Object> entry : params.entrySet())
+			nameValuePairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
+		return nameValuePairs;
 	}
 
 	private String request(final HttpUriRequest httpRequest) {
