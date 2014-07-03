@@ -19,7 +19,6 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
-import org.codehaus.jackson.type.TypeReference;
 
 public class ModelHttpClient {
 
@@ -41,15 +40,7 @@ public class ModelHttpClient {
 		ModelHttpClient.credentialSecret = credentialSecret;
 	}
 
-	public <T> T get(int version, String api, Map<String, Object> params, Class<T> valueType) {
-		return JsonUtils.deserialize(get(version, api, params), valueType);
-	}
-
-	public <T> T get(int version, String api, Map<String, Object> params, TypeReference<T> valueTypeRef) {
-		return JsonUtils.deserialize(get(version, api, params), valueTypeRef);
-	}
-
-	private String get(int version, String api, Map<String, Object> params) {
+	public String get(int version, String api, Map<String, Object> params) {
 
 		if (credentialSecret != null)
 			params.put("secret", credentialSecret);
@@ -65,39 +56,15 @@ public class ModelHttpClient {
 
 	}
 
-	public <T> T post(int version, String api, Map<String, Object> params, Class<T> valueType) {
-		return JsonUtils.deserialize(post(version, api, params), valueType);
-	}
-
-	public <T> T post(int version, String api, Map<String, Object> params, TypeReference<T> valueTypeRef) {
-		return JsonUtils.deserialize(post(version, api, params), valueTypeRef);
-	}
-
-	private String post(int version, String api, Map<String, Object> params) {
+	public String post(int version, String api, Map<String, Object> params) {
 		return request("POST", version, api, params);
 	}
 
-	public <T> T put(int version, String api, Map<String, Object> params, Class<T> valueType) {
-		return JsonUtils.deserialize(put(version, api, params), valueType);
-	}
-
-	public <T> T put(int version, String api, Map<String, Object> params, TypeReference<T> valueTypeRef) {
-		return JsonUtils.deserialize(put(version, api, params), valueTypeRef);
-	}
-
-	private String put(int version, String api, Map<String, Object> params) {
+	public String put(int version, String api, Map<String, Object> params) {
 		return request("PUT", version, api, params);
 	}
 
-	public <T> T delete(int version, String api, Map<String, Object> params, Class<T> valueType) {
-		return JsonUtils.deserialize(delete(version, api, params), valueType);
-	}
-
-	public <T> T delete(int version, String api, Map<String, Object> params, TypeReference<T> valueTypeRef) {
-		return JsonUtils.deserialize(delete(version, api, params), valueTypeRef);
-	}
-
-	private String delete(int version, String api, Map<String, Object> params) {
+	public String delete(int version, String api, Map<String, Object> params) {
 		return request("DELETE", version, api, params);
 	}
 
