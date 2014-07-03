@@ -1,7 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Resource extends Model {
@@ -43,22 +42,19 @@ public class Resource extends Model {
 		this.parentResource = parentResource;
 	}
 
-	public static Resource findById(String id) {
-		return get(String.format("1/resources/%s", id), new HashMap<String, Object>(), Resource.class);
+	public static Resource findById(String id, String credentialId) {
+		return get(String.format("1/resources/%s", id), makeParams(credentialId), Resource.class);
 	}
 
-	public static Resource create(String parentResourceId, String name) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Resource create(String parentResourceId, String name, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("parentResourceId", parentResourceId);
 		params.put("name", name);
-
 		return post("1/resources", params, Resource.class);
-
 	}
 
-	public static Resource deleteById(String id) {
-		return delete(String.format("1/resources/%s", id), new HashMap<String, Object>(), Resource.class);
+	public static Resource deleteById(String id, String credentialId) {
+		return delete(String.format("1/resources/%s", id), makeParams(credentialId), Resource.class);
 	}
 
 }

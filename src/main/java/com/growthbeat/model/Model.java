@@ -1,13 +1,20 @@
 package com.growthbeat.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
-import com.growthbeat.utils.JsonUtils;
 import com.growthbeat.utils.HttpClient;
+import com.growthbeat.utils.JsonUtils;
 
 public class Model {
+
+	protected static Map<String, Object> makeParams(String credentialId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("credentialId", credentialId);
+		return params;
+	}
 
 	static <T> T get(String path, Map<String, Object> params, Class<T> valueType) {
 		return JsonUtils.deserialize(HttpClient.getInstance().get(path, params), valueType);

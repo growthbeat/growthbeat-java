@@ -1,8 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.type.TypeReference;
 
 public class Connection extends Model {
 
@@ -61,35 +63,32 @@ public class Connection extends Model {
 		this.credential = credential;
 	}
 
-	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		if (serviceId != null)
-			params.put("serviceId", serviceId);
-
+		params.put("serviceId", serviceId);
 		return get("1/connections", params, Connection.class);
-
 	}
 
-	public static Connection create(String accountId, String serviceId) {
+	public static List<Connection> findByAccountId(String accountId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
+		params.put("accountId", accountId);
+		return get("1/connections", params, new TypeReference<List<Connection>>() {
+		});
+	}
 
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Connection create(String accountId, String serviceId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-
 		return post("1/connections", params, Connection.class);
-
 	}
 
-	public static Connection deleteByAccountIdAndServiceToken(String accountId, String serviceId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Connection deleteByAccountIdAndServiceToken(String accountId, String serviceId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-
 		return delete("1/connections", params, Connection.class);
-
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Client extends Model {
@@ -34,30 +33,30 @@ public class Client extends Model {
 		this.application = application;
 	}
 
-	public static Client findById(String id) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		return get(String.format("1/clients/%s", id), params, Client.class);
-
+	public static Client findById(String id, String credentialId) {
+		return get(String.format("1/clients/%s", id), makeParams(credentialId), Client.class);
 	}
 
-	public static Client findByApplicationId(String applicationId, String id) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Client findByApplicationId(String applicationId, String id, Order order, Integer limit, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("applicationId", applicationId);
-		params.put("id", id);
-
+		if (id != null)
+			params.put("id", id);
+		if (order != null)
+			params.put("order", order);
+		if (limit != null)
+			params.put("limit", limit);
 		return get("1/clients", params, Client.class);
-
 	}
 
-	public static Client create(String applicationId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Client create(String applicationId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("applicationId", applicationId);
-
 		return post("1/clients", params, Client.class);
+	}
 
+	public static Client deleteByid(String id, String credentialId) {
+		return delete(String.format("1/clients/%s", id), makeParams(credentialId), Client.class);
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Service extends Model {
@@ -79,33 +78,27 @@ public class Service extends Model {
 		this.account = account;
 	}
 
-	public static Service findById(String id) {
-		return get(String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
+	public static Service findById(String id, String credentialId) {
+		return get(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
 	}
 
-	public static Service findByAccountId(String accountId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Service findByAccountId(String accountId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-
 		return get("1/services", params, Service.class);
-
 	}
 
-	public static Service create(String name, String namespace, String url, String domain) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Service create(String name, String namespace, String url, String domain, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("name", name);
 		params.put("namespace", namespace);
 		params.put("url", url);
 		params.put("domain", domain);
-
 		return post("1/services", params, Service.class);
-
 	}
 
-	public static Service deleteById(String id) {
-		return delete(String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
+	public static Service deleteById(String id, String credentialId) {
+		return delete(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Permission extends Model {
@@ -52,67 +51,49 @@ public class Permission extends Model {
 		this.action = action;
 	}
 
-	public static Permission findByAccountId(String accountId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Permission findByAccountId(String accountId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-
 		return get("1/permissions", params, Permission.class);
-
 	}
 
-	public static Permission findByTargetAccountId(String targetAccountId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Permission findByTargetAccountId(String targetAccountId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("targetAccountId", targetAccountId);
-
 		return get("1/permissions", params, Permission.class);
-
 	}
 
-	public static Permission findByAccountIdAndTargetAccountId(String accountId, String targetAccountId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Permission findByAccountIdAndTargetAccountId(String accountId, String targetAccountId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
-
 		return get("1/permissions", params, Permission.class);
-
 	}
 
-	public static Permission create(String accountId, String targetAccountId, String resourceId, String actionId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Permission create(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
-
 		return post("1/permissions", params, Permission.class);
-
 	}
 
-	public static void deleteById(String accountId, String targetAccountId, String resourceId, String actionId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static void deleteById(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
-
 		delete("1/permissions", params, Permission.class);
-
 	}
 
-	public static boolean authenticate(String accountId, String resourceId, String actionId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static boolean authorize(String accountId, String resourceId, String actionId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
-
-		return post("1/permissions", params, Boolean.class);
-
+		return post("1/authorize", params, Boolean.class);
 	}
 
 }

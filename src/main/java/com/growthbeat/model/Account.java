@@ -1,8 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Account extends Model {
 
@@ -25,21 +23,16 @@ public class Account extends Model {
 		this.created = created;
 	}
 
-	public static Account findById(String id) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		return get(String.format("1/accounts/%s", id), params, Account.class);
-
+	public static Account findById(String id, String credentialId) {
+		return get(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
 	}
 
-	public static Account create() {
-
-		return post("1/accounts", new HashMap<String, Object>(), Account.class);
-
+	public static Account create(String credentialId) {
+		return post("1/accounts", makeParams(credentialId), Account.class);
 	}
 
-	public static Account deleteById(String id) {
-		return delete(String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
+	public static Account deleteById(String id, String credentialId) {
+		return delete(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
 	}
 
 }

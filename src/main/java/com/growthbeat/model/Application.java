@@ -1,7 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Application extends Model {
@@ -34,35 +33,23 @@ public class Application extends Model {
 		this.created = created;
 	}
 
-	public static Application findById(String id) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		return get(String.format("1/applications/%s", id), params, Application.class);
-
+	public static Application findById(String id, String credentialId) {
+		return get(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
 	}
 
-	public static Application findByAccountId(String accounId) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Application findByAccountId(String accounId, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accounId);
-
 		return get("1/applications", params, Application.class);
-
 	}
 
-	public static Application update(String id, String name) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
+	public static Application update(String id, String name, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
 		params.put("name", name);
-
 		return put(String.format("1/applications/%s", id), params, Application.class);
-
 	}
 
-	public static Application deleteByid(String id) {
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		return delete(String.format("1/applications/%s", id), params, Application.class);
-
+	public static Application deleteByid(String id, String credentialId) {
+		return delete(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
 	}
 }
