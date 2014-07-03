@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
-import com.growthbeat.utils.HttpClient;
-import com.growthbeat.utils.JsonUtils;
+import com.growthbeat.http.HttpClient;
+import com.growthbeat.http.JsonUtils;
 
 public class Model {
 

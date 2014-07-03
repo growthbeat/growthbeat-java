@@ -1,4 +1,4 @@
-package com.growthbeat.utils;
+package com.growthbeat.http;
 
 import java.net.URI;
 

@@ -1,6 +1,6 @@
 package com.growthbeat;
 
-import com.growthbeat.utils.HttpClient;
+import com.growthbeat.http.HttpClient;
 
 public class Growthbeat {
 
