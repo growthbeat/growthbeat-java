@@ -28,18 +28,18 @@ public class Account extends Model {
 	public static Account findById(String id) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		return get(1, String.format("accounts/%s", id), params, Account.class);
+		return get(String.format("1/accounts/%s", id), params, Account.class);
 
 	}
 
 	public static Account create() {
 
-		return post(1, "accounts", new HashMap<String, Object>(), Account.class);
+		return post("1/accounts", new HashMap<String, Object>(), Account.class);
 
 	}
 
 	public static Account deleteById(String id) {
-		return delete(1, String.format("accounts/%s", id), new HashMap<String, Object>(), Account.class);
+		return delete(String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
 	}
 
 }

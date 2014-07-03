@@ -68,7 +68,7 @@ public class Connection extends Model {
 		if (serviceId != null)
 			params.put("serviceId", serviceId);
 
-		return get(1, "connections", params, Connection.class);
+		return get("1/connections", params, Connection.class);
 
 	}
 
@@ -78,7 +78,7 @@ public class Connection extends Model {
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
 
-		return post(1, "connections", params, Connection.class);
+		return post("1/connections", params, Connection.class);
 
 	}
 
@@ -88,7 +88,7 @@ public class Connection extends Model {
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
 
-		return delete(1, "connections", params, Connection.class);
+		return delete("1/connections", params, Connection.class);
 
 	}
 

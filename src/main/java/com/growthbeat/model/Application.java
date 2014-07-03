@@ -37,7 +37,7 @@ public class Application extends Model {
 	public static Application findById(String id) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		return get(1, String.format("applications/%s", id), params, Application.class);
+		return get(String.format("1/applications/%s", id), params, Application.class);
 
 	}
 
@@ -46,7 +46,7 @@ public class Application extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accounId);
 
-		return get(1, "applications", params, Application.class);
+		return get("1/applications", params, Application.class);
 
 	}
 
@@ -55,14 +55,14 @@ public class Application extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 
-		return put(1, String.format("applications/%s", id), params, Application.class);
+		return put(String.format("1/applications/%s", id), params, Application.class);
 
 	}
 
 	public static Application deleteByid(String id) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		return delete(1, String.format("applications/%s", id), params, Application.class);
+		return delete(String.format("1/applications/%s", id), params, Application.class);
 
 	}
 }

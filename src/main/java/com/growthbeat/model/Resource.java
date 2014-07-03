@@ -44,7 +44,7 @@ public class Resource extends Model {
 	}
 
 	public static Resource findById(String id) {
-		return get(1, String.format("resources/%s", id), new HashMap<String, Object>(), Resource.class);
+		return get(String.format("1/resources/%s", id), new HashMap<String, Object>(), Resource.class);
 	}
 
 	public static Resource create(String parentResourceId, String name) {
@@ -53,12 +53,12 @@ public class Resource extends Model {
 		params.put("parentResourceId", parentResourceId);
 		params.put("name", name);
 
-		return post(1, "resources", params, Resource.class);
+		return post("1/resources", params, Resource.class);
 
 	}
 
 	public static Resource deleteById(String id) {
-		return delete(1, String.format("resources/%s", id), new HashMap<String, Object>(), Resource.class);
+		return delete(String.format("1/resources/%s", id), new HashMap<String, Object>(), Resource.class);
 	}
 
 }

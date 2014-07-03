@@ -40,7 +40,7 @@ public class ModelHttpClient {
 		ModelHttpClient.credentialSecret = credentialSecret;
 	}
 
-	public String get(int version, String api, Map<String, Object> params) {
+	public String get(String path, Map<String, Object> params) {
 
 		if (credentialSecret != null)
 			params.put("secret", credentialSecret);
@@ -50,25 +50,25 @@ public class ModelHttpClient {
 			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
 
 		String query = URLEncodedUtils.format(parameters, Charset.defaultCharset());
-		HttpGet httpGet = new HttpGet(String.format("%s%d/%s%s%s", baseUrl, version, api, query.isEmpty() ? "" : "?", query));
+		HttpGet httpGet = new HttpGet(String.format("%s%s%s%s", baseUrl, path, query.isEmpty() ? "" : "?", query));
 		httpGet.setHeader("Accept", "application/json");
 		return request(httpGet);
 
 	}
 
-	public String post(int version, String api, Map<String, Object> params) {
-		return request("POST", version, api, params);
+	public String post(String path, Map<String, Object> params) {
+		return request("POST", path, params);
 	}
 
-	public String put(int version, String api, Map<String, Object> params) {
-		return request("PUT", version, api, params);
+	public String put(String path, Map<String, Object> params) {
+		return request("PUT", path, params);
 	}
 
-	public String delete(int version, String api, Map<String, Object> params) {
-		return request("DELETE", version, api, params);
+	public String delete(String path, Map<String, Object> params) {
+		return request("DELETE", path, params);
 	}
 
-	private String request(String method, int version, String api, Map<String, Object> params) {
+	private String request(String method, String path, Map<String, Object> params) {
 
 		if (credentialSecret != null)
 			params.put("secret", credentialSecret);
@@ -77,7 +77,7 @@ public class ModelHttpClient {
 		for (Map.Entry<String, Object> entry : params.entrySet())
 			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
 
-		HttpRequest httpRequest = new HttpRequest(String.format("%s%d/%s", baseUrl, version, api));
+		HttpRequest httpRequest = new HttpRequest(String.format("%s%s", baseUrl, path));
 		httpRequest.setMethod(method);
 		httpRequest.setHeader("Accept", "application/json");
 		try {

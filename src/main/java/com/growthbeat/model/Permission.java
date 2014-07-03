@@ -57,7 +57,7 @@ public class Permission extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return get(1, "permissions", params, Permission.class);
+		return get("1/permissions", params, Permission.class);
 
 	}
 
@@ -66,7 +66,7 @@ public class Permission extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("targetAccountId", targetAccountId);
 
-		return get(1, "permissions", params, Permission.class);
+		return get("1/permissions", params, Permission.class);
 
 	}
 
@@ -76,7 +76,7 @@ public class Permission extends Model {
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 
-		return get(1, "permissions", params, Permission.class);
+		return get("1/permissions", params, Permission.class);
 
 	}
 
@@ -88,7 +88,7 @@ public class Permission extends Model {
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
 
-		return post(1, "permissions", params, Permission.class);
+		return post("1/permissions", params, Permission.class);
 
 	}
 
@@ -100,7 +100,7 @@ public class Permission extends Model {
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
 
-		delete(1, "permissions", params, Permission.class);
+		delete("1/permissions", params, Permission.class);
 
 	}
 
@@ -111,7 +111,7 @@ public class Permission extends Model {
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
 
-		return post(1, "permissions", params, Boolean.class);
+		return post("1/permissions", params, Boolean.class);
 
 	}
 

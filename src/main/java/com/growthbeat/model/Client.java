@@ -37,7 +37,7 @@ public class Client extends Model {
 	public static Client findById(String id) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		return get(1, String.format("clients/%s", id), params, Client.class);
+		return get(String.format("1/clients/%s", id), params, Client.class);
 
 	}
 
@@ -47,7 +47,7 @@ public class Client extends Model {
 		params.put("applicationId", applicationId);
 		params.put("id", id);
 
-		return get(1, "clients", params, Client.class);
+		return get("1/clients", params, Client.class);
 
 	}
 
@@ -56,7 +56,7 @@ public class Client extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 
-		return post(1, "clients", params, Client.class);
+		return post("1/clients", params, Client.class);
 
 	}
 

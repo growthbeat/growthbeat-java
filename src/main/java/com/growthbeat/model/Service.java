@@ -80,7 +80,7 @@ public class Service extends Model {
 	}
 
 	public static Service findById(String id) {
-		return get(1, String.format("services/%s", id), new HashMap<String, Object>(), Service.class);
+		return get(String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
 	}
 
 	public static Service findByAccountId(String accountId) {
@@ -88,7 +88,7 @@ public class Service extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return get(1, "services", params, Service.class);
+		return get("1/services", params, Service.class);
 
 	}
 
@@ -100,12 +100,12 @@ public class Service extends Model {
 		params.put("url", url);
 		params.put("domain", domain);
 
-		return post(1, "services", params, Service.class);
+		return post("1/services", params, Service.class);
 
 	}
 
 	public static Service deleteById(String id) {
-		return delete(1, String.format("services/%s", id), new HashMap<String, Object>(), Service.class);
+		return delete(String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
 	}
 
 }

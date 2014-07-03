@@ -48,7 +48,7 @@ public class Action extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 
-		return get(1, "actions", params, Action.class);
+		return get("1/actions", params, Action.class);
 
 	}
 
@@ -57,7 +57,7 @@ public class Action extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentActionId", parentActionId);
 
-		return post(1, "actions", params, Action.class);
+		return post("1/actions", params, Action.class);
 
 	}
 
@@ -66,7 +66,7 @@ public class Action extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 
-		return delete(1, "actions", params, Action.class);
+		return delete("1/actions", params, Action.class);
 
 	}
 

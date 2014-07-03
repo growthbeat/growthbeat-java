@@ -39,7 +39,7 @@ public class User extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return get(1, "users", params, User.class);
+		return get("1/users", params, User.class);
 	}
 
 	public static User create(String accountId, String mail, String password) {
@@ -50,7 +50,7 @@ public class User extends Model {
 		params.put("mail", mail);
 		params.put("password", password);
 
-		return post(1, "users", params, User.class);
+		return post("1/users", params, User.class);
 
 	}
 
@@ -61,7 +61,7 @@ public class User extends Model {
 			params.put("accountId", accountId);
 		params.put("mail", mail);
 
-		return put(1, "users", params, User.class);
+		return put("1/users", params, User.class);
 	}
 
 	public static User updatePassword(String accountId, String currentPassword, String password) {
@@ -72,7 +72,7 @@ public class User extends Model {
 		params.put("currentPassword", currentPassword);
 		params.put("password", password);
 
-		return put(1, "users", params, User.class);
+		return put("1/users", params, User.class);
 
 	}
 
@@ -81,7 +81,7 @@ public class User extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return post(1, "users", params, User.class);
+		return post("1/users", params, User.class);
 
 	}
 

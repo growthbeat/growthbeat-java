@@ -19,7 +19,7 @@ public class Credential extends Model {
 		params.put("connectionId", connectionId);
 		params.put("serviceSecret", serviceSecret);
 
-		List<Credential> credentials = get(1, "credentials", params, new TypeReference<List<Credential>>() {
+		List<Credential> credentials = get("1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 
 		return credentials;
@@ -51,7 +51,7 @@ public class Credential extends Model {
 	}
 
 	public static Credential findById(String id) {
-		return get(1, String.format("credentials/%s", id), new HashMap<String, Object>(), Credential.class);
+		return get(String.format("1/credentials/%s", id), new HashMap<String, Object>(), Credential.class);
 	}
 
 	public static Credential findByAccountId(String accountId) {
@@ -59,7 +59,7 @@ public class Credential extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return get(1, "credentials", params, Credential.class);
+		return get("1/credentials", params, Credential.class);
 
 	}
 
@@ -68,12 +68,12 @@ public class Credential extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 
-		return post(1, "credentials", params, Credential.class);
+		return post("1/credentials", params, Credential.class);
 
 	}
 
 	public static Credential deleteById(String id) {
-		return delete(1, String.format("credentials/%s", id), new HashMap<String, Object>(), Credential.class);
+		return delete(String.format("1/credentials/%s", id), new HashMap<String, Object>(), Credential.class);
 	}
 
 	public static List<Credential> findByConnectionIdAndServiceSecret(String connectionId, String serviceSecret) {
@@ -82,7 +82,7 @@ public class Credential extends Model {
 		params.put("connectionId", connectionId);
 		params.put("serviceSecret", serviceSecret);
 
-		return get(1, "credentials", params, new TypeReference<List<Credential>>() {
+		return get("1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 	}
 }
