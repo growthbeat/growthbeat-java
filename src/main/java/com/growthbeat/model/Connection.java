@@ -79,7 +79,7 @@ public class Connection extends Model {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-		delete("1/connections", params, Connection.class);
+		delete("1/connections", params);
 	}
 
 }

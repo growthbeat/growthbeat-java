@@ -32,6 +32,6 @@ public class Account extends Model {
 	}
 
 	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
+		delete(String.format("1/accounts/%s", id), makeParams(credentialId));
 	}
 }

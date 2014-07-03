@@ -54,7 +54,7 @@ public class Credential extends Model {
 	}
 
 	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/credentials/%s", id), makeParams(credentialId), Credential.class);
+		delete(String.format("1/credentials/%s", id), makeParams(credentialId));
 	}
 
 	public static List<Credential> findBySessionId(String sessionId, String credentialId) {

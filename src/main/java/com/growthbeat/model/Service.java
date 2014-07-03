@@ -102,7 +102,7 @@ public class Service extends Model {
 	}
 
 	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
+		delete(String.format("1/services/%s", id), makeParams(credentialId));
 	}
 
 }

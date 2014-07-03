@@ -16,12 +16,20 @@ public class Model {
 		return params;
 	}
 
+	static void get(String path, Map<String, Object> params) {
+		HttpClient.getInstance().get(path, params);
+	}
+
 	static <T> T get(String path, Map<String, Object> params, Class<T> valueType) {
 		return JsonUtils.deserialize(HttpClient.getInstance().get(path, params), valueType);
 	}
 
 	static <T> T get(String path, Map<String, Object> params, TypeReference<T> valueTypeRef) {
 		return JsonUtils.deserialize(HttpClient.getInstance().get(path, params), valueTypeRef);
+	}
+
+	static void post(String path, Map<String, Object> params) {
+		HttpClient.getInstance().post(path, params);
 	}
 
 	static <T> T post(String path, Map<String, Object> params, Class<T> valueType) {
@@ -32,12 +40,20 @@ public class Model {
 		return JsonUtils.deserialize(HttpClient.getInstance().post(path, params), valueTypeRef);
 	}
 
+	static void put(String path, Map<String, Object> params) {
+		HttpClient.getInstance().put(path, params);
+	}
+
 	static <T> T put(String path, Map<String, Object> params, Class<T> valueType) {
 		return JsonUtils.deserialize(HttpClient.getInstance().put(path, params), valueType);
 	}
 
 	static <T> T put(String path, Map<String, Object> params, TypeReference<T> valueTypeRef) {
 		return JsonUtils.deserialize(HttpClient.getInstance().put(path, params), valueTypeRef);
+	}
+
+	static void delete(String path, Map<String, Object> params) {
+		HttpClient.getInstance().delete(path, params);
 	}
 
 	static <T> T delete(String path, Map<String, Object> params, Class<T> valueType) {

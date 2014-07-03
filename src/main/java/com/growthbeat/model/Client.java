@@ -60,7 +60,7 @@ public class Client extends Model {
 	}
 
 	public static void deleteByid(String id, String credentialId) {
-		delete(String.format("1/clients/%s", id), makeParams(credentialId), Client.class);
+		delete(String.format("1/clients/%s", id), makeParams(credentialId));
 	}
 
 }

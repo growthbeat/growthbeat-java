@@ -91,7 +91,7 @@ public class Permission extends Model {
 		params.put("targetAccountId", targetAccountId);
 		params.put("resouceId", resourceId);
 		params.put("actionId", actionId);
-		delete("1/permissions", params, Permission.class);
+		delete("1/permissions", params);
 	}
 
 	public static boolean authorize(String accountId, String resourceId, String actionId, String credentialId) {

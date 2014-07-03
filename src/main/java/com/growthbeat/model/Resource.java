@@ -54,7 +54,7 @@ public class Resource extends Model {
 	}
 
 	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/resources/%s", id), makeParams(credentialId), Resource.class);
+		delete(String.format("1/resources/%s", id), makeParams(credentialId));
 	}
 
 }

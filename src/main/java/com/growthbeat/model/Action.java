@@ -58,7 +58,7 @@ public class Action extends Model {
 	static void deleteById(String id, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("id", id);
-		delete("1/actions", params, Action.class);
+		delete("1/actions", params);
 	}
 
 }

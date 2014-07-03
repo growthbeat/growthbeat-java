@@ -54,6 +54,6 @@ public class Application extends Model {
 	}
 
 	public static void deleteByid(String id, String credentialId) {
-		delete(String.format("1/applications/%s", id), makeParams(credentialId), Application.class);
+		delete(String.format("1/applications/%s", id), makeParams(credentialId));
 	}
 }

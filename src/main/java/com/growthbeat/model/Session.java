@@ -54,7 +54,7 @@ public class Session extends Model {
 	}
 
 	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/sessions/%s", id), makeParams(credentialId), Session.class);
+		delete(String.format("1/sessions/%s", id), makeParams(credentialId));
 	}
 
 }

@@ -72,7 +72,7 @@ public class User extends Model {
 	public static void deleteByAccountId(String accountId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		post("1/users", params, User.class);
+		post("1/users", params);
 	}
 
 }
