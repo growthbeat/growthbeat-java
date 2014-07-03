@@ -11,33 +11,38 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
-public class ModelHttpClient {
+public class HttpClient {
 
-	private final HttpClient httpClient = new DefaultHttpClient();
-	private static String baseUrl = "http://api.localhost:8085/";
-	private static String credentialSecret = null;
+	private static HttpClient instance = new HttpClient();
 
-	private static ModelHttpClient instance = new ModelHttpClient();
+	private org.apache.http.client.HttpClient httpClient = null;
+	private String baseUrl = "http://api.localhost:8085/";
+	private String credentialSecret = null;
 
-	public static ModelHttpClient getInstance() {
+	private HttpClient() {
+		super();
+		this.httpClient = HttpClientBuilder.create().setDefaultRequestConfig(RequestConfig.DEFAULT).build();
+	}
+
+	public static HttpClient getInstance() {
 		return instance;
 	}
 
-	public static void setBaseUrl(String baseUrl) {
-		ModelHttpClient.baseUrl = baseUrl;
+	public void setBaseUrl(String baseUrl) {
+		this.baseUrl = baseUrl;
 	}
 
-	public static void setCredentialSecret(String credentialSecret) {
-		ModelHttpClient.credentialSecret = credentialSecret;
+	public void setCredentialSecret(String credentialSecret) {
+		this.credentialSecret = credentialSecret;
 	}
 
 	public String get(String path, Map<String, Object> params) {
