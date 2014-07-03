@@ -13,10 +13,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -77,23 +74,7 @@ public class ModelHttpClient {
 	}
 
 	private String post(int version, String api, Map<String, Object> params) {
-
-		if (credentialSecret != null)
-			params.put("secret", credentialSecret);
-
-		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-		for (Map.Entry<String, Object> entry : params.entrySet())
-			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
-
-		HttpPost httpPost = new HttpPost(String.format("%s%d/%s", baseUrl, version, api));
-		httpPost.setHeader("Accept", "application/json");
-		try {
-			httpPost.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
-		} catch (UnsupportedEncodingException e) {
-		}
-
-		return request(httpPost);
-
+		return request("POST", version, api, params);
 	}
 
 	public <T> T put(int version, String api, Map<String, Object> params, Class<T> valueType) {
@@ -105,20 +86,7 @@ public class ModelHttpClient {
 	}
 
 	private String put(int version, String api, Map<String, Object> params) {
-
-		if (credentialSecret != null)
-			params.put("secret", credentialSecret);
-
-		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
-		for (Map.Entry<String, Object> entry : params.entrySet())
-			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
-
-		String query = URLEncodedUtils.format(parameters, Charset.defaultCharset());
-		HttpPut httpPut = new HttpPut(String.format("%s%d/%s%s%s", baseUrl, version, api, query.isEmpty() ? "" : "?", query));
-		httpPut.setHeader("Accept", "application/json");
-
-		return request(httpPut);
-
+		return request("PUT", version, api, params);
 	}
 
 	public <T> T delete(int version, String api, Map<String, Object> params, Class<T> valueType) {
@@ -130,6 +98,10 @@ public class ModelHttpClient {
 	}
 
 	private String delete(int version, String api, Map<String, Object> params) {
+		return request("DELETE", version, api, params);
+	}
+
+	private String request(String method, int version, String api, Map<String, Object> params) {
 
 		if (credentialSecret != null)
 			params.put("secret", credentialSecret);
@@ -138,11 +110,15 @@ public class ModelHttpClient {
 		for (Map.Entry<String, Object> entry : params.entrySet())
 			parameters.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
 
-		String query = URLEncodedUtils.format(parameters, Charset.defaultCharset());
-		HttpDelete httpDelete = new HttpDelete(String.format("%s%d/%s%s%s", baseUrl, version, api, query.isEmpty() ? "" : "?", query));
-		httpDelete.setHeader("Accept", "application/json");
+		HttpRequest httpRequest = new HttpRequest(String.format("%s%d/%s", baseUrl, version, api));
+		httpRequest.setMethod(method);
+		httpRequest.setHeader("Accept", "application/json");
+		try {
+			httpRequest.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
+		} catch (UnsupportedEncodingException e) {
+		}
 
-		return request(httpDelete);
+		return request(httpRequest);
 
 	}
 
