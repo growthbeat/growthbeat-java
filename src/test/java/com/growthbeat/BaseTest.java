@@ -7,6 +7,7 @@ import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Connection;
 import com.growthbeat.model.Credential;
+import com.growthbeat.model.Session;
 
 public class BaseTest {
 
@@ -16,6 +17,7 @@ public class BaseTest {
 	protected static Application testApplication = null;
 	protected static Client testClient = null;
 	protected static Connection testConnection = null;
+	protected static Session testSession = null;
 
 	@BeforeClass
 	public static void setUp() {
@@ -31,6 +33,7 @@ public class BaseTest {
 		testApplication = Application.create("Java SDK", testCredential.getId());
 		testClient = Client.create(testApplication.getId(), testCredential.getId());
 		testConnection = Connection.create(testAccount.getId(), "5FjbhqsIHTGdfVeP", testCredential.getId());
+		testSession = Session.create(testAccount.getId(), "5FjbhqsIHTGdfVeP", testCredential.getId());
 
 	}
 
