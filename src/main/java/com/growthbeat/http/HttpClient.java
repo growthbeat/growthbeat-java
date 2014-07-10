@@ -83,8 +83,10 @@ public class HttpClient {
 		HttpResponse httpResponse = null;
 		try {
 			httpResponse = httpClient.execute(httpRequest);
-			InputStream inputStream = httpResponse.getEntity().getContent();
-			body = IOUtils.toString(inputStream);
+			if (httpResponse.getEntity() != null) {
+				InputStream inputStream = httpResponse.getEntity().getContent();
+				body = IOUtils.toString(inputStream);
+			}
 		} catch (IOException e) {
 			throw new GrowthbeatException(e);
 		} finally {

@@ -3,14 +3,12 @@ package com.growthbeat.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.Test;
 
 import com.growthbeat.BaseTest;
-import com.growthbeat.GrowthbeatException;
 
 public class PermissionTest extends BaseTest {
 
@@ -44,17 +42,15 @@ public class PermissionTest extends BaseTest {
 		assertEquals(testAccount.getId(), permission.getAccount().getId());
 		assertEquals(testConnection.getChildAccount().getId(), permission.getTargetAccount().getId());
 		assertEquals("Resource:Growthbeat", permission.getResource().getId());
-		assertEquals("Action:Growthbeat", permission.getAccount().getId());
+		assertEquals("Action:Growthbeat", permission.getAction().getId());
 	}
 
 	@Test
-	public void deleteById() {
-		try {
-			Permission.delete(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat", "Action:Growthbeat",
-					testCredential.getId());
-			fail();
-		} catch (GrowthbeatException e) {
-		}
+	public void delete() {
+		Permission.create(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
+				"Action:Growthbeat:ListPermission", testCredential.getId());
+		Permission.delete(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
+				"Action:Growthbeat:ListPermission", testCredential.getId());
 	}
 
 	@Test

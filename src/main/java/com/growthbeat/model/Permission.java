@@ -80,7 +80,7 @@ public class Permission extends Model {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
-		params.put("resouceId", resourceId);
+		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
 		return post("1/permissions", params, Permission.class);
 	}
@@ -89,7 +89,7 @@ public class Permission extends Model {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
-		params.put("resouceId", resourceId);
+		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
 		delete("1/permissions", params);
 	}
@@ -97,7 +97,7 @@ public class Permission extends Model {
 	public static boolean authorize(String accountId, String resourceId, String actionId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
-		params.put("resouceId", resourceId);
+		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
 		return post("1/authorize", params, Boolean.class);
 	}
