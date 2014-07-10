@@ -75,7 +75,7 @@ public class Connection extends Model {
 		return post("1/connections", params, Connection.class);
 	}
 
-	public static void deleteByAccountIdAndServiceToken(String accountId, String serviceId, String credentialId) {
+	public static void deleteByAccountIdAndServiceId(String accountId, String serviceId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
