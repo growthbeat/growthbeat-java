@@ -39,7 +39,7 @@ public class ClientTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Client.deleteByid("Dummy", CREDENTIAL_ID);
+			Client.deleteById("Dummy", CREDENTIAL_ID);
 			fail();
 		} catch (GrowthbeatException e) {
 		}

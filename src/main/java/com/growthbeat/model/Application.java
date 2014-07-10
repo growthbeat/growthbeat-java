@@ -59,7 +59,7 @@ public class Application extends Model {
 		return put(String.format("1/applications/%s", id), params, Application.class);
 	}
 
-	public static void deleteByid(String id, String credentialId) {
+	public static void deleteById(String id, String credentialId) {
 		delete(String.format("1/applications/%s", id), makeParams(credentialId));
 	}
 

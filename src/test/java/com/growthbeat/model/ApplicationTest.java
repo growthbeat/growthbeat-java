@@ -46,7 +46,7 @@ public class ApplicationTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Application.deleteByid("Dummy", CREDENTIAL_ID);
+			Application.deleteById("Dummy", CREDENTIAL_ID);
 			fail();
 		} catch (GrowthbeatException e) {
 		}
