@@ -4,14 +4,23 @@ import com.growthbeat.http.HttpClient;
 
 public class Growthbeat {
 
-	private static Growthbeat instance = new Growthbeat();
+	private String credentialId;
 
-	private Growthbeat() {
+	public Growthbeat() {
 		super();
 	}
 
-	public static Growthbeat getInstance() {
-		return instance;
+	public Growthbeat(String credentialId) {
+		this();
+		setCredentialId(credentialId);
+	}
+
+	public String getCredentialId() {
+		return credentialId;
+	}
+
+	public void setCredentialId(String credentialId) {
+		this.credentialId = credentialId;
 	}
 
 	public void setHttpClientBaseUrl(String baseUrl) {

@@ -11,8 +11,11 @@ import com.growthbeat.model.Session;
 
 public class BaseTest {
 
+	private static Growthbeat growthbeat = new Growthbeat();
+
 	protected static final String CREDENTIAL_ID = "wXvp0nuo3SmR5zMDAtuoKMxElgUgN968";
 	protected static final String SERVICE_ID = "5FjbhqsIHTGdfVeP";
+
 	protected static Account testAccount = null;
 	protected static Credential testCredential = null;
 	protected static Application testApplication = null;
@@ -22,7 +25,8 @@ public class BaseTest {
 
 	@BeforeClass
 	public static void setUp() {
-		Growthbeat.getInstance().setHttpClientBaseUrl("http://api.growthbeat.com/");
+		growthbeat.setCredentialId(CREDENTIAL_ID);
+		growthbeat.setHttpClientBaseUrl("http://api.growthbeat.com/");
 		if (testAccount == null)
 			init();
 	}
