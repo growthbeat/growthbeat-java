@@ -1,37 +1,27 @@
 package com.growthbeat;
 
-import com.growthbeat.http.GrowthbeatHttpClient;
-
 public class Growthbeat {
 
 	private static final String BASE_URL = "https://api.growthbeat.com/";
 
-	private String credentialId = null;
-	private GrowthbeatHttpClient growthbeatHttpClient = new GrowthbeatHttpClient(BASE_URL);
+	private Context context = new Context();
 
 	public Growthbeat() {
 		super();
+		context.getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
 	}
 
 	public Growthbeat(String credentialId) {
 		this();
-		setCredentialId(credentialId);
+		context.setCredentialId(credentialId);
 	}
 
-	public String getCredentialId() {
-		return credentialId;
+	public Context getContext() {
+		return context;
 	}
 
-	public void setCredentialId(String credentialId) {
-		this.credentialId = credentialId;
-	}
-
-	public GrowthbeatHttpClient getGrowthbeatHttpClient() {
-		return growthbeatHttpClient;
-	}
-
-	public void setGrowthbeatHttpClient(GrowthbeatHttpClient growthbeatHttpClient) {
-		this.growthbeatHttpClient = growthbeatHttpClient;
+	public void setContext(Context context) {
+		this.context = context;
 	}
 
 }

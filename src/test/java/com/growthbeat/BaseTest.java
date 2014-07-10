@@ -1,5 +1,6 @@
 package com.growthbeat;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 
 import com.growthbeat.model.Account;
@@ -11,8 +12,7 @@ import com.growthbeat.model.Session;
 
 public class BaseTest {
 
-	private static Growthbeat growthbeat = new Growthbeat();
-
+	protected static final String BASE_URL = "http://api.growthbeat.com/";
 	protected static final String CREDENTIAL_ID = "wXvp0nuo3SmR5zMDAtuoKMxElgUgN968";
 	protected static final String SERVICE_ID = "5FjbhqsIHTGdfVeP";
 
@@ -23,12 +23,17 @@ public class BaseTest {
 	protected static Connection testConnection = null;
 	protected static Session testSession = null;
 
+	protected Growthbeat growthbeat = new Growthbeat(CREDENTIAL_ID);
+
 	@BeforeClass
-	public static void setUp() {
-		growthbeat.setCredentialId(CREDENTIAL_ID);
-		growthbeat.getGrowthbeatHttpClient().setBaseUrl("http://api.growthbeat.com/");
+	public static void beforeClass() {
 		if (testAccount == null)
 			init();
+	}
+
+	@Before
+	public void before() {
+		growthbeat.getContext().getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
 	}
 
 	private static void init() {
