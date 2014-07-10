@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.growthbeat.BaseTest;
@@ -14,9 +15,19 @@ import com.growthbeat.GrowthbeatException;
 
 public class ConnectionTest extends BaseTest {
 
+	@BeforeClass
+	public static void beforeClass() {
+		Connection.create("GfgtutZ09JDesWQs", "5FjbhqsIHTGdfVeP", CREDENTIAL_ID);
+	}
+
 	@Test
 	public void findByConnectionIdAndServiceId() {
 		Connection connection = Connection.findByAccountIdAndServiceId("GfgtutZ09JDesWQs", "5FjbhqsIHTGdfVeP", CREDENTIAL_ID);
+		assertNotNull(connection);
+		assertNotNull(connection.getId());
+		assertEquals("GfgtutZ09JDesWQs", connection.getAccount().getId());
+		assertEquals("5FjbhqsIHTGdfVeP", connection.getService().getId());
+		assertNotNull(connection.getChildAccount().getId());
 	}
 
 	@Test
@@ -33,6 +44,7 @@ public class ConnectionTest extends BaseTest {
 		assertNotNull(connection.getId());
 		assertEquals("GfgtutZ09JDesWQs", connection.getAccount().getId());
 		assertEquals("dwQ1eSfOpxzQEy7C", connection.getService().getId());
+		assertNotNull(connection.getChildAccount().getId());
 	}
 
 	@Test
