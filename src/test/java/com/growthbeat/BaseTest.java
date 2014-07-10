@@ -26,7 +26,7 @@ public class BaseTest {
 	@BeforeClass
 	public static void setUp() {
 		growthbeat.setCredentialId(CREDENTIAL_ID);
-		growthbeat.setHttpClientBaseUrl("http://api.growthbeat.com/");
+		growthbeat.getGrowthbeatHttpClient().setBaseUrl("http://api.growthbeat.com/");
 		if (testAccount == null)
 			init();
 	}

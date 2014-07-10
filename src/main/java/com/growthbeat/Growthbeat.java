@@ -1,10 +1,13 @@
 package com.growthbeat;
 
-import com.growthbeat.http.HttpClient;
+import com.growthbeat.http.GrowthbeatHttpClient;
 
 public class Growthbeat {
 
-	private String credentialId;
+	private static final String BASE_URL = "https://api.growthbeat.com/";
+
+	private String credentialId = null;
+	private GrowthbeatHttpClient growthbeatHttpClient = new GrowthbeatHttpClient(BASE_URL);
 
 	public Growthbeat() {
 		super();
@@ -23,8 +26,12 @@ public class Growthbeat {
 		this.credentialId = credentialId;
 	}
 
-	public void setHttpClientBaseUrl(String baseUrl) {
-		HttpClient.getInstance().setBaseUrl(baseUrl);
+	public GrowthbeatHttpClient getGrowthbeatHttpClient() {
+		return growthbeatHttpClient;
+	}
+
+	public void setGrowthbeatHttpClient(GrowthbeatHttpClient growthbeatHttpClient) {
+		this.growthbeatHttpClient = growthbeatHttpClient;
 	}
 
 }

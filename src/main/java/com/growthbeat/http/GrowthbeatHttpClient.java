@@ -11,6 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -22,20 +23,23 @@ import org.apache.http.util.EntityUtils;
 
 import com.growthbeat.GrowthbeatException;
 
-public class HttpClient {
+public class GrowthbeatHttpClient {
 
-	private static HttpClient instance = new HttpClient();
+	private HttpClient httpClient = null;
+	private String baseUrl = null;
 
-	private org.apache.http.client.HttpClient httpClient = null;
-	private String baseUrl = "https://api.growthbeat.com/";
-
-	private HttpClient() {
+	public GrowthbeatHttpClient() {
 		super();
 		this.httpClient = HttpClientBuilder.create().setDefaultRequestConfig(RequestConfig.DEFAULT).build();
 	}
 
-	public static HttpClient getInstance() {
-		return instance;
+	public GrowthbeatHttpClient(String baseUrl) {
+		this();
+		setBaseUrl(baseUrl);
+	}
+
+	public String getBaseUrl() {
+		return baseUrl;
 	}
 
 	public void setBaseUrl(String baseUrl) {
