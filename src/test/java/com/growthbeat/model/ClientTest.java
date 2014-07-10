@@ -2,7 +2,10 @@ package com.growthbeat.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.junit.Test;
 
@@ -21,8 +24,8 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findByApplicationId() {
-		// List<Client> clients = Client.findByApplicationId("J9yz06sdPs0buwHP",
-		// null, Order.ascending, null, CREDENTIAL_ID);
+		List<Client> clients = Client.findByApplicationId("J9yz06sdPs0buwHP", null, Order.ascending, null, CREDENTIAL_ID);
+		assertTrue(clients.size() > 0);
 	}
 
 	@Test
