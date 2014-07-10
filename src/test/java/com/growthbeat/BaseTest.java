@@ -12,6 +12,7 @@ import com.growthbeat.model.Session;
 public class BaseTest {
 
 	protected static final String CREDENTIAL_ID = "wXvp0nuo3SmR5zMDAtuoKMxElgUgN968";
+	protected static final String SERVICE_ID = "5FjbhqsIHTGdfVeP";
 	protected static Account testAccount = null;
 	protected static Credential testCredential = null;
 	protected static Application testApplication = null;
@@ -32,8 +33,8 @@ public class BaseTest {
 		testCredential = Credential.create(testAccount.getId(), CREDENTIAL_ID);
 		testApplication = Application.create("Java SDK", testCredential.getId());
 		testClient = Client.create(testApplication.getId(), testCredential.getId());
-		testConnection = Connection.create(testAccount.getId(), "5FjbhqsIHTGdfVeP", testCredential.getId());
-		testSession = Session.create(testAccount.getId(), "5FjbhqsIHTGdfVeP", testCredential.getId());
+		testConnection = Connection.create(testAccount.getId(), SERVICE_ID, testCredential.getId());
+		testSession = Session.create(testAccount.getId(), SERVICE_ID, testCredential.getId());
 
 	}
 
