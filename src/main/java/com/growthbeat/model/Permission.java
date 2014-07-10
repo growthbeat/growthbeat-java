@@ -85,7 +85,7 @@ public class Permission extends Model {
 		return post("1/permissions", params, Permission.class);
 	}
 
-	public static void deleteById(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
+	public static void delete(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
