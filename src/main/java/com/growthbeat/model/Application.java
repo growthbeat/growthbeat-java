@@ -47,6 +47,12 @@ public class Application extends Model {
 		});
 	}
 
+	public static Application create(String name, String credentialId) {
+		Map<String, Object> params = makeParams(credentialId);
+		params.put("name", name);
+		return post("1/applications", params, Application.class);
+	}
+
 	public static Application update(String id, String name, String credentialId) {
 		Map<String, Object> params = makeParams(credentialId);
 		params.put("name", name);
@@ -56,4 +62,5 @@ public class Application extends Model {
 	public static void deleteByid(String id, String credentialId) {
 		delete(String.format("1/applications/%s", id), makeParams(credentialId));
 	}
+
 }
