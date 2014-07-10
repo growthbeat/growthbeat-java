@@ -7,7 +7,6 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.growthbeat.BaseTest;
@@ -15,30 +14,22 @@ import com.growthbeat.GrowthbeatException;
 
 public class ApplicationTest extends BaseTest {
 
-	private static String applicationId = null;
-
-	@BeforeClass
-	public static void beforeClass() {
-		Application application = Application.create("Java SDK", CREDENTIAL_ID);
-		applicationId = application.getId();
-	}
-
 	@Test
 	public void findById() {
-		Application application = Application.findById(applicationId, CREDENTIAL_ID);
-		assertEquals(applicationId, application.getId());
+		Application application = Application.findById(testApplication.getId(), testCredential.getId());
+		assertEquals(testApplication.getId(), application.getId());
 		assertEquals("Java SDK", application.getName());
 	}
 
 	@Test
 	public void findByAccountId() {
-		List<Application> applications = Application.findByAccountId("GfgtutZ09JDesWQs", CREDENTIAL_ID);
+		List<Application> applications = Application.findByAccountId(testAccount.getId(), testCredential.getId());
 		assertTrue(applications.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Application application = Application.create("Test App", CREDENTIAL_ID);
+		Application application = Application.create("Test App", testCredential.getId());
 		assertNotNull(application);
 		assertNotNull(application.getId());
 		assertEquals("Test App", application.getName());
@@ -46,7 +37,7 @@ public class ApplicationTest extends BaseTest {
 
 	@Test
 	public void update() {
-		Application application = Application.update(applicationId, "Java SDK", CREDENTIAL_ID);
+		Application application = Application.update(testApplication.getId(), "Java SDK", testCredential.getId());
 		assertNotNull(application);
 		assertNotNull(application.getId());
 		assertEquals("Java SDK", application.getName());
@@ -55,7 +46,7 @@ public class ApplicationTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Application.deleteById(applicationId, CREDENTIAL_ID);
+			Application.deleteById(testApplication.getId(), testCredential.getId());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

@@ -17,32 +17,32 @@ public class ConnectionTest extends BaseTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		Connection.create("GfgtutZ09JDesWQs", "5FjbhqsIHTGdfVeP", CREDENTIAL_ID);
 	}
 
 	@Test
 	public void findByConnectionIdAndServiceId() {
-		Connection connection = Connection.findByAccountIdAndServiceId("GfgtutZ09JDesWQs", "5FjbhqsIHTGdfVeP", CREDENTIAL_ID);
+		Connection connection = Connection.findByAccountIdAndServiceId(testAccount.getId(), testConnection.getService().getId(),
+				testCredential.getId());
 		assertNotNull(connection);
 		assertNotNull(connection.getId());
-		assertEquals("GfgtutZ09JDesWQs", connection.getAccount().getId());
-		assertEquals("5FjbhqsIHTGdfVeP", connection.getService().getId());
+		assertEquals(testAccount.getId(), connection.getAccount().getId());
+		assertEquals(testConnection.getService().getId(), connection.getService().getId());
 		assertNotNull(connection.getChildAccount().getId());
 	}
 
 	@Test
 	public void findByAccountId() {
-		List<Connection> connections = Connection.findByAccountId("GfgtutZ09JDesWQs", CREDENTIAL_ID);
+		List<Connection> connections = Connection.findByAccountId(testAccount.getId(), testCredential.getId());
 		assertNotNull(connections);
 		assertTrue(connections.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Connection connection = Connection.create("GfgtutZ09JDesWQs", "dwQ1eSfOpxzQEy7C", CREDENTIAL_ID);
+		Connection connection = Connection.create(testAccount.getId(), "dwQ1eSfOpxzQEy7C", testCredential.getId());
 		assertNotNull(connection);
 		assertNotNull(connection.getId());
-		assertEquals("GfgtutZ09JDesWQs", connection.getAccount().getId());
+		assertEquals(testAccount.getId(), connection.getAccount().getId());
 		assertEquals("dwQ1eSfOpxzQEy7C", connection.getService().getId());
 		assertNotNull(connection.getChildAccount().getId());
 	}
@@ -50,7 +50,7 @@ public class ConnectionTest extends BaseTest {
 	@Test
 	public void deleteByAccountIdAndServiceId() {
 		try {
-			Connection.deleteByAccountIdAndServiceId("GfgtutZ09JDesWQs", "Dummy", CREDENTIAL_ID);
+			Connection.deleteByAccountIdAndServiceId(testAccount.getId(), "Dummy", testCredential.getId());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

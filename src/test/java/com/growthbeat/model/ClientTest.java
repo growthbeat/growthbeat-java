@@ -16,30 +16,30 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Client client = Client.findById("qz4Jf0fNB7lQvhZf", CREDENTIAL_ID);
-		assertEquals("qz4Jf0fNB7lQvhZf", client.getId());
-		assertEquals("J9yz06sdPs0buwHP", client.getApplication().getId());
-		assertEquals(1404831236000L, client.getCreated().getTime());
+		Client client = Client.findById(testClient.getId(), testCredential.getId());
+		assertEquals(testClient.getId(), client.getId());
+		assertEquals(testApplication.getId(), client.getApplication().getId());
+		assertNotNull(client.getCreated());
 	}
 
 	@Test
 	public void findByApplicationId() {
-		List<Client> clients = Client.findByApplicationId("J9yz06sdPs0buwHP", null, Order.ascending, null, CREDENTIAL_ID);
+		List<Client> clients = Client.findByApplicationId(testApplication.getId(), null, Order.ascending, null, testCredential.getId());
 		assertTrue(clients.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Client client = Client.create("J9yz06sdPs0buwHP", CREDENTIAL_ID);
+		Client client = Client.create(testApplication.getId(), testCredential.getId());
 		assertNotNull(client.getId());
-		assertEquals("J9yz06sdPs0buwHP", client.getApplication().getId());
+		assertEquals(testApplication.getId(), client.getApplication().getId());
 		assertNotNull(client.getCreated());
 	}
 
 	@Test
 	public void deleteById() {
 		try {
-			Client.deleteById("Dummy", CREDENTIAL_ID);
+			Client.deleteById("Dummy", testCredential.getId());
 			fail();
 		} catch (GrowthbeatException e) {
 		}
