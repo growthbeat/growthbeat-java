@@ -1,6 +1,7 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,28 +40,28 @@ public class Credential extends Model {
 	}
 
 	public static Credential findById(String id, Context context) {
-		return get(context, String.format("1/credentials/%s", id), makeParams(context), Credential.class);
+		return get(context, String.format("1/credentials/%s", id), new HashMap<String, Object>(), Credential.class);
 	}
 
 	public static List<Credential> findByAccountId(String accountId, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		return get(context, "1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 	}
 
 	public static Credential create(String accountId, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		return post(context, "1/credentials", params, Credential.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/credentials/%s", id), makeParams(context));
+		delete(context, String.format("1/credentials/%s", id), new HashMap<String, Object>(), Void.class);
 	}
 
 	public static List<Credential> findBySessionId(String sessionId, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("sessionId", sessionId);
 		return get(context, "1/credentials", params, new TypeReference<List<Credential>>() {
 		});

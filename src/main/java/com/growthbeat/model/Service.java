@@ -1,6 +1,7 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,18 +85,18 @@ public class Service extends Model {
 	}
 
 	public static Service findById(String id, Context context) {
-		return get(context, String.format("1/services/%s", id), makeParams(context), Service.class);
+		return get(context, String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
 	}
 
 	public static List<Service> findByAccountId(String accountId, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		return get(context, "1/services", params, new TypeReference<List<Service>>() {
 		});
 	}
 
 	public static Service create(String name, String namespace, String url, String domain, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("namespace", namespace);
 		params.put("url", url);
@@ -104,7 +105,7 @@ public class Service extends Model {
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/services/%s", id), makeParams(context));
+		delete(context, String.format("1/services/%s", id), new HashMap<String, Object>(), Void.class);
 	}
 
 }

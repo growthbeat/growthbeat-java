@@ -1,6 +1,7 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import com.growthbeat.Context;
 
@@ -26,14 +27,14 @@ public class Account extends Model {
 	}
 
 	public static Account findById(String id, Context context) {
-		return get(context, String.format("1/accounts/%s", id), makeParams(context), Account.class);
+		return get(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
 	}
 
 	public static Account create(Context context) {
-		return post(context, "1/accounts", makeParams(context), Account.class);
+		return post(context, "1/accounts", new HashMap<String, Object>(), Account.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/accounts/%s", id), makeParams(context));
+		delete(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Void.class);
 	}
 }

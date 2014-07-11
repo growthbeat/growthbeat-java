@@ -1,6 +1,7 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.growthbeat.Context;
@@ -45,18 +46,18 @@ public class Resource extends Model {
 	}
 
 	public static Resource findById(String id, Context context) {
-		return get(context, String.format("1/resources/%s", id), makeParams(context), Resource.class);
+		return get(context, String.format("1/resources/%s", id), new HashMap<String, Object>(), Resource.class);
 	}
 
 	public static Resource create(String parentResourceId, String name, Context context) {
-		Map<String, Object> params = makeParams(context);
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentResourceId", parentResourceId);
 		params.put("name", name);
 		return post(context, "1/resources", params, Resource.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/resources/%s", id), makeParams(context));
+		delete(context, String.format("1/resources/%s", id), new HashMap<String, Object>(), Void.class);
 	}
 
 }
