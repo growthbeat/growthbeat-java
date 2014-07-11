@@ -19,7 +19,7 @@ public class UserTest extends BaseTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		password = "password_" + new Random().nextInt();
+		password = "password_" + random();
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class UserTest extends BaseTest {
 
 	@Test
 	public void create1() {
-		String mail = new Random().nextInt() + "@growthbeat.com";
+		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.createUser(testAccount.getId(), mail, password);
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
@@ -39,7 +39,7 @@ public class UserTest extends BaseTest {
 
 	@Test
 	public void create2() {
-		String mail = new Random().nextInt() + "@growthbeat.com";
+		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.createUser(mail, password);
 		assertNotNull(user);
 		assertNotNull(user.getAccount().getId());
@@ -48,7 +48,7 @@ public class UserTest extends BaseTest {
 
 	@Test
 	public void updateMail() {
-		String mail = new Random().nextInt() + "@growthbeat.com";
+		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.updateUserMail(testAccount.getId(), mail);
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
@@ -57,7 +57,7 @@ public class UserTest extends BaseTest {
 
 	@Test
 	public void updatePassword() {
-		String newPassword = "password_" + new Random().nextInt();
+		String newPassword = "password_" + random();
 		User user = growthbeat.updateUserPassword(testAccount.getId(), password, newPassword);
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
@@ -70,6 +70,10 @@ public class UserTest extends BaseTest {
 			fail();
 		} catch (GrowthbeatException e) {
 		}
+	}
+
+	private static String random() {
+		return String.valueOf(Math.abs(new Random().nextInt()));
 	}
 
 }
