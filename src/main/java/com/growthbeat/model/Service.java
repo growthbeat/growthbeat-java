@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
+
 public class Service extends Model {
 
 	private String id;
@@ -81,19 +83,19 @@ public class Service extends Model {
 		this.account = account;
 	}
 
-	public static Service findById(String id, String credentialId) {
-		return get(String.format("1/services/%s", id), makeParams(credentialId), Service.class);
+	public static Service findById(String id, Context context) {
+		return get(String.format("1/services/%s", id), makeParams(context), Service.class);
 	}
 
-	public static List<Service> findByAccountId(String accountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Service> findByAccountId(String accountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		return get("1/services", params, new TypeReference<List<Service>>() {
 		});
 	}
 
-	public static Service create(String name, String namespace, String url, String domain, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Service create(String name, String namespace, String url, String domain, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("name", name);
 		params.put("namespace", namespace);
 		params.put("url", url);
@@ -101,8 +103,8 @@ public class Service extends Model {
 		return post("1/services", params, Service.class);
 	}
 
-	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/services/%s", id), makeParams(credentialId));
+	public static void deleteById(String id, Context context) {
+		delete(String.format("1/services/%s", id), makeParams(context));
 	}
 
 }

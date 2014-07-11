@@ -3,6 +3,8 @@ package com.growthbeat.model;
 import java.util.Date;
 import java.util.Map;
 
+import com.growthbeat.Context;
+
 public class Action extends Model {
 
 	private String id;
@@ -42,21 +44,21 @@ public class Action extends Model {
 		this.parentAction = parentAction;
 	}
 
-	static Action findById(String id, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	static Action findById(String id, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("id", id);
 		return get("1/actions", params, Action.class);
 	}
 
-	static Action create(String parentActionId, String name, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	static Action create(String parentActionId, String name, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("parentActionId", parentActionId);
 		params.put("name", name);
 		return post("1/actions", params, Action.class);
 	}
 
-	static void deleteById(String id, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	static void deleteById(String id, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("id", id);
 		delete("1/actions", params);
 	}

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
+
 public class Client extends Model {
 
 	private String id;
@@ -36,12 +38,12 @@ public class Client extends Model {
 		this.application = application;
 	}
 
-	public static Client findById(String id, String credentialId) {
-		return get(String.format("1/clients/%s", id), makeParams(credentialId), Client.class);
+	public static Client findById(String id, Context context) {
+		return get(String.format("1/clients/%s", id), makeParams(context), Client.class);
 	}
 
-	public static List<Client> findByApplicationId(String applicationId, String id, Order order, Integer limit, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Client> findByApplicationId(String applicationId, String id, Order order, Integer limit, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("applicationId", applicationId);
 		if (id != null)
 			params.put("id", id);
@@ -53,14 +55,14 @@ public class Client extends Model {
 		});
 	}
 
-	public static Client create(String applicationId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Client create(String applicationId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("applicationId", applicationId);
 		return post("1/clients", params, Client.class);
 	}
 
-	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/clients/%s", id), makeParams(credentialId));
+	public static void deleteById(String id, Context context) {
+		delete(String.format("1/clients/%s", id), makeParams(context));
 	}
 
 }

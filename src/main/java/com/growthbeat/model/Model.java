@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
 import com.growthbeat.http.GrowthbeatHttpClient;
 import com.growthbeat.http.JsonUtils;
 
@@ -12,9 +13,9 @@ public class Model {
 
 	private static GrowthbeatHttpClient growthbeatHttpClient = new GrowthbeatHttpClient();
 
-	protected static Map<String, Object> makeParams(String credentialId) {
+	protected static Map<String, Object> makeParams(Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("credentialId", credentialId);
+		params.put("credentialId", context.getCredentialId());
 		return params;
 	}
 

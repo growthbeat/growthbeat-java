@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
+
 public class Connection extends Model {
 
 	private String id;
@@ -54,29 +56,29 @@ public class Connection extends Model {
 		this.childAccount = childAccount;
 	}
 
-	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
 		return get("1/connections", params, Connection.class);
 	}
 
-	public static List<Connection> findByAccountId(String accountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Connection> findByAccountId(String accountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		return get("1/connections", params, new TypeReference<List<Connection>>() {
 		});
 	}
 
-	public static Connection create(String accountId, String serviceId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Connection create(String accountId, String serviceId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
 		return post("1/connections", params, Connection.class);
 	}
 
-	public static void deleteByAccountIdAndServiceId(String accountId, String serviceId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static void deleteByAccountIdAndServiceId(String accountId, String serviceId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
 		delete("1/connections", params);

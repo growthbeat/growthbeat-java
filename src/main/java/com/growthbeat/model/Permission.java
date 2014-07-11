@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
+
 public class Permission extends Model {
 
 	private Date created;
@@ -54,30 +56,30 @@ public class Permission extends Model {
 		this.action = action;
 	}
 
-	public static List<Permission> findByAccountId(String accountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Permission> findByAccountId(String accountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		return get("1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
-	public static List<Permission> findByTargetAccountId(String targetAccountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Permission> findByTargetAccountId(String targetAccountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("targetAccountId", targetAccountId);
 		return get("1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
-	public static List<Permission> findByAccountIdAndTargetAccountId(String accountId, String targetAccountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Permission> findByAccountIdAndTargetAccountId(String accountId, String targetAccountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 		return get("1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
-	public static Permission create(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Permission create(String accountId, String targetAccountId, String resourceId, String actionId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 		params.put("resourceId", resourceId);
@@ -85,8 +87,8 @@ public class Permission extends Model {
 		return post("1/permissions", params, Permission.class);
 	}
 
-	public static void delete(String accountId, String targetAccountId, String resourceId, String actionId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static void delete(String accountId, String targetAccountId, String resourceId, String actionId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
 		params.put("resourceId", resourceId);
@@ -94,8 +96,8 @@ public class Permission extends Model {
 		delete("1/permissions", params);
 	}
 
-	public static boolean authorize(String accountId, String resourceId, String actionId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static boolean authorize(String accountId, String resourceId, String actionId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);

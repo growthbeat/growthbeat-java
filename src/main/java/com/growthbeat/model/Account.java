@@ -2,6 +2,8 @@ package com.growthbeat.model;
 
 import java.util.Date;
 
+import com.growthbeat.Context;
+
 public class Account extends Model {
 
 	private String id;
@@ -23,15 +25,15 @@ public class Account extends Model {
 		this.created = created;
 	}
 
-	public static Account findById(String id, String credentialId) {
-		return get(String.format("1/accounts/%s", id), makeParams(credentialId), Account.class);
+	public static Account findById(String id, Context context) {
+		return get(String.format("1/accounts/%s", id), makeParams(context), Account.class);
 	}
 
-	public static Account create(String credentialId) {
-		return post("1/accounts", makeParams(credentialId), Account.class);
+	public static Account create(Context context) {
+		return post("1/accounts", makeParams(context), Account.class);
 	}
 
-	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/accounts/%s", id), makeParams(credentialId));
+	public static void deleteById(String id, Context context) {
+		delete(String.format("1/accounts/%s", id), makeParams(context));
 	}
 }

@@ -23,7 +23,7 @@ public class BaseTest {
 	protected static Connection testConnection = null;
 	protected static Session testSession = null;
 
-	protected Growthbeat growthbeat = new Growthbeat(CREDENTIAL_ID);
+	protected Growthbeat growthbeat = null;
 
 	@BeforeClass
 	public static void beforeClass() {
@@ -33,18 +33,29 @@ public class BaseTest {
 
 	@Before
 	public void before() {
-		growthbeat.getContext().getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
+		growthbeat = createGrowthbeat(testCredential.getId());
 	}
 
 	private static void init() {
 
-		testAccount = Account.create(CREDENTIAL_ID);
-		testCredential = Credential.create(testAccount.getId(), CREDENTIAL_ID);
-		testApplication = Application.create("Java SDK", testCredential.getId());
-		testClient = Client.create(testApplication.getId(), testCredential.getId());
-		testConnection = Connection.create(testAccount.getId(), SERVICE_ID, testCredential.getId());
-		testSession = Session.create(testAccount.getId(), SERVICE_ID, testCredential.getId());
+		Growthbeat growthbeat = createGrowthbeat(CREDENTIAL_ID);
 
+		testAccount = Account.create(growthbeat.getContext());
+		testCredential = Credential.create(testAccount.getId(), growthbeat.getContext());
+
+		Growthbeat childGrowthbeat = createGrowthbeat(testCredential.getId());
+
+		testApplication = Application.create("Java SDK", childGrowthbeat.getContext());
+		testClient = Client.create(testApplication.getId(), childGrowthbeat.getContext());
+		testConnection = Connection.create(testAccount.getId(), SERVICE_ID, childGrowthbeat.getContext());
+		testSession = Session.create(testAccount.getId(), SERVICE_ID, childGrowthbeat.getContext());
+
+	}
+
+	protected static Growthbeat createGrowthbeat(String credentialId) {
+		Growthbeat growthbeat = new Growthbeat(CREDENTIAL_ID);
+		growthbeat.getContext().getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
+		return growthbeat;
 	}
 
 }

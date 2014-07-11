@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.growthbeat.Context;
+
 public class Credential extends Model {
 
 	private String id;
@@ -36,29 +38,29 @@ public class Credential extends Model {
 		this.account = account;
 	}
 
-	public static Credential findById(String id, String credentialId) {
-		return get(String.format("1/credentials/%s", id), makeParams(credentialId), Credential.class);
+	public static Credential findById(String id, Context context) {
+		return get(String.format("1/credentials/%s", id), makeParams(context), Credential.class);
 	}
 
-	public static List<Credential> findByAccountId(String accountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Credential> findByAccountId(String accountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		return get("1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 	}
 
-	public static Credential create(String accountId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static Credential create(String accountId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		return post("1/credentials", params, Credential.class);
 	}
 
-	public static void deleteById(String id, String credentialId) {
-		delete(String.format("1/credentials/%s", id), makeParams(credentialId));
+	public static void deleteById(String id, Context context) {
+		delete(String.format("1/credentials/%s", id), makeParams(context));
 	}
 
-	public static List<Credential> findBySessionId(String sessionId, String credentialId) {
-		Map<String, Object> params = makeParams(credentialId);
+	public static List<Credential> findBySessionId(String sessionId, Context context) {
+		Map<String, Object> params = makeParams(context);
 		params.put("sessionId", sessionId);
 		return get("1/credentials", params, new TypeReference<List<Credential>>() {
 		});
