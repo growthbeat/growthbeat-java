@@ -2,6 +2,8 @@ package com.growthbeat;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
@@ -10,6 +12,7 @@ import com.growthbeat.model.Connection;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Session;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BaseTest {
 
 	protected static final String BASE_URL = "http://api.growthbeat.com/";
@@ -26,13 +29,13 @@ public class BaseTest {
 	protected Growthbeat growthbeat = null;
 
 	@BeforeClass
-	public static void beforeClass() {
+	public static void a1BeforeClass() {
 		if (testAccount == null)
 			init();
 	}
 
 	@Before
-	public void before() {
+	public void a2Before() {
 		growthbeat = createGrowthbeat(testCredential.getId());
 	}
 

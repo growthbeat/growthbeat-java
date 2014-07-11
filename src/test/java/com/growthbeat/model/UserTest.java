@@ -8,28 +8,31 @@ import static org.junit.Assert.fail;
 import java.util.Random;
 
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.growthbeat.BaseTest;
 import com.growthbeat.GrowthbeatException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserTest extends BaseTest {
 
 	private static String password = null;
 
 	@BeforeClass
-	public static void beforeClass() {
+	public static void b1BeforeClass() {
 		password = "password_" + random();
 	}
 
 	@Test
-	public void findByAccountId() {
+	public void b2FindByAccountId() {
 		User user = growthbeat.findUserByAccountId(testAccount.getId());
 		assertNull(user);
 	}
 
 	@Test
-	public void create1() {
+	public void b3Create1() {
 		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.createUser(testAccount.getId(), mail, password);
 		assertNotNull(user);
@@ -38,7 +41,7 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void create2() {
+	public void b4Create2() {
 		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.createUser(mail, password);
 		assertNotNull(user);
@@ -47,7 +50,7 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void updateMail() {
+	public void b5UpdateMail() {
 		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.updateUserMail(testAccount.getId(), mail);
 		assertNotNull(user);
@@ -56,7 +59,7 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void updatePassword() {
+	public void b6UpdatePassword() {
 		String newPassword = "password_" + random();
 		User user = growthbeat.updateUserPassword(testAccount.getId(), password, newPassword);
 		assertNotNull(user);
@@ -64,7 +67,7 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void deleteById() {
+	public void b7DeleteById() {
 		try {
 			growthbeat.deleteUserByAccountId(testAccount.getId());
 			fail();
