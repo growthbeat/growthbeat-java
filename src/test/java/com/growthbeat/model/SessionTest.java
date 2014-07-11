@@ -13,13 +13,13 @@ public class SessionTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Session session = Session.findById(testSession.getId(), testCredential.getId());
+		Session session = Session.findById(testSession.getId(), growthbeat.getContext());
 		assertEquals(testSession.getId(), session.getId());
 	}
 
 	@Test
 	public void create() {
-		Session session = Session.create(testAccount.getId(), SERVICE_ID, testCredential.getId());
+		Session session = Session.create(testAccount.getId(), SERVICE_ID, growthbeat.getContext());
 		assertNotNull(session);
 		assertNotNull(session.getId());
 		assertEquals(testAccount.getId(), session.getAccount().getId());
@@ -29,7 +29,7 @@ public class SessionTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Session.deleteById("Dummy", testCredential.getId());
+			Session.deleteById("Dummy", growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

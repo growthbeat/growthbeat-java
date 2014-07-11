@@ -95,7 +95,8 @@ public class GrowthbeatHttpClient {
 			throw new GrowthbeatException(e);
 		} finally {
 			try {
-				EntityUtils.consume(httpResponse.getEntity());
+				if (httpResponse != null)
+					EntityUtils.consume(httpResponse.getEntity());
 			} catch (IOException e) {
 			}
 		}

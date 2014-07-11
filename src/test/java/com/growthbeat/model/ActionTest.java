@@ -13,7 +13,7 @@ public class ActionTest extends BaseTest {
 	public void findById() {
 		// Service credential is required.
 		try {
-			Action action = Action.findById("Action:Growthbeat", testCredential.getId());
+			Action action = Action.findById("Action:Growthbeat", growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -23,7 +23,7 @@ public class ActionTest extends BaseTest {
 	public void create() {
 		// Service credential is required.
 		try {
-			Action action = Action.create("Action:Growthbeat", "XXX", testCredential.getId());
+			Action action = Action.create("Action:Growthbeat", "XXX", growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -33,7 +33,7 @@ public class ActionTest extends BaseTest {
 	public void deleteById() {
 		// Service credential is required.
 		try {
-			Action.deleteById("Action:Growthbeat:XXX", testCredential.getId());
+			Action.deleteById("Action:Growthbeat:XXX", growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

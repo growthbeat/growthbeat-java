@@ -38,10 +38,10 @@ public class BaseTest {
 
 	private static void init() {
 
-		Growthbeat growthbeat = createGrowthbeat(CREDENTIAL_ID);
+		Growthbeat parentGrowthbeat = createGrowthbeat(CREDENTIAL_ID);
 
-		testAccount = Account.create(growthbeat.getContext());
-		testCredential = Credential.create(testAccount.getId(), growthbeat.getContext());
+		testAccount = Account.create(parentGrowthbeat.getContext());
+		testCredential = Credential.create(testAccount.getId(), parentGrowthbeat.getContext());
 
 		Growthbeat childGrowthbeat = createGrowthbeat(testCredential.getId());
 

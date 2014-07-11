@@ -24,14 +24,14 @@ public class UserTest extends BaseTest {
 
 	@Test
 	public void findByAccountId() {
-		User user = User.findByAccountId(testAccount.getId(), testCredential.getId());
+		User user = User.findByAccountId(testAccount.getId(), growthbeat.getContext());
 		assertNull(user);
 	}
 
 	@Test
 	public void create1() {
 		String mail = new Random().nextInt() + "@growthbeat.com";
-		User user = User.create(testAccount.getId(), mail, password, testCredential.getId());
+		User user = User.create(testAccount.getId(), mail, password, growthbeat.getContext());
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
 		assertEquals(mail, user.getMail());
@@ -40,7 +40,7 @@ public class UserTest extends BaseTest {
 	@Test
 	public void create2() {
 		String mail = new Random().nextInt() + "@growthbeat.com";
-		User user = User.create(mail, password, testCredential.getId());
+		User user = User.create(mail, password, growthbeat.getContext());
 		assertNotNull(user);
 		assertNotNull(user.getAccount().getId());
 		assertEquals(mail, user.getMail());
@@ -49,7 +49,7 @@ public class UserTest extends BaseTest {
 	@Test
 	public void updateMail() {
 		String mail = new Random().nextInt() + "@growthbeat.com";
-		User user = User.updateMail(testAccount.getId(), mail, testCredential.getId());
+		User user = User.updateMail(testAccount.getId(), mail, growthbeat.getContext());
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
 		assertEquals(mail, user.getMail());
@@ -58,7 +58,7 @@ public class UserTest extends BaseTest {
 	@Test
 	public void updatePassword() {
 		String newPassword = "password_" + new Random().nextInt();
-		User user = User.updatePassword(testAccount.getId(), password, newPassword, testCredential.getId());
+		User user = User.updatePassword(testAccount.getId(), password, newPassword, growthbeat.getContext());
 		assertNotNull(user);
 		assertEquals(testAccount.getId(), user.getAccount().getId());
 	}
@@ -66,7 +66,7 @@ public class UserTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			User.deleteByAccountId(testAccount.getId(), testCredential.getId());
+			User.deleteByAccountId(testAccount.getId(), growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

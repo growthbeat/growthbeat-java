@@ -13,13 +13,13 @@ public class AccountTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Account account = Account.findById(testAccount.getId(), testCredential.getId());
+		Account account = Account.findById(testAccount.getId(), growthbeat.getContext());
 		assertEquals(testAccount.getId(), account.getId());
 	}
 
 	@Test
 	public void create() {
-		Account account = Account.create(testCredential.getId());
+		Account account = Account.create(growthbeat.getContext());
 		assertNotNull(account);
 		assertNotNull(account.getId());
 	}
@@ -27,7 +27,7 @@ public class AccountTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Account.deleteById("Dummy", testCredential.getId());
+			Account.deleteById("Dummy", growthbeat.getContext());
 			fail();
 		} catch (GrowthbeatException e) {
 		}
