@@ -84,13 +84,13 @@ public class Service extends Model {
 	}
 
 	public static Service findById(String id, Context context) {
-		return get(String.format("1/services/%s", id), makeParams(context), Service.class);
+		return get(context, String.format("1/services/%s", id), makeParams(context), Service.class);
 	}
 
 	public static List<Service> findByAccountId(String accountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
-		return get("1/services", params, new TypeReference<List<Service>>() {
+		return get(context, "1/services", params, new TypeReference<List<Service>>() {
 		});
 	}
 
@@ -100,11 +100,11 @@ public class Service extends Model {
 		params.put("namespace", namespace);
 		params.put("url", url);
 		params.put("domain", domain);
-		return post("1/services", params, Service.class);
+		return post(context, "1/services", params, Service.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(String.format("1/services/%s", id), makeParams(context));
+		delete(context, String.format("1/services/%s", id), makeParams(context));
 	}
 
 }

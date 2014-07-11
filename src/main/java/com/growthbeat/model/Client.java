@@ -39,7 +39,7 @@ public class Client extends Model {
 	}
 
 	public static Client findById(String id, Context context) {
-		return get(String.format("1/clients/%s", id), makeParams(context), Client.class);
+		return get(context, String.format("1/clients/%s", id), makeParams(context), Client.class);
 	}
 
 	public static List<Client> findByApplicationId(String applicationId, String id, Order order, Integer limit, Context context) {
@@ -51,18 +51,18 @@ public class Client extends Model {
 			params.put("order", order);
 		if (limit != null)
 			params.put("limit", limit);
-		return get("1/clients", params, new TypeReference<List<Client>>() {
+		return get(context, "1/clients", params, new TypeReference<List<Client>>() {
 		});
 	}
 
 	public static Client create(String applicationId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("applicationId", applicationId);
-		return post("1/clients", params, Client.class);
+		return post(context, "1/clients", params, Client.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(String.format("1/clients/%s", id), makeParams(context));
+		delete(context, String.format("1/clients/%s", id), makeParams(context));
 	}
 
 }

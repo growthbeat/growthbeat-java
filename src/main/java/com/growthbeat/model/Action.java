@@ -47,20 +47,20 @@ public class Action extends Model {
 	static Action findById(String id, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("id", id);
-		return get("1/actions", params, Action.class);
+		return get(context, "1/actions", params, Action.class);
 	}
 
 	static Action create(String parentActionId, String name, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("parentActionId", parentActionId);
 		params.put("name", name);
-		return post("1/actions", params, Action.class);
+		return post(context, "1/actions", params, Action.class);
 	}
 
 	static void deleteById(String id, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("id", id);
-		delete("1/actions", params);
+		delete(context, "1/actions", params);
 	}
 
 }

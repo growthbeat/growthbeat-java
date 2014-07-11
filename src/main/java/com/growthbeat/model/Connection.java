@@ -60,13 +60,13 @@ public class Connection extends Model {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-		return get("1/connections", params, Connection.class);
+		return get(context, "1/connections", params, Connection.class);
 	}
 
 	public static List<Connection> findByAccountId(String accountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
-		return get("1/connections", params, new TypeReference<List<Connection>>() {
+		return get(context, "1/connections", params, new TypeReference<List<Connection>>() {
 		});
 	}
 
@@ -74,14 +74,14 @@ public class Connection extends Model {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-		return post("1/connections", params, Connection.class);
+		return post(context, "1/connections", params, Connection.class);
 	}
 
 	public static void deleteByAccountIdAndServiceId(String accountId, String serviceId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-		delete("1/connections", params);
+		delete(context, "1/connections", params);
 	}
 
 }

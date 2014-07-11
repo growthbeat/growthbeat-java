@@ -59,14 +59,14 @@ public class Permission extends Model {
 	public static List<Permission> findByAccountId(String accountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
-		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		return get(context, "1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
 	public static List<Permission> findByTargetAccountId(String targetAccountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("targetAccountId", targetAccountId);
-		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		return get(context, "1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
@@ -74,7 +74,7 @@ public class Permission extends Model {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("targetAccountId", targetAccountId);
-		return get("1/permissions", params, new TypeReference<List<Permission>>() {
+		return get(context, "1/permissions", params, new TypeReference<List<Permission>>() {
 		});
 	}
 
@@ -84,7 +84,7 @@ public class Permission extends Model {
 		params.put("targetAccountId", targetAccountId);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
-		return post("1/permissions", params, Permission.class);
+		return post(context, "1/permissions", params, Permission.class);
 	}
 
 	public static void delete(String accountId, String targetAccountId, String resourceId, String actionId, Context context) {
@@ -93,7 +93,7 @@ public class Permission extends Model {
 		params.put("targetAccountId", targetAccountId);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
-		delete("1/permissions", params);
+		delete(context, "1/permissions", params);
 	}
 
 	public static boolean authorize(String accountId, String resourceId, String actionId, Context context) {
@@ -101,7 +101,7 @@ public class Permission extends Model {
 		params.put("accountId", accountId);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
-		return post("1/authorize", params, Boolean.class);
+		return post(context, "1/authorize", params, Boolean.class);
 	}
 
 }

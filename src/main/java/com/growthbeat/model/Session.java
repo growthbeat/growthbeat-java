@@ -45,18 +45,18 @@ public class Session extends Model {
 	}
 
 	public static Session findById(String id, Context context) {
-		return get(String.format("1/sessions/%s", id), makeParams(context), Session.class);
+		return get(context, String.format("1/sessions/%s", id), makeParams(context), Session.class);
 	}
 
 	public static Session create(String accountId, String serviceId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
 		params.put("serviceId", serviceId);
-		return post("1/sessions", params, Session.class);
+		return post(context, "1/sessions", params, Session.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(String.format("1/sessions/%s", id), makeParams(context));
+		delete(context, String.format("1/sessions/%s", id), makeParams(context));
 	}
 
 }

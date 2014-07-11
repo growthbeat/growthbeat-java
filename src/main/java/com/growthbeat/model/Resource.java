@@ -45,18 +45,18 @@ public class Resource extends Model {
 	}
 
 	public static Resource findById(String id, Context context) {
-		return get(String.format("1/resources/%s", id), makeParams(context), Resource.class);
+		return get(context, String.format("1/resources/%s", id), makeParams(context), Resource.class);
 	}
 
 	public static Resource create(String parentResourceId, String name, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("parentResourceId", parentResourceId);
 		params.put("name", name);
-		return post("1/resources", params, Resource.class);
+		return post(context, "1/resources", params, Resource.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(String.format("1/resources/%s", id), makeParams(context));
+		delete(context, String.format("1/resources/%s", id), makeParams(context));
 	}
 
 }

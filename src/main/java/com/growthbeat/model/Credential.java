@@ -39,30 +39,30 @@ public class Credential extends Model {
 	}
 
 	public static Credential findById(String id, Context context) {
-		return get(String.format("1/credentials/%s", id), makeParams(context), Credential.class);
+		return get(context, String.format("1/credentials/%s", id), makeParams(context), Credential.class);
 	}
 
 	public static List<Credential> findByAccountId(String accountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
-		return get("1/credentials", params, new TypeReference<List<Credential>>() {
+		return get(context, "1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 	}
 
 	public static Credential create(String accountId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("accountId", accountId);
-		return post("1/credentials", params, Credential.class);
+		return post(context, "1/credentials", params, Credential.class);
 	}
 
 	public static void deleteById(String id, Context context) {
-		delete(String.format("1/credentials/%s", id), makeParams(context));
+		delete(context, String.format("1/credentials/%s", id), makeParams(context));
 	}
 
 	public static List<Credential> findBySessionId(String sessionId, Context context) {
 		Map<String, Object> params = makeParams(context);
 		params.put("sessionId", sessionId);
-		return get("1/credentials", params, new TypeReference<List<Credential>>() {
+		return get(context, "1/credentials", params, new TypeReference<List<Credential>>() {
 		});
 	}
 }
