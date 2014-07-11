@@ -53,7 +53,7 @@ public class BaseTest {
 	}
 
 	protected static Growthbeat createGrowthbeat(String credentialId) {
-		Growthbeat growthbeat = new Growthbeat(CREDENTIAL_ID);
+		Growthbeat growthbeat = new Growthbeat(credentialId);
 		growthbeat.getContext().getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
 		return growthbeat;
 	}
