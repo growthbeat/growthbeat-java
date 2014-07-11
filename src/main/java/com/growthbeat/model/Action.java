@@ -45,20 +45,20 @@ public class Action extends Model {
 		this.parentAction = parentAction;
 	}
 
-	static Action findById(String id, Context context) {
+	public static Action findById(String id, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		return get(context, "1/actions", params, Action.class);
 	}
 
-	static Action create(String parentActionId, String name, Context context) {
+	public static Action create(String parentActionId, String name, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentActionId", parentActionId);
 		params.put("name", name);
 		return post(context, "1/actions", params, Action.class);
 	}
 
-	static void deleteById(String id, Context context) {
+	public static void deleteById(String id, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		delete(context, "1/actions", params, Void.class);
