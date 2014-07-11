@@ -16,20 +16,20 @@ public class ApplicationTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Application application = Application.findById(testApplication.getId(), growthbeat.getContext());
+		Application application = growthbeat.findApplicationById(testApplication.getId());
 		assertEquals(testApplication.getId(), application.getId());
 		assertEquals("Java SDK", application.getName());
 	}
 
 	@Test
 	public void findByAccountId() {
-		List<Application> applications = Application.findByAccountId(testAccount.getId(), growthbeat.getContext());
+		List<Application> applications = growthbeat.findApplicationByAccountId(testAccount.getId());
 		assertTrue(applications.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Application application = Application.create("Test App", growthbeat.getContext());
+		Application application = growthbeat.createApplication("Test App");
 		assertNotNull(application);
 		assertNotNull(application.getId());
 		assertEquals("Test App", application.getName());
@@ -37,7 +37,7 @@ public class ApplicationTest extends BaseTest {
 
 	@Test
 	public void update() {
-		Application application = Application.update(testApplication.getId(), "Java SDK", growthbeat.getContext());
+		Application application = growthbeat.updateApplication(testApplication.getId(), "Java SDK");
 		assertNotNull(application);
 		assertNotNull(application.getId());
 		assertEquals("Java SDK", application.getName());
@@ -46,7 +46,7 @@ public class ApplicationTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Application.deleteById(testApplication.getId(), growthbeat.getContext());
+			growthbeat.deleteApplicationById(testApplication.getId());
 			fail();
 		} catch (GrowthbeatException e) {
 		}

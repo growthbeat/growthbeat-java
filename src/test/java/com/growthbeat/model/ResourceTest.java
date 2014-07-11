@@ -13,7 +13,7 @@ public class ResourceTest extends BaseTest {
 	public void findById() {
 		// Service credential is required.
 		try {
-			Resource resource = Resource.findById("Resource:Growthbeat", growthbeat.getContext());
+			Resource resource = growthbeat.findResourceById("Resource:Growthbeat");
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -23,7 +23,7 @@ public class ResourceTest extends BaseTest {
 	public void create() {
 		// Service credential is required.
 		try {
-			Resource resource = Resource.create("Resource:Growthbeat", "XXX", growthbeat.getContext());
+			Resource resource = growthbeat.createResource("Resource:Growthbeat", "XXX");
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -33,7 +33,7 @@ public class ResourceTest extends BaseTest {
 	public void deleteById() {
 		// Service credential is required.
 		try {
-			Resource.deleteById("Resource:Growthbeat:XXX", growthbeat.getContext());
+			growthbeat.deleteResourceById("Resource:Growthbeat:XXX");
 			fail();
 		} catch (GrowthbeatException e) {
 		}

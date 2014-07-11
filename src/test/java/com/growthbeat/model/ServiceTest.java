@@ -17,7 +17,7 @@ public class ServiceTest extends BaseTest {
 	public void findById() {
 		// Service credential is required.
 		try {
-			Service service = Service.findById(SERVICE_ID, growthbeat.getContext());
+			Service service = growthbeat.findServiceById(SERVICE_ID);
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -25,7 +25,7 @@ public class ServiceTest extends BaseTest {
 
 	@Test
 	public void findByAccountId() {
-		List<Service> services = Service.findByAccountId(testAccount.getId(), growthbeat.getContext());
+		List<Service> services = growthbeat.findServiceByAccountId(testAccount.getId());
 		assertNotNull(services);
 		assertTrue(services.size() > 0);
 	}
@@ -34,7 +34,7 @@ public class ServiceTest extends BaseTest {
 	public void create() {
 		// Service credential is required.
 		try {
-			Service service = Service.create("New Service", "NewService", "http://example.com/", "example.com", growthbeat.getContext());
+			Service service = growthbeat.createService("New Service", "NewService", "http://example.com/", "example.com");
 			fail();
 		} catch (GrowthbeatException e) {
 		}
@@ -44,7 +44,7 @@ public class ServiceTest extends BaseTest {
 	public void deleteById() {
 		// Service credential is required.
 		try {
-			Service.deleteById(SERVICE_ID, growthbeat.getContext());
+			growthbeat.deleteServiceById(SERVICE_ID);
 			fail();
 		} catch (GrowthbeatException e) {
 		}

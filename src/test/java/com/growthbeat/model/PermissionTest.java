@@ -14,30 +14,30 @@ public class PermissionTest extends BaseTest {
 
 	@Test
 	public void findByAccountId() {
-		List<Permission> permissions = Permission.findByAccountId(testAccount.getId(), growthbeat.getContext());
+		List<Permission> permissions = growthbeat.findPermissionByAccountId(testAccount.getId());
 		assertNotNull(permissions);
 		assertTrue(permissions.size() > 0);
 	}
 
 	@Test
 	public void findByTargetAccountId() {
-		List<Permission> permissions = Permission.findByTargetAccountId(testAccount.getId(), growthbeat.getContext());
+		List<Permission> permissions = growthbeat.findPermissionByTargetAccountId(testAccount.getId());
 		assertNotNull(permissions);
 		assertTrue(permissions.size() > 0);
 	}
 
 	@Test
 	public void findByAccountIdAndTargetAccountId() {
-		List<Permission> permissions = Permission.findByAccountIdAndTargetAccountId(testAccount.getId(), testConnection.getChildAccount()
-				.getId(), growthbeat.getContext());
+		List<Permission> permissions = growthbeat.findPermissionByAccountIdAndTargetAccountId(testAccount.getId(), testConnection
+				.getChildAccount().getId());
 		assertNotNull(permissions);
 		assertTrue(permissions.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Permission permission = Permission.create(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
-				"Action:Growthbeat", growthbeat.getContext());
+		Permission permission = growthbeat.createPermission(testAccount.getId(), testConnection.getChildAccount().getId(),
+				"Resource:Growthbeat", "Action:Growthbeat");
 		assertNotNull(permission);
 		assertEquals(testAccount.getId(), permission.getAccount().getId());
 		assertEquals(testConnection.getChildAccount().getId(), permission.getTargetAccount().getId());
@@ -47,16 +47,16 @@ public class PermissionTest extends BaseTest {
 
 	@Test
 	public void delete() {
-		Permission.create(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
-				"Action:Growthbeat:ListPermission", growthbeat.getContext());
-		Permission.delete(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
-				"Action:Growthbeat:ListPermission", growthbeat.getContext());
+		growthbeat.createPermission(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
+				"Action:Growthbeat:ListPermission");
+		growthbeat.deletePermission(testAccount.getId(), testConnection.getChildAccount().getId(), "Resource:Growthbeat",
+				"Action:Growthbeat:ListPermission");
 	}
 
 	@Test
 	public void authorize() {
-		boolean authorized = Permission.authorize(testAccount.getId(), "Resource:Growthbeat:Account:" + testAccount.getId(),
-				"Action:Growthbeat:GetAccount", growthbeat.getContext());
+		boolean authorized = growthbeat.authorize(testAccount.getId(), "Resource:Growthbeat:Account:" + testAccount.getId(),
+				"Action:Growthbeat:GetAccount");
 		assertEquals(true, authorized);
 	}
 

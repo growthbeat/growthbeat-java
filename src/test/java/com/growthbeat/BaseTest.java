@@ -40,15 +40,15 @@ public class BaseTest {
 
 		Growthbeat parentGrowthbeat = createGrowthbeat(CREDENTIAL_ID);
 
-		testAccount = Account.create(parentGrowthbeat.getContext());
-		testCredential = Credential.create(testAccount.getId(), parentGrowthbeat.getContext());
+		testAccount = parentGrowthbeat.createAccount();
+		testCredential = parentGrowthbeat.createCredential(testAccount.getId());
 
 		Growthbeat childGrowthbeat = createGrowthbeat(testCredential.getId());
 
-		testApplication = Application.create("Java SDK", childGrowthbeat.getContext());
-		testClient = Client.create(testApplication.getId(), childGrowthbeat.getContext());
-		testConnection = Connection.create(testAccount.getId(), SERVICE_ID, childGrowthbeat.getContext());
-		testSession = Session.create(testAccount.getId(), SERVICE_ID, childGrowthbeat.getContext());
+		testApplication = childGrowthbeat.createApplication("Java SDK");
+		testClient = childGrowthbeat.createClient(testApplication.getId());
+		testConnection = childGrowthbeat.createConnection(testAccount.getId(), SERVICE_ID);
+		testSession = childGrowthbeat.createSession(testAccount.getId(), SERVICE_ID);
 
 	}
 

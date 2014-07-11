@@ -21,9 +21,7 @@ public class ConnectionTest extends BaseTest {
 
 	@Test
 	public void findByConnectionIdAndServiceId() {
-		Connection connection = Connection.findByAccountIdAndServiceId(testAccount.getId(), testConnection.getService().getId(),
-				growthbeat.getContext());
-		assertNotNull(connection);
+		Connection connection = growthbeat.findConnectionByAccountIdAndServiceId(testAccount.getId(), testConnection.getService().getId());
 		assertNotNull(connection.getId());
 		assertEquals(testAccount.getId(), connection.getAccount().getId());
 		assertEquals(testConnection.getService().getId(), connection.getService().getId());
@@ -32,14 +30,14 @@ public class ConnectionTest extends BaseTest {
 
 	@Test
 	public void findByAccountId() {
-		List<Connection> connections = Connection.findByAccountId(testAccount.getId(), growthbeat.getContext());
+		List<Connection> connections = growthbeat.findConnectionByAccountId(testAccount.getId());
 		assertNotNull(connections);
 		assertTrue(connections.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Connection connection = Connection.create(testAccount.getId(), "dwQ1eSfOpxzQEy7C", growthbeat.getContext());
+		Connection connection = growthbeat.createConnection(testAccount.getId(), "dwQ1eSfOpxzQEy7C");
 		assertNotNull(connection);
 		assertNotNull(connection.getId());
 		assertEquals(testAccount.getId(), connection.getAccount().getId());
@@ -50,7 +48,7 @@ public class ConnectionTest extends BaseTest {
 	@Test
 	public void deleteByAccountIdAndServiceId() {
 		try {
-			Connection.deleteByAccountIdAndServiceId(testAccount.getId(), "Dummy", growthbeat.getContext());
+			growthbeat.deleteConnectionByAccountIdAndServiceId(testAccount.getId(), "Dummy");
 			fail();
 		} catch (GrowthbeatException e) {
 		}

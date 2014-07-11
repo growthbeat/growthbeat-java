@@ -16,7 +16,7 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Client client = Client.findById(testClient.getId(), growthbeat.getContext());
+		Client client = growthbeat.findClientById(testClient.getId());
 		assertEquals(testClient.getId(), client.getId());
 		assertEquals(testApplication.getId(), client.getApplication().getId());
 		assertNotNull(client.getCreated());
@@ -24,13 +24,13 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findByApplicationId() {
-		List<Client> clients = Client.findByApplicationId(testApplication.getId(), null, Order.ascending, null, growthbeat.getContext());
+		List<Client> clients = growthbeat.findClientByApplicationId(testApplication.getId(), null, Order.ascending, null);
 		assertTrue(clients.size() > 0);
 	}
 
 	@Test
 	public void create() {
-		Client client = Client.create(testApplication.getId(), growthbeat.getContext());
+		Client client = growthbeat.createClient(testApplication.getId());
 		assertNotNull(client.getId());
 		assertEquals(testApplication.getId(), client.getApplication().getId());
 		assertNotNull(client.getCreated());
@@ -39,7 +39,7 @@ public class ClientTest extends BaseTest {
 	@Test
 	public void deleteById() {
 		try {
-			Client.deleteById("Dummy", growthbeat.getContext());
+			growthbeat.deleteClientById("Dummy");
 			fail();
 		} catch (GrowthbeatException e) {
 		}
