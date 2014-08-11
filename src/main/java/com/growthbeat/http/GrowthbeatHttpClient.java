@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -30,8 +31,10 @@ public class GrowthbeatHttpClient {
 
 	public GrowthbeatHttpClient() {
 		super();
-		this.httpClient = HttpClientBuilder.create().setDefaultRequestConfig(RequestConfig.DEFAULT).build();
-	}
+        this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
+                .setDefaultRequestConfig(RequestConfig.DEFAULT).build();
+
+    }
 
 	public GrowthbeatHttpClient(String baseUrl) {
 		this();
