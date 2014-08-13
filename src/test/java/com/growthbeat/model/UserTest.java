@@ -32,15 +32,6 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void b3Create1() {
-		String mail = random() + "@growthbeat.com";
-		User user = growthbeat.createUser(testAccount.getId(), mail, password);
-		assertNotNull(user);
-		assertEquals(testAccount.getId(), user.getAccount().getId());
-		assertEquals(mail, user.getMail());
-	}
-
-	@Test
 	public void b4Create2() {
 		String mail = random() + "@growthbeat.com";
 		User user = growthbeat.createUser(mail, password);

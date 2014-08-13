@@ -203,10 +203,6 @@ public class Growthbeat {
 		return User.findByAccountId(accountId, context);
 	}
 
-	public User createUser(String accountId, String mail, String password) {
-		return User.create(accountId, mail, password, context);
-	}
-
 	public User createUser(String mail, String password) {
 		return User.create(mail, password, context);
 	}

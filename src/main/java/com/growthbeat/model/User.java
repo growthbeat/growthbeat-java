@@ -78,14 +78,6 @@ public class User extends Model {
 		return get(context, "1/users", params, User.class);
 	}
 
-	public static User create(String accountId, String mail, String password, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("mail", mail);
-		params.put("password", password);
-		return post(context, "1/users", params, User.class);
-	}
-
 	public static User create(String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mail", mail);
