@@ -31,10 +31,10 @@ public class GrowthbeatHttpClient {
 
 	public GrowthbeatHttpClient() {
 		super();
-        this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
-                .setDefaultRequestConfig(RequestConfig.DEFAULT).build();
+		this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
+				.setDefaultRequestConfig(RequestConfig.DEFAULT).build();
 
-    }
+	}
 
 	public GrowthbeatHttpClient(String baseUrl) {
 		this();
@@ -78,8 +78,11 @@ public class GrowthbeatHttpClient {
 
 	private List<NameValuePair> convertNameValuePairs(Map<String, Object> params) {
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		for (Map.Entry<String, Object> entry : params.entrySet())
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			if (entry.getValue() == null)
+				continue;
 			nameValuePairs.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
+		}
 		return nameValuePairs;
 	}
 
