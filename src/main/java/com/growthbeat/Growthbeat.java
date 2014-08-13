@@ -203,12 +203,12 @@ public class Growthbeat {
 		return User.findByAccountId(accountId, context);
 	}
 
-	public User createUser(String mail, String password) {
-		return User.create(mail, password, context);
+	public User createUser(String mail, String password, String name, String company, String phone) {
+		return User.create(mail, password, name, company, phone, context);
 	}
 
-	public User updateUserMail(String accountId, String mail) {
-		return User.updateMail(accountId, mail, context);
+	public User updateUser(String accountId, String mail, String name, String company, String phone) {
+		return User.update(accountId, mail, name, company, phone, context);
 	}
 
 	public User updateUserPassword(String accountId, String currentPassword, String password) {

@@ -26,35 +26,22 @@ public class UserTest extends BaseTest {
 	}
 
 	@Test
-	public void b2FindByAccountId() {
+	public void b3FindByAccountId() {
 		User user = growthbeat.findUserByAccountId(testAccount.getId());
 		assertNull(user);
 	}
 
 	@Test
-	public void b4Create2() {
-		String mail = random() + "@growthbeat.com";
-		User user = growthbeat.createUser(mail, password);
+	public void b4Create() {
+		String name = random();
+		String mail = name + "@growthbeat.com";
+		User user = growthbeat.createUser(mail, password, name, "Test company", "01-2345-6789");
 		assertNotNull(user);
 		assertNotNull(user.getAccount().getId());
 		assertEquals(mail, user.getMail());
-	}
-
-	@Test
-	public void b5UpdateMail() {
-		String mail = random() + "@growthbeat.com";
-		User user = growthbeat.updateUserMail(testAccount.getId(), mail);
-		assertNotNull(user);
-		assertEquals(testAccount.getId(), user.getAccount().getId());
-		assertEquals(mail, user.getMail());
-	}
-
-	@Test
-	public void b6UpdatePassword() {
-		String newPassword = "password_" + random();
-		User user = growthbeat.updateUserPassword(testAccount.getId(), password, newPassword);
-		assertNotNull(user);
-		assertEquals(testAccount.getId(), user.getAccount().getId());
+		assertEquals(name, user.getName());
+		assertEquals("Test company", user.getCompany());
+		assertEquals("01-2345-6789", user.getPhone());
 	}
 
 	@Test

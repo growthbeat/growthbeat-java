@@ -78,17 +78,23 @@ public class User extends Model {
 		return get(context, "1/users", params, User.class);
 	}
 
-	public static User create(String mail, String password, Context context) {
+	public static User create(String mail, String password, String name, String company, String phone, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mail", mail);
 		params.put("password", password);
+		params.put("name", name);
+		params.put("company", company);
+		params.put("phone", phone);
 		return post(context, "1/users", params, User.class);
 	}
 
-	public static User updateMail(String accountId, String mail, Context context) {
+	public static User update(String accountId, String mail, String name, String company, String phone, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("mail", mail);
+		params.put("name", name);
+		params.put("company", company);
+		params.put("phone", phone);
 		return put(context, "1/users", params, User.class);
 	}
 
