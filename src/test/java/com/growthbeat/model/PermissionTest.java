@@ -55,8 +55,7 @@ public class PermissionTest extends BaseTest {
 
 	@Test
 	public void authorize() {
-		boolean authorized = growthbeat.authorize(testAccount.getId(), "Resource:Growthbeat:Account:" + testAccount.getId(),
-				"Action:Growthbeat:GetAccount");
+		boolean authorized = growthbeat.authorize("Resource:Growthbeat:Account:" + testAccount.getId(), "Action:Growthbeat:GetAccount");
 		assertEquals(true, authorized);
 	}
 

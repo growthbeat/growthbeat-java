@@ -155,8 +155,8 @@ public class Growthbeat {
 		Permission.delete(accountId, targetAccountId, resourceId, actionId, context);
 	}
 
-	public boolean authorize(String accountId, String resourceId, String actionId) {
-		return Permission.authorize(accountId, resourceId, actionId, context);
+	public boolean authorize(String resourceId, String actionId) {
+		return Permission.authorize(resourceId, actionId, context);
 	}
 
 	public Resource findResourceById(String id) {

@@ -97,9 +97,8 @@ public class Permission extends Model {
 		delete(context, "1/permissions", params, Void.class);
 	}
 
-	public static boolean authorize(String accountId, String resourceId, String actionId, Context context) {
+	public static boolean authorize(String resourceId, String actionId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
 		return post(context, "1/authorize", params, Boolean.class);
