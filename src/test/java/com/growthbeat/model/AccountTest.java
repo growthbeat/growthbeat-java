@@ -19,9 +19,10 @@ public class AccountTest extends BaseTest {
 
 	@Test
 	public void create() {
-		Account account = growthbeat.createAccount();
+		Account account = growthbeat.createAccount("test account");
 		assertNotNull(account);
 		assertNotNull(account.getId());
+		assertEquals("test account", account.getName());
 	}
 
 	@Test

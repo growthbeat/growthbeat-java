@@ -42,7 +42,7 @@ public class BaseTest {
 
 		Growthbeat parentGrowthbeat = createGrowthbeat(CREDENTIAL_ID);
 
-		testAccount = parentGrowthbeat.createAccount();
+		testAccount = parentGrowthbeat.createAccount("Child account for Java SDK test");
 		testCredential = parentGrowthbeat.createCredential(testAccount.getId());
 
 		Growthbeat childGrowthbeat = createGrowthbeat(testCredential.getId());

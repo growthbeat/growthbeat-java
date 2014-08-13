@@ -2,6 +2,7 @@ package com.growthbeat.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.growthbeat.Context;
 
@@ -39,11 +40,14 @@ public class Account extends Model {
 		return get(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
 	}
 
-	public static Account create(Context context) {
-		return post(context, "1/accounts", new HashMap<String, Object>(), Account.class);
+	public static Account create(String name, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		return post(context, "1/accounts", params, Account.class);
 	}
 
 	public static void deleteById(String id, Context context) {
 		delete(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Void.class);
 	}
+
 }

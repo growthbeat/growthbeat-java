@@ -43,8 +43,8 @@ public class Growthbeat {
 		return Account.findById(id, context);
 	}
 
-	public Account createAccount() {
-		return Account.create(context);
+	public Account createAccount(String name) {
+		return Account.create(name, context);
 	}
 
 	public void deleteAccountById(String id) {
