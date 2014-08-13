@@ -9,6 +9,10 @@ import com.growthbeat.Context;
 public class User extends Model {
 
 	private String mail;
+	private String thumbnail;
+	private String name;
+	private String company;
+	private String phone;
 	private Date created;
 	private Account account;
 
@@ -18,6 +22,38 @@ public class User extends Model {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getCreated() {
