@@ -15,7 +15,6 @@ import com.growthbeat.model.Session;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BaseTest {
 
-	protected static final String BASE_URL = "http://api.growthbeat.com/";
 	protected static final String CREDENTIAL_ID = "wXvp0nuo3SmR5zMDAtuoKMxElgUgN968";
 	protected static final String SERVICE_ID = "5FjbhqsIHTGdfVeP";
 
@@ -56,9 +55,7 @@ public class BaseTest {
 	}
 
 	protected static Growthbeat createGrowthbeat(String credentialId) {
-		Growthbeat growthbeat = new Growthbeat(credentialId);
-		growthbeat.getContext().getGrowthbeatHttpClient().setBaseUrl(BASE_URL);
-		return growthbeat;
+		return new Growthbeat(credentialId);
 	}
 
 }
