@@ -7,6 +7,7 @@ import com.growthbeat.model.Action;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Connection;
+import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
@@ -113,6 +114,10 @@ public class Growthbeat {
 
 	public void deleteConnectionByAccountIdAndServiceId(String accountId, String serviceId) {
 		Connection.deleteByAccountIdAndServiceId(accountId, serviceId, context);
+	}
+
+	public Consumption createConsumption(String accountId, String actionId, int count) {
+		return Consumption.create(accountId, actionId, count, context);
 	}
 
 	public Credential findCredentialById(String id) {

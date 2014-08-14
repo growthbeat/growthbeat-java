@@ -45,10 +45,11 @@ public class Consumption extends Model {
 		this.action = action;
 	}
 
-	public static Consumption create(String accountId, String actionId, Context context) {
+	public static Consumption create(String accountId, String actionId, int count, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("actionId", actionId);
+		params.put("count", count);
 		return post(context, "1/consumptions", params, Consumption.class);
 	}
 
