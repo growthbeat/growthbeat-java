@@ -55,10 +55,6 @@ public class Account extends Model {
 		return post(context, "1/accounts", params, Account.class);
 	}
 
-	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Void.class);
-	}
-
 	public enum PlanGrade {
 		micro, small, medium, large, extra
 	}

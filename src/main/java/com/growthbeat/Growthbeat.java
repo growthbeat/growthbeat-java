@@ -3,16 +3,13 @@ package com.growthbeat;
 import java.util.List;
 
 import com.growthbeat.model.Account;
-import com.growthbeat.model.Action;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
-import com.growthbeat.model.Connection;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Resource;
-import com.growthbeat.model.Service;
 import com.growthbeat.model.Session;
 import com.growthbeat.model.User;
 
@@ -46,22 +43,6 @@ public class Growthbeat {
 
 	public Account createAccount(String name) {
 		return Account.create(name, context);
-	}
-
-	public void deleteAccountById(String id) {
-		Account.deleteById(id, context);
-	}
-
-	public Action findActionById(String id) {
-		return Action.findById(id, context);
-	}
-
-	public Action createAction(String parentActionId, String name) {
-		return Action.create(parentActionId, name, context);
-	}
-
-	public void deleteActionById(String id) {
-		Action.deleteById(id, context);
 	}
 
 	public Application findApplicationById(String id) {
@@ -98,22 +79,6 @@ public class Growthbeat {
 
 	public void deleteClientById(String id) {
 		Client.deleteById(id, context);
-	}
-
-	public Connection findConnectionByAccountIdAndServiceId(String accountId, String serviceId) {
-		return Connection.findByAccountIdAndServiceId(accountId, serviceId, context);
-	}
-
-	public List<Connection> findConnectionByAccountId(String accountId) {
-		return Connection.findByAccountId(accountId, context);
-	}
-
-	public Connection createConnection(String accountId, String serviceId) {
-		return Connection.create(accountId, serviceId, context);
-	}
-
-	public void deleteConnectionByAccountIdAndServiceId(String accountId, String serviceId) {
-		Connection.deleteByAccountIdAndServiceId(accountId, serviceId, context);
 	}
 
 	public Consumption createConsumption(String accountId, String actionId, int count) {
@@ -174,22 +139,6 @@ public class Growthbeat {
 
 	public void deleteResourceById(String id) {
 		Resource.deleteById(id, context);
-	}
-
-	public Service findServiceById(String id) {
-		return Service.findById(id, context);
-	}
-
-	public List<Service> findServiceByAccountId(String accountId) {
-		return Service.findByAccountId(accountId, context);
-	}
-
-	public Service createService(String name, String namespace, String url, String domain) {
-		return Service.create(name, namespace, url, domain, context);
-	}
-
-	public void deleteServiceById(String id) {
-		Service.deleteById(id, context);
 	}
 
 	public Session findSessionById(String id) {
