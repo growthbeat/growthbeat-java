@@ -10,7 +10,6 @@ public class Account extends Model {
 
 	private String id;
 	private String name;
-	private PlanGrade planGrade;
 	private Date created;
 
 	public String getId() {
@@ -33,14 +32,6 @@ public class Account extends Model {
 		return created;
 	}
 
-	public PlanGrade getPlanGrade() {
-		return planGrade;
-	}
-
-	public void setPlanGrade(PlanGrade planGrade) {
-		this.planGrade = planGrade;
-	}
-
 	public void setCreated(Date created) {
 		this.created = created;
 	}
@@ -53,10 +44,6 @@ public class Account extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		return post(context, "1/accounts", params, Account.class);
-	}
-
-	public enum PlanGrade {
-		micro, small, medium, large, extra
 	}
 
 }

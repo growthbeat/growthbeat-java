@@ -14,6 +14,7 @@ public class Plan extends Model {
 	private int price;
 	private boolean opened;
 	private Date created;
+	private Grade grade;
 
 	public String getId() {
 		return id;
@@ -63,10 +64,22 @@ public class Plan extends Model {
 		this.created = created;
 	}
 
+	public Grade getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Grade grade) {
+		this.grade = grade;
+	}
+
 	public static Plan findByAccountId(String accountId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		return get(context, "1/plans", params, Plan.class);
+	}
+
+	public enum Grade {
+		micro, small, medium, large, extra
 	}
 
 }
