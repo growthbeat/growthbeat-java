@@ -3,14 +3,12 @@ package com.growthbeat.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.Test;
 
 import com.growthbeat.BaseTest;
-import com.growthbeat.GrowthbeatException;
 
 public class ApplicationTest extends BaseTest {
 
@@ -41,15 +39,6 @@ public class ApplicationTest extends BaseTest {
 		assertNotNull(application);
 		assertNotNull(application.getId());
 		assertEquals("Java SDK", application.getName());
-	}
-
-	@Test
-	public void deleteById() {
-		try {
-			growthbeat.deleteApplicationById(testApplication.getId());
-			fail();
-		} catch (GrowthbeatException e) {
-		}
 	}
 
 }

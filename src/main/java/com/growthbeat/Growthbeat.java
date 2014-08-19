@@ -61,10 +61,6 @@ public class Growthbeat {
 		return Application.update(id, name, context);
 	}
 
-	public void deleteApplicationById(String id) {
-		Application.deleteById(id, context);
-	}
-
 	public Client findClientById(String id) {
 		return Client.findById(id, context);
 	}
@@ -75,10 +71,6 @@ public class Growthbeat {
 
 	public Client createClient(String applicationId) {
 		return Client.create(applicationId, context);
-	}
-
-	public void deleteClientById(String id) {
-		Client.deleteById(id, context);
 	}
 
 	public Consumption createConsumption(String accountId, String actionId, int count) {
@@ -95,10 +87,6 @@ public class Growthbeat {
 
 	public Credential createCredential(String accountId) {
 		return Credential.create(accountId, context);
-	}
-
-	public void deleteCredentialById(String id) {
-		Credential.deleteById(id, context);
 	}
 
 	public List<Credential> findCredentialBySessionId(String sessionId) {

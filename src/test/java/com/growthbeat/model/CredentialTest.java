@@ -36,15 +36,6 @@ public class CredentialTest extends BaseTest {
 	}
 
 	@Test
-	public void deleteById() {
-		try {
-			growthbeat.deleteCredentialById(testCredential.getId());
-			fail();
-		} catch (GrowthbeatException e) {
-		}
-	}
-
-	@Test
 	public void findBySessionId() {
 		// Service credential is required.
 		try {

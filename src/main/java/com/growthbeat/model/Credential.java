@@ -56,10 +56,6 @@ public class Credential extends Model {
 		return post(context, "1/credentials", params, Credential.class);
 	}
 
-	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/credentials/%s", id), new HashMap<String, Object>(), Void.class);
-	}
-
 	public static List<Credential> findBySessionId(String sessionId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("sessionId", sessionId);

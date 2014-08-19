@@ -62,8 +62,4 @@ public class Client extends Model {
 		return post(context, "1/clients", params, Client.class);
 	}
 
-	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/clients/%s", id), new HashMap<String, Object>(), Void.class);
-	}
-
 }

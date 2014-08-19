@@ -62,8 +62,4 @@ public class Application extends Model {
 		return put(context, String.format("1/applications/%s", id), params, Application.class);
 	}
 
-	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/applications/%s", id), new HashMap<String, Object>(), Void.class);
-	}
-
 }
