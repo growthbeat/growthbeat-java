@@ -10,6 +10,7 @@ import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
+import com.growthbeat.model.Plan;
 import com.growthbeat.model.User;
 
 public class Growthbeat {
@@ -114,6 +115,10 @@ public class Growthbeat {
 
 	public void deletePermission(String accountId, String targetAccountId, String resourceId, String actionId) {
 		Permission.delete(accountId, targetAccountId, resourceId, actionId, context);
+	}
+
+	public Plan findPlanByAccountId(String accountId) {
+		return Plan.findByAccountId(accountId, context);
 	}
 
 	public boolean authorize(String resourceId, String actionId) {

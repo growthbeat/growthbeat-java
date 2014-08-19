@@ -1,6 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.growthbeat.Context;
 
 public class Plan extends Model {
 
@@ -57,6 +61,12 @@ public class Plan extends Model {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+
+	public static Plan findByAccountId(String accountId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+		return get(context, "1/plans", params, Plan.class);
 	}
 
 }
