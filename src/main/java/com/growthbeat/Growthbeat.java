@@ -5,6 +5,7 @@ import java.util.List;
 import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
+import com.growthbeat.model.Connection;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
@@ -69,6 +70,10 @@ public class Growthbeat {
 
 	public Client createClient(String applicationId) {
 		return Client.create(applicationId, context);
+	}
+
+	public Connection findConnectionByChildAccountId(String childAccountId) {
+		return Connection.findByChildAccountId(childAccountId, context);
 	}
 
 	public Consumption createConsumption(String accountId, String actionId, int count) {
