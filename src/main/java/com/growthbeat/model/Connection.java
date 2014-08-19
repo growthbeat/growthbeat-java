@@ -1,13 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.codehaus.jackson.type.TypeReference;
-
-import com.growthbeat.Context;
 
 public class Connection extends Model {
 
@@ -55,34 +48,6 @@ public class Connection extends Model {
 
 	public void setChildAccount(Account childAccount) {
 		this.childAccount = childAccount;
-	}
-
-	public static Connection findByAccountIdAndServiceId(String accountId, String serviceId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("serviceId", serviceId);
-		return get(context, "1/connections", params, Connection.class);
-	}
-
-	public static List<Connection> findByAccountId(String accountId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		return get(context, "1/connections", params, new TypeReference<List<Connection>>() {
-		});
-	}
-
-	public static Connection create(String accountId, String serviceId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("serviceId", serviceId);
-		return post(context, "1/connections", params, Connection.class);
-	}
-
-	public static void deleteByAccountIdAndServiceId(String accountId, String serviceId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("serviceId", serviceId);
-		delete(context, "1/connections", params, Void.class);
 	}
 
 }

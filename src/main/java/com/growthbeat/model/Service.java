@@ -1,13 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.codehaus.jackson.type.TypeReference;
-
-import com.growthbeat.Context;
 
 public class Service extends Model {
 
@@ -82,30 +75,6 @@ public class Service extends Model {
 
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-
-	public static Service findById(String id, Context context) {
-		return get(context, String.format("1/services/%s", id), new HashMap<String, Object>(), Service.class);
-	}
-
-	public static List<Service> findByAccountId(String accountId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		return get(context, "1/services", params, new TypeReference<List<Service>>() {
-		});
-	}
-
-	public static Service create(String name, String namespace, String url, String domain, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("name", name);
-		params.put("namespace", namespace);
-		params.put("url", url);
-		params.put("domain", domain);
-		return post(context, "1/services", params, Service.class);
-	}
-
-	public static void deleteById(String id, Context context) {
-		delete(context, String.format("1/services/%s", id), new HashMap<String, Object>(), Void.class);
 	}
 
 }
