@@ -49,7 +49,6 @@ public class BaseTest {
 
 		testApplication = childGrowthbeat.createApplication("Java SDK");
 		testClient = childGrowthbeat.createClient(testApplication.getId());
-		testSession = childGrowthbeat.createSession(testAccount.getId(), SERVICE_ID);
 
 	}
 

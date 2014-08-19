@@ -3,7 +3,6 @@ package com.growthbeat.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
 
 import java.util.Random;
 
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import com.growthbeat.BaseTest;
-import com.growthbeat.GrowthbeatException;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserTest extends BaseTest {
@@ -42,15 +40,6 @@ public class UserTest extends BaseTest {
 		assertEquals(name, user.getName());
 		assertEquals("Test company", user.getCompany());
 		assertEquals("01-2345-6789", user.getPhone());
-	}
-
-	@Test
-	public void b7DeleteById() {
-		try {
-			growthbeat.deleteUserByAccountId(testAccount.getId());
-			fail();
-		} catch (GrowthbeatException e) {
-		}
 	}
 
 	private static String random() {

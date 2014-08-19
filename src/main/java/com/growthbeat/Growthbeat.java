@@ -9,8 +9,6 @@ import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
-import com.growthbeat.model.Resource;
-import com.growthbeat.model.Session;
 import com.growthbeat.model.User;
 
 public class Growthbeat {
@@ -117,48 +115,12 @@ public class Growthbeat {
 		return Permission.authorize(resourceId, actionId, context);
 	}
 
-	public Resource findResourceById(String id) {
-		return Resource.findById(id, context);
-	}
-
-	public Resource createResource(String parentResourceId, String name) {
-		return Resource.create(parentResourceId, name, context);
-	}
-
-	public void deleteResourceById(String id) {
-		Resource.deleteById(id, context);
-	}
-
-	public Session findSessionById(String id) {
-		return Session.findById(id, context);
-	}
-
-	public Session createSession(String accountId, String serviceId) {
-		return Session.create(accountId, serviceId, context);
-	}
-
-	public void deleteSessionById(String id) {
-		Session.deleteById(id, context);
-	}
-
 	public User findUserByAccountId(String accountId) {
 		return User.findByAccountId(accountId, context);
 	}
 
 	public User createUser(String mail, String password, String name, String company, String phone) {
 		return User.create(mail, password, name, company, phone, context);
-	}
-
-	public User updateUser(String accountId, String mail, String name, String company, String phone) {
-		return User.update(accountId, mail, name, company, phone, context);
-	}
-
-	public User updateUserPassword(String accountId, String currentPassword, String password) {
-		return User.updatePassword(accountId, currentPassword, password, context);
-	}
-
-	public void deleteUserByAccountId(String accountId) {
-		User.deleteByAccountId(accountId, context);
 	}
 
 }

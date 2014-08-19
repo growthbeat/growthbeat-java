@@ -88,28 +88,4 @@ public class User extends Model {
 		return post(context, "1/users", params, User.class);
 	}
 
-	public static User update(String accountId, String mail, String name, String company, String phone, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("mail", mail);
-		params.put("name", name);
-		params.put("company", company);
-		params.put("phone", phone);
-		return put(context, "1/users", params, User.class);
-	}
-
-	public static User updatePassword(String accountId, String currentPassword, String password, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		params.put("currentPassword", currentPassword);
-		params.put("password", password);
-		return put(context, "1/users", params, User.class);
-	}
-
-	public static void deleteByAccountId(String accountId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
-		post(context, "1/users", params, Void.class);
-	}
-
 }
