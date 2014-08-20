@@ -8,7 +8,6 @@ import org.junit.runners.MethodSorters;
 import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
-import com.growthbeat.model.Connection;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Session;
 
@@ -22,7 +21,6 @@ public class BaseTest {
 	protected static Credential testCredential = null;
 	protected static Application testApplication = null;
 	protected static Client testClient = null;
-	protected static Connection testConnection = null;
 	protected static Session testSession = null;
 
 	protected Growthbeat growthbeat = null;
