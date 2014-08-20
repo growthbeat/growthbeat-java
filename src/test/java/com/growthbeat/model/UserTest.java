@@ -37,7 +37,6 @@ public class UserTest extends BaseTest {
 		assertNotNull(user);
 		assertNotNull(user.getAccount().getId());
 		assertEquals(mail, user.getMail());
-		assertEquals(name, user.getName());
 		assertEquals("Test company", user.getCompany());
 		assertEquals("01-2345-6789", user.getPhone());
 	}

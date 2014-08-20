@@ -10,7 +10,6 @@ public class User extends Model {
 
 	private String mail;
 	private String thumbnail;
-	private String name;
 	private String company;
 	private String phone;
 	private Date created;
@@ -30,14 +29,6 @@ public class User extends Model {
 
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getCompany() {
