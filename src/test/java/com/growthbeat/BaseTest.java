@@ -9,7 +9,6 @@ import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Credential;
-import com.growthbeat.model.Session;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BaseTest {
@@ -21,7 +20,6 @@ public class BaseTest {
 	protected static Credential testCredential = null;
 	protected static Application testApplication = null;
 	protected static Client testClient = null;
-	protected static Session testSession = null;
 
 	protected Growthbeat growthbeat = null;
 
