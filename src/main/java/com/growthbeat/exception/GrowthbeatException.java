@@ -1,4 +1,4 @@
-package com.growthbeat;
+package com.growthbeat.exception;
 
 public class GrowthbeatException extends RuntimeException {
 

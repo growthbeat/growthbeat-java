@@ -22,7 +22,9 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.growthbeat.GrowthbeatException;
+import com.growthbeat.exception.GrowthbeatApiException;
+import com.growthbeat.exception.GrowthbeatException;
+import com.growthbeat.model.Error;
 
 public class GrowthbeatHttpClient {
 
@@ -104,12 +106,13 @@ public class GrowthbeatHttpClient {
 				if (httpResponse != null)
 					EntityUtils.consume(httpResponse.getEntity());
 			} catch (IOException e) {
+				throw new GrowthbeatException(e);
 			}
 		}
 
 		int statusCode = httpResponse.getStatusLine().getStatusCode();
 		if (statusCode < 200 || statusCode >= 300)
-			throw new GrowthbeatException("Invalid status code: " + statusCode);
+			throw new GrowthbeatApiException("Invalid status code: " + statusCode).withError(JsonUtils.deserialize(body, Error.class));
 
 		return body;
 
