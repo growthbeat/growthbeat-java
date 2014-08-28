@@ -14,14 +14,14 @@ public class CredentialTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Credential credential = growthbeat.findCredentialById(testCredential.getId());
+		Credential credential = growthbeat.findCredentialByCredentialId(testCredential.getId());
 		assertEquals(testCredential.getId(), credential.getId());
 		assertEquals(testCredential.getAccount().getId(), credential.getAccount().getId());
 	}
 
 	@Test
 	public void findByAccountId() {
-		List<Credential> credentials = growthbeat.findCredentialByAccountId(testAccount.getId());
+		List<Credential> credentials = growthbeat.findCredentialsByAccountId(testAccount.getId());
 		assertTrue(credentials.size() > 0);
 	}
 

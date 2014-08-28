@@ -37,23 +37,23 @@ public class Growthbeat {
 		this.context = context;
 	}
 
-	public Account findAccountById(String id) {
-		return Account.findById(id, context);
+	public Account findAccountByAccountId(String accountId) {
+		return Account.findById(accountId, context);
 	}
 
-	public List<Account> findAccountsById(String id) {
-		return Account.findListById(id, context);
+	public List<Account> findAccountsByAccountId(String accountId) {
+		return Account.findAccountsById(accountId, context);
 	}
 
 	public Account createAccount(String name) {
 		return Account.create(name, context);
 	}
 
-	public Application findApplicationById(String id) {
-		return Application.findById(id, context);
+	public Application findApplicationByApplicationId(String applicationId) {
+		return Application.findById(applicationId, context);
 	}
 
-	public List<Application> findApplicationByAccountId(String accounId) {
+	public List<Application> findApplicationsByAccountId(String accounId) {
 		return Application.findByAccountId(accounId, context);
 	}
 
@@ -61,16 +61,16 @@ public class Growthbeat {
 		return Application.create(name, context);
 	}
 
-	public Application updateApplication(String id, String name) {
-		return Application.update(id, name, context);
+	public Application updateApplication(String applicationId, String name) {
+		return Application.update(applicationId, name, context);
 	}
 
-	public Client findClientById(String id) {
-		return Client.findById(id, context);
+	public Client findClientByClientId(String clientId) {
+		return Client.findById(clientId, context);
 	}
 
-	public List<Client> findClientByApplicationId(String applicationId, String id, Order order, Integer limit) {
-		return Client.findByApplicationId(applicationId, id, order, limit, context);
+	public List<Client> findClientsByApplicationId(String applicationId, String clientId, Order order, Integer limit) {
+		return Client.findByApplicationId(applicationId, clientId, order, limit, context);
 	}
 
 	public Client createClient(String applicationId) {
@@ -85,11 +85,11 @@ public class Growthbeat {
 		return Consumption.create(accountId, actionId, count, context);
 	}
 
-	public Credential findCredentialById(String id) {
-		return Credential.findById(id, context);
+	public Credential findCredentialByCredentialId(String credentialId) {
+		return Credential.findById(credentialId, context);
 	}
 
-	public List<Credential> findCredentialByAccountId(String accountId) {
+	public List<Credential> findCredentialsByAccountId(String accountId) {
 		return Credential.findByAccountId(accountId, context);
 	}
 
@@ -97,19 +97,19 @@ public class Growthbeat {
 		return Credential.create(accountId, context);
 	}
 
-	public List<Credential> findCredentialBySessionId(String sessionId) {
+	public List<Credential> findCredentialsBySessionId(String sessionId) {
 		return Credential.findBySessionId(sessionId, context);
 	}
 
-	public List<Permission> findPermissionByAccountId(String accountId) {
+	public List<Permission> findPermissionsByAccountId(String accountId) {
 		return Permission.findByAccountId(accountId, context);
 	}
 
-	public List<Permission> findPermissionByTargetAccountId(String targetAccountId) {
+	public List<Permission> findPermissionsByTargetAccountId(String targetAccountId) {
 		return Permission.findByTargetAccountId(targetAccountId, context);
 	}
 
-	public List<Permission> findPermissionByAccountIdAndTargetAccountId(String accountId, String targetAccountId) {
+	public List<Permission> findPermissionsByAccountIdAndTargetAccountId(String accountId, String targetAccountId) {
 		return Permission.findByAccountIdAndTargetAccountId(accountId, targetAccountId, context);
 	}
 

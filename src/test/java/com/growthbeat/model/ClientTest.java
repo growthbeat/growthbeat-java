@@ -14,7 +14,7 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Client client = growthbeat.findClientById(testClient.getId());
+		Client client = growthbeat.findClientByClientId(testClient.getId());
 		assertEquals(testClient.getId(), client.getId());
 		assertEquals(testApplication.getId(), client.getApplication().getId());
 		assertNotNull(client.getCreated());
@@ -22,7 +22,7 @@ public class ClientTest extends BaseTest {
 
 	@Test
 	public void findByApplicationId() {
-		List<Client> clients = growthbeat.findClientByApplicationId(testApplication.getId(), null, Order.ascending, null);
+		List<Client> clients = growthbeat.findClientsByApplicationId(testApplication.getId(), null, Order.ascending, null);
 		assertTrue(clients.size() > 0);
 	}
 

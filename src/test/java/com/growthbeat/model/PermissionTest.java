@@ -14,14 +14,14 @@ public class PermissionTest extends BaseTest {
 
 	@Test
 	public void findByAccountId() {
-		List<Permission> permissions = growthbeat.findPermissionByAccountId(testAccount.getId());
+		List<Permission> permissions = growthbeat.findPermissionsByAccountId(testAccount.getId());
 		assertNotNull(permissions);
 		assertTrue(permissions.size() > 0);
 	}
 
 	@Test
 	public void findByTargetAccountId() {
-		List<Permission> permissions = growthbeat.findPermissionByTargetAccountId(testAccount.getId());
+		List<Permission> permissions = growthbeat.findPermissionsByTargetAccountId(testAccount.getId());
 		assertNotNull(permissions);
 		assertTrue(permissions.size() > 0);
 	}

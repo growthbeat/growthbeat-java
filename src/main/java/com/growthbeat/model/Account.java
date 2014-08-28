@@ -43,7 +43,7 @@ public class Account extends Model {
 		return get(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
 	}
 
-	public static List<Account> findListById(String id, Context context) {
+	public static List<Account> findAccountsById(String id, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		return get(context, "1/accounts/", params, new TypeReference<List<Account>>() {

@@ -14,14 +14,14 @@ public class ApplicationTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Application application = growthbeat.findApplicationById(testApplication.getId());
+		Application application = growthbeat.findApplicationByApplicationId(testApplication.getId());
 		assertEquals(testApplication.getId(), application.getId());
 		assertEquals("Java SDK", application.getName());
 	}
 
 	@Test
 	public void findByAccountId() {
-		List<Application> applications = growthbeat.findApplicationByAccountId(testAccount.getId());
+		List<Application> applications = growthbeat.findApplicationsByAccountId(testAccount.getId());
 		assertTrue(applications.size() > 0);
 	}
 

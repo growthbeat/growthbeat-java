@@ -11,7 +11,7 @@ public class AccountTest extends BaseTest {
 
 	@Test
 	public void findById() {
-		Account account = growthbeat.findAccountById(testAccount.getId());
+		Account account = growthbeat.findAccountByAccountId(testAccount.getId());
 		assertEquals(testAccount.getId(), account.getId());
 	}
 
