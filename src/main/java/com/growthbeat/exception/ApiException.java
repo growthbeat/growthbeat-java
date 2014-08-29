@@ -20,7 +20,7 @@ public class ApiException extends GrowthbeatException {
 	}
 
 	public ApiException(int statusCode) {
-		this("Invalid status code: ", statusCode);
+		this(String.format("Invalid status code: %d", statusCode), statusCode);
 	}
 
 	public ApiException(String message, Throwable cause) {
