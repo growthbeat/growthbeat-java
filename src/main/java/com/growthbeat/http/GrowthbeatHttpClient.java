@@ -22,7 +22,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.growthbeat.exception.GrowthbeatApiException;
+import com.growthbeat.exception.ApiException;
 import com.growthbeat.exception.GrowthbeatException;
 import com.growthbeat.model.Error;
 
@@ -112,7 +112,7 @@ public class GrowthbeatHttpClient {
 
 		int statusCode = httpResponse.getStatusLine().getStatusCode();
 		if (statusCode < 200 || statusCode >= 300) {
-			throw new GrowthbeatApiException(statusCode).withError(JsonUtils.deserialize(body, Error.class));
+			throw new ApiException(statusCode).withError(JsonUtils.deserialize(body, Error.class));
 		}
 
 		return body;
