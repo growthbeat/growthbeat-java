@@ -112,9 +112,7 @@ public class GrowthbeatHttpClient {
 
 		int statusCode = httpResponse.getStatusLine().getStatusCode();
 		if (statusCode < 200 || statusCode >= 300) {
-			Error error = JsonUtils.deserialize(body, Error.class);
-			error.setCode(statusCode);
-			throw new GrowthbeatApiException("Invalid status code: " + statusCode).withError(error);
+			throw new GrowthbeatApiException(statusCode).withError(JsonUtils.deserialize(body, Error.class));
 		}
 
 		return body;

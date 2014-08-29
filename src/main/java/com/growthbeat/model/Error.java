@@ -4,7 +4,7 @@ public class Error extends Model {
 
 	private String message;
 	private String domain;
-	private int code;
+	private Integer code;
 
 	public String getMessage() {
 		return message;
@@ -22,11 +22,11 @@ public class Error extends Model {
 		this.domain = domain;
 	}
 
-	public int getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 
