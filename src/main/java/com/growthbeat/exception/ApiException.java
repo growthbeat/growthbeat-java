@@ -10,12 +10,13 @@ public class ApiException extends GrowthbeatException {
 	private Error error;
 
 	public ApiException(int statusCode) {
-		super();
+		super(String.format("Invalid status code %d", statusCode));
 		setStatusCode(statusCode);
 	}
 
 	public ApiException(int statusCode, Error error) {
-		this(statusCode);
+		super(error != null ? error.getMessage() : String.format("Invalid status code %d", statusCode));
+		setStatusCode(statusCode);
 		setError(error);
 	}
 
