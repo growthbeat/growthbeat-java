@@ -5,12 +5,12 @@ import java.util.List;
 import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
-import com.growthbeat.model.Connection;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
+import com.growthbeat.model.Session;
 import com.growthbeat.model.User;
 
 public class Growthbeat {
@@ -77,10 +77,6 @@ public class Growthbeat {
 		return Client.create(applicationId, context);
 	}
 
-	public Connection findConnectionByChildAccountId(String childAccountId) {
-		return Connection.findByChildAccountId(childAccountId, context);
-	}
-
 	public Consumption createConsumption(String accountId, String actionId, int count) {
 		return Consumption.create(accountId, actionId, count, context);
 	}
@@ -121,12 +117,16 @@ public class Growthbeat {
 		Permission.delete(accountId, targetAccountId, resourceId, actionId, context);
 	}
 
+	public boolean authorize(String resourceId, String actionId) {
+		return Permission.authorize(resourceId, actionId, context);
+	}
+
 	public Plan findPlanByAccountId(String accountId) {
 		return Plan.findByAccountId(accountId, context);
 	}
 
-	public boolean authorize(String resourceId, String actionId) {
-		return Permission.authorize(resourceId, actionId, context);
+	public Session findSessionBySessionId(String sessionId) {
+		return Session.findById(sessionId, context);
 	}
 
 	public User findUserByAccountId(String accountId) {

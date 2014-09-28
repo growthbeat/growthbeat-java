@@ -1,6 +1,9 @@
 package com.growthbeat.model;
 
 import java.util.Date;
+import java.util.HashMap;
+
+import com.growthbeat.Context;
 
 public class Session extends Model {
 
@@ -39,6 +42,10 @@ public class Session extends Model {
 
 	public void setService(Service service) {
 		this.service = service;
+	}
+
+	public static Session findById(String id, Context context) {
+		return get(context, String.format("1/sessions/%s", id), new HashMap<String, Object>(), Session.class);
 	}
 
 }

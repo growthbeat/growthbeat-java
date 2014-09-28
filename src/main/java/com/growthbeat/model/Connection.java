@@ -1,10 +1,6 @@
 package com.growthbeat.model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.growthbeat.Context;
 
 public class Connection extends Model {
 
@@ -52,12 +48,6 @@ public class Connection extends Model {
 
 	public void setChildAccount(Account childAccount) {
 		this.childAccount = childAccount;
-	}
-
-	public static Connection findByChildAccountId(String childAccountId, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("childAccountId", childAccountId);
-		return get(context, "1/connections", params, Connection.class);
 	}
 
 }
