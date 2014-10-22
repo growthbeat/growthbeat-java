@@ -4,7 +4,7 @@
 	<groupId>com.growthbeat</groupId>
 	<artifactId>growthbeat-java</artifactId>
 	<name>Growthbeat Library</name>
-	<version>0.0.11</version>
+	<version>0.0.12</version>
 
 	<properties>
 		<github.global.server>github</github.global.server>
