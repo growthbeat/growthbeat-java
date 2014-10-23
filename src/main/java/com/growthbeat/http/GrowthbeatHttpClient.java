@@ -30,13 +30,12 @@ public class GrowthbeatHttpClient {
 
 	private HttpClient httpClient = null;
 	private String baseUrl = null;
-    private RequestConfig config = null;
+	private RequestConfig config = null;
 
 	public GrowthbeatHttpClient() {
 		super();
 		this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
 				.setDefaultRequestConfig(RequestConfig.DEFAULT).build();
-
 	}
 
 	public GrowthbeatHttpClient(String baseUrl) {
@@ -52,9 +51,13 @@ public class GrowthbeatHttpClient {
 		this.baseUrl = baseUrl;
 	}
 
-    public void setConfig(RequestConfig config) {
-        this.config = config;
-    }
+	public RequestConfig getConfig() {
+		return config;
+	}
+
+	public void setConfig(RequestConfig config) {
+		this.config = config;
+	}
 
 	public String get(String path, Map<String, Object> params) {
 		String query = URLEncodedUtils.format(convertNameValuePairs(params), Charset.defaultCharset());
@@ -77,8 +80,8 @@ public class GrowthbeatHttpClient {
 
 	private String request(String method, String path, Map<String, Object> params) {
 		HttpRequest httpRequest = new HttpRequest(String.format("%s%s", baseUrl, path));
-        if(this.config != null)
-            httpRequest.setConfig(this.config);
+		if (this.config != null)
+			httpRequest.setConfig(this.config);
 		httpRequest.setMethod(method);
 		httpRequest.setHeader("Accept", "application/json");
 		httpRequest.setEntity(new UrlEncodedFormEntity(convertNameValuePairs(params), Consts.UTF_8));
