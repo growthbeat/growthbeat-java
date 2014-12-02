@@ -89,12 +89,12 @@ public class Growthbeat {
 		return Credential.findByAccountId(accountId, context);
 	}
 
-	public Credential createCredential(String accountId) {
-		return Credential.create(accountId, context);
-	}
-
 	public List<Credential> findCredentialsBySessionId(String sessionId) {
 		return Credential.findBySessionId(sessionId, context);
+	}
+
+	public Credential createCredential(String accountId) {
+		return Credential.create(accountId, context);
 	}
 
 	public List<Permission> findPermissionsByAccountId(String accountId) {

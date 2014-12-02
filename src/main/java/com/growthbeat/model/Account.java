@@ -52,7 +52,8 @@ public class Account extends Model {
 
 	public static Account create(String accountId, String name, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", accountId);
+		if (accountId != null)
+			params.put("accountId", accountId);
 		params.put("name", name);
 		return post(context, "1/accounts", params, Account.class);
 	}
