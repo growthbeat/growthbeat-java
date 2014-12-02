@@ -50,8 +50,9 @@ public class Application extends Model {
 		});
 	}
 
-	public static Application create(String name, Context context) {
+	public static Application create(String accountId, String name, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
 		params.put("name", name);
 		return post(context, "1/applications", params, Application.class);
 	}
