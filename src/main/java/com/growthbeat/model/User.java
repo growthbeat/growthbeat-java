@@ -73,9 +73,12 @@ public class User extends Model {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mail", mail);
 		params.put("password", password);
-		params.put("name", name);
-		params.put("company", company);
-		params.put("phone", phone);
+		if (name != null)
+			params.put("name", name);
+		if (company != null)
+			params.put("company", company);
+		if (phone != null)
+			params.put("phone", phone);
 		return post(context, "1/users", params, User.class);
 	}
 

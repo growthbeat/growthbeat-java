@@ -46,12 +46,14 @@ public class Account extends Model {
 	public static List<Account> findAccountsById(String id, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
-		return get(context, "1/accounts/", params, new TypeReference<List<Account>>() {
+		return get(context, "1/accounts", params, new TypeReference<List<Account>>() {
 		});
 	}
 
-	public static Account create(String name, Context context) {
+	public static Account create(String accountId, String name, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
+		if (accountId != null)
+			params.put("accountId", accountId);
 		params.put("name", name);
 		return post(context, "1/accounts", params, Account.class);
 	}

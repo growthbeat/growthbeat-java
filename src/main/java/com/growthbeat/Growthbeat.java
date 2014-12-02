@@ -45,8 +45,8 @@ public class Growthbeat {
 		return Account.findAccountsById(accountId, context);
 	}
 
-	public Account createAccount(String name) {
-		return Account.create(name, context);
+	public Account createAccount(String accountId, String name) {
+		return Account.create(accountId, name, context);
 	}
 
 	public Application findApplicationByApplicationId(String applicationId) {
@@ -57,8 +57,8 @@ public class Growthbeat {
 		return Application.findByAccountId(accounId, context);
 	}
 
-	public Application createApplication(String name) {
-		return Application.create(name, context);
+	public Application createApplication(String accountId, String name) {
+		return Application.create(accountId, name, context);
 	}
 
 	public Application updateApplication(String applicationId, String name) {
@@ -89,12 +89,12 @@ public class Growthbeat {
 		return Credential.findByAccountId(accountId, context);
 	}
 
-	public Credential createCredential(String accountId) {
-		return Credential.create(accountId, context);
-	}
-
 	public List<Credential> findCredentialsBySessionId(String sessionId) {
 		return Credential.findBySessionId(sessionId, context);
+	}
+
+	public Credential createCredential(String accountId) {
+		return Credential.create(accountId, context);
 	}
 
 	public List<Permission> findPermissionsByAccountId(String accountId) {
