@@ -3,6 +3,7 @@ package com.growthbeat;
 import java.util.List;
 
 import com.growthbeat.model.Account;
+import com.growthbeat.model.AccountUser;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
@@ -47,6 +48,10 @@ public class Growthbeat {
 
 	public Account createAccount(String accountId, String name) {
 		return Account.create(accountId, name, context);
+	}
+
+	public AccountUser createAccountUser(String accountId, String name, String mail) {
+		return AccountUser.create(accountId, name, mail, context);
 	}
 
 	public Application findApplicationByApplicationId(String applicationId) {
@@ -131,6 +136,10 @@ public class Growthbeat {
 
 	public User findUserByAccountId(String accountId) {
 		return User.findByAccountId(accountId, context);
+	}
+
+	public User findUserByMail(String mail) {
+		return User.findByMail(mail, context);
 	}
 
 	public User createUser(String mail, String password, String name, String company, String phone) {
