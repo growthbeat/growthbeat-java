@@ -25,4 +25,12 @@ public class AccountUser extends Account {
 		return post(context, "0/accounts", params, AccountUser.class);
 	}
 
+	public static AccountUser update(String accountId, String name, String mail, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("accountId", accountId);
+		params.put("name", name);
+		params.put("mail", mail);
+		return put(context, "0/accounts", params, AccountUser.class);
+	}
+
 }
