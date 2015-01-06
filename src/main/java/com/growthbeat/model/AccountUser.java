@@ -1,7 +1,10 @@
 package com.growthbeat.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.type.TypeReference;
 
 import com.growthbeat.Context;
 
@@ -15,6 +18,13 @@ public class AccountUser extends Account {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public static List<AccountUser> findAccountUsersById(String id, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		return get(context, "/0/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
+		});
 	}
 
 	public static AccountUser create(String accountId, String name, String mail, Context context) {
