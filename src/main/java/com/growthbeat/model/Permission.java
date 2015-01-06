@@ -97,6 +97,16 @@ public class Permission extends Model {
 		delete(context, "1/permissions", params, Void.class);
 	}
 
+	public static void deleteByTargetAccountId(String deleterAccountId, String targetAccountId, String resourceId, String actionId,
+			Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("deleterAccountId", deleterAccountId);
+		params.put("targetAccountId", targetAccountId);
+		params.put("resourceId", resourceId);
+		params.put("actionId", actionId);
+		delete(context, "0/permissions", params, Void.class);
+	}
+
 	public static boolean authorize(String resourceId, String actionId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("resourceId", resourceId);

@@ -50,6 +50,10 @@ public class Growthbeat {
 		return Account.create(accountId, name, context);
 	}
 
+	public List<AccountUser> findAccountUsersByAccountId(String accountId) {
+		return AccountUser.findAccountUsersById(accountId, context);
+	}
+
 	public AccountUser createAccountUser(String accountId, String name, String mail) {
 		return AccountUser.create(accountId, name, mail, context);
 	}
@@ -124,6 +128,10 @@ public class Growthbeat {
 
 	public void deletePermission(String accountId, String targetAccountId, String resourceId, String actionId) {
 		Permission.delete(accountId, targetAccountId, resourceId, actionId, context);
+	}
+
+	public void deletePermissionByTargetAccountId(String deleterAccountId, String targetAccountId, String resourceId, String actionId) {
+		Permission.deleteByTargetAccountId(deleterAccountId, targetAccountId, resourceId, actionId, context);
 	}
 
 	public boolean authorize(String resourceId, String actionId) {
