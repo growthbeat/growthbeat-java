@@ -27,18 +27,20 @@ public class AccountUser extends Account {
 		});
 	}
 
-	public static AccountUser create(String accountId, String name, String mail, Context context) {
+	public static AccountUser create(String accountId, String name, String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("name", name);
 		params.put("mail", mail);
+		params.put("password", password);
 		return post(context, "0/account_users", params, AccountUser.class);
 	}
 
-	public static AccountUser update(String accountId, String name, String mail, Context context) {
+	public static AccountUser update(String accountId, String name, String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("mail", mail);
+		params.put("password", password);
 		return put(context, String.format("0/account_users/%s", accountId), params, AccountUser.class);
 	}
 

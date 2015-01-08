@@ -54,12 +54,12 @@ public class Growthbeat {
 		return AccountUser.findAccountUsersById(accountId, context);
 	}
 
-	public AccountUser createAccountUser(String accountId, String name, String mail) {
-		return AccountUser.create(accountId, name, mail, context);
+	public AccountUser createAccountUser(String accountId, String name, String mail, String password) {
+		return AccountUser.create(accountId, name, mail, password, context);
 	}
 
-	public AccountUser updateAccountUser(String accountId, String name, String mail) {
-		return AccountUser.update(accountId, name, mail, context);
+	public AccountUser updateAccountUser(String accountId, String name, String mail, String password) {
+		return AccountUser.update(accountId, name, mail, password, context);
 	}
 
 	public Application findApplicationByApplicationId(String applicationId) {
