@@ -23,14 +23,14 @@ public class AccountUser extends Account {
 	public static List<AccountUser> findAccountUsersById(String id, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
-		return get(context, "/0/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
+		return get(context, "/1/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
 		});
 	}
 
 	public static List<AccountUser> findAccountUsersByApplicationId(String applicationId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
-		return get(context, "/0/account_users_by_application_id", params, new TypeReference<List<AccountUser>>() {
+		return get(context, "/1/account_users_by_application_id", params, new TypeReference<List<AccountUser>>() {
 		});
 	}
 
@@ -40,7 +40,7 @@ public class AccountUser extends Account {
 		params.put("name", name);
 		params.put("mail", mail);
 		params.put("password", password);
-		return post(context, "0/account_users", params, AccountUser.class);
+		return post(context, "1/account_users", params, AccountUser.class);
 	}
 
 	public static AccountUser update(String accountId, String name, String mail, String password, Context context) {
@@ -48,7 +48,7 @@ public class AccountUser extends Account {
 		params.put("name", name);
 		params.put("mail", mail);
 		params.put("password", password);
-		return put(context, String.format("0/account_users/%s", accountId), params, AccountUser.class);
+		return put(context, String.format("1/account_users/%s", accountId), params, AccountUser.class);
 	}
 
 }

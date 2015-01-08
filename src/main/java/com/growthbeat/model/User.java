@@ -72,7 +72,7 @@ public class User extends Model {
 	public static User findByMail(String mail, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mail", mail);
-		return get(context, "0/users", params, User.class);
+		return get(context, "1/users", params, User.class);
 	}
 
 	public static User create(String mail, String password, String name, String company, String phone, Context context) {
