@@ -27,6 +27,13 @@ public class AccountUser extends Account {
 		});
 	}
 
+	public static List<AccountUser> findAccountUsersByApplicationId(String applicationId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("applicationId", applicationId);
+		return get(context, "/0/account_users_by_application_id", params, new TypeReference<List<AccountUser>>() {
+		});
+	}
+
 	public static AccountUser create(String accountId, String name, String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
