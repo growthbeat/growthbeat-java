@@ -20,9 +20,9 @@ public class AccountUser extends Account {
 		this.mail = mail;
 	}
 
-	public static List<AccountUser> findAccountUsersById(String id, Context context) {
+	public static List<AccountUser> findAccountUsersById(String accountId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
+		params.put("accountId", accountId);
 		return get(context, "/1/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
 		});
 	}
