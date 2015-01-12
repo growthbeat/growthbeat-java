@@ -20,26 +20,35 @@ public class AccountUser extends Account {
 		this.mail = mail;
 	}
 
-	public static List<AccountUser> findAccountUsersById(String id, Context context) {
+	public static List<AccountUser> findAccountUsersById(String accountId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("id", id);
-		return get(context, "/0/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
+		params.put("accountId", accountId);
+		return get(context, "/1/account_users_by_account_id", params, new TypeReference<List<AccountUser>>() {
 		});
 	}
 
-	public static AccountUser create(String accountId, String name, String mail, Context context) {
+	public static List<AccountUser> findAccountUsersByApplicationId(String applicationId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("applicationId", applicationId);
+		return get(context, "/1/account_users_by_application_id", params, new TypeReference<List<AccountUser>>() {
+		});
+	}
+
+	public static AccountUser create(String accountId, String name, String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("name", name);
 		params.put("mail", mail);
-		return post(context, "0/account_users", params, AccountUser.class);
+		params.put("password", password);
+		return post(context, "1/account_users", params, AccountUser.class);
 	}
 
-	public static AccountUser update(String accountId, String name, String mail, Context context) {
+	public static AccountUser update(String accountId, String name, String mail, String password, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("mail", mail);
-		return put(context, String.format("0/account_users/%s", accountId), params, AccountUser.class);
+		params.put("password", password);
+		return put(context, String.format("1/account_users/%s", accountId), params, AccountUser.class);
 	}
 
 }
