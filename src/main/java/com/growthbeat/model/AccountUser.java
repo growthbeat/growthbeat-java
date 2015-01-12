@@ -34,12 +34,13 @@ public class AccountUser extends Account {
 		});
 	}
 
-	public static AccountUser create(String accountId, String name, String mail, String password, Context context) {
+	public static AccountUser create(String accountId, String name, String mail, String password, boolean createApplication, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("name", name);
 		params.put("mail", mail);
 		params.put("password", password);
+		params.put("createApplication", createApplication);
 		return post(context, "1/account_users", params, AccountUser.class);
 	}
 
