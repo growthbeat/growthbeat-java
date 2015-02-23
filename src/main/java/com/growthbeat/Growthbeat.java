@@ -154,8 +154,8 @@ public class Growthbeat {
 		return User.create(accountId, mail, password, name, company, phone, createApplication, context);
 	}
 
-	public User update(String accountId, String mail, String password, String name, String company, String phone, boolean subscription) {
-		return User.update(accountId, mail, password, name, company, phone, subscription, context);
+	public User update(String accountId, String mail, String password, String company, String phone, boolean subscription) {
+		return User.update(accountId, mail, password, company, phone, subscription, context);
 	}
 
 }
