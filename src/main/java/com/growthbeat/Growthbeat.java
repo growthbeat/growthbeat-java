@@ -49,6 +49,10 @@ public class Growthbeat {
 		return Account.create(accountId, name, context);
 	}
 
+	public Account updateAccount(String accountId, String name) {
+		return Account.update(accountId, name, context);
+	}
+
 	public Application findApplicationByApplicationId(String applicationId) {
 		return Application.findById(applicationId, context);
 	}

@@ -60,4 +60,10 @@ public class Account extends Model {
 		return post(context, "1/accounts", params, Account.class);
 	}
 
+	public static Account update(String accountId, String name, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("name", name);
+		return put(context, "1/accounts/" + accountId, params, Account.class);
+	}
+
 }
