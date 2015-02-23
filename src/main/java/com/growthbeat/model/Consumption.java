@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
 
 public class Consumption extends Model {
@@ -21,6 +22,7 @@ public class Consumption extends Model {
 		this.count = count;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

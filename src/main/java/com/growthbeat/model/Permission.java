@@ -7,23 +7,16 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
 
 public class Permission extends Model {
 
-	private Date created;
 	private Account account;
 	private Account targetAccount;
 	private Resource resource;
 	private Action action;
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
+	private Date created;
 
 	public Account getAccount() {
 		return account;
@@ -55,6 +48,15 @@ public class Permission extends Model {
 
 	public void setAction(Action action) {
 		this.action = action;
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public static List<Permission> findByAccountId(String accountId, Context context) {

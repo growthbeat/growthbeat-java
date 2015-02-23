@@ -2,6 +2,8 @@ package com.growthbeat.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Service extends Model {
 
 	private String id;
@@ -61,6 +63,7 @@ public class Service extends Model {
 		this.domain = domain;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
 
 public class User extends Model {
@@ -47,6 +48,7 @@ public class User extends Model {
 		this.phone = phone;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

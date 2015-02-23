@@ -2,6 +2,8 @@ package com.growthbeat.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Card extends Model {
 
 	private String id;
@@ -25,6 +27,7 @@ public class Card extends Model {
 		this.last4 = last4;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

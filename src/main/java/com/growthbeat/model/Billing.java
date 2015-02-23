@@ -2,12 +2,15 @@ package com.growthbeat.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Billing extends Model {
 
 	private Date created;
 	private Account account;
 	private Account targetAccount;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

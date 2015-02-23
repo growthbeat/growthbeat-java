@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.codehaus.jackson.type.TypeReference;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
 
 public class Application extends Model {
@@ -31,6 +32,7 @@ public class Application extends Model {
 		this.name = name;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}

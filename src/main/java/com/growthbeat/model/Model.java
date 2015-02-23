@@ -9,6 +9,8 @@ import com.growthbeat.http.JsonUtils;
 
 public class Model {
 
+	public static final String ISO_8601_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZZ";
+
 	protected static <T> T get(Context context, String path, Map<String, Object> params, Class<T> valueType) {
 		return JsonUtils.deserialize(get(context, path, params), valueType);
 	}
