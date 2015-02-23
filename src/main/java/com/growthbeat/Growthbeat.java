@@ -3,7 +3,6 @@ package com.growthbeat;
 import java.util.List;
 
 import com.growthbeat.model.Account;
-import com.growthbeat.model.AccountUser;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
@@ -48,23 +47,6 @@ public class Growthbeat {
 
 	public Account createAccount(String accountId, String name) {
 		return Account.create(accountId, name, context);
-	}
-
-	public List<AccountUser> findAccountUsersByAccountId(String accountId) {
-		return AccountUser.findAccountUsersById(accountId, context);
-	}
-
-	public List<AccountUser> findAccountUsersByApplicationId(String applicationId) {
-		return AccountUser.findAccountUsersByApplicationId(applicationId, context);
-	}
-
-	public AccountUser createAccountUser(String accountId, String name, String mail, String password, String company, String phone,
-			boolean createApplication) {
-		return AccountUser.create(accountId, name, mail, password, company, phone, createApplication, context);
-	}
-
-	public AccountUser updateAccountUser(String accountId, String name, String mail, String password) {
-		return AccountUser.update(accountId, name, mail, password, context);
 	}
 
 	public Application findApplicationByApplicationId(String applicationId) {
@@ -159,8 +141,21 @@ public class Growthbeat {
 		return User.findByMail(mail, context);
 	}
 
+	public List<User> findByApplicationId(String accountId, String applicationId) {
+		return User.findByAccountIdAndApplicationId(accountId, applicationId, context);
+	}
+
 	public User createUser(String mail, String password, String name, String company, String phone) {
 		return User.create(mail, password, name, company, phone, context);
+	}
+
+	public User createUserByAccountId(String accountId, String name, String mail, String password, String company, String phone,
+			boolean createApplication) {
+		return User.create(accountId, mail, password, name, company, phone, createApplication, context);
+	}
+
+	public User update(String accountId, String mail, String password, String name, String company, String phone, boolean subscription) {
+		return User.update(accountId, mail, password, name, company, phone, subscription, context);
 	}
 
 }
