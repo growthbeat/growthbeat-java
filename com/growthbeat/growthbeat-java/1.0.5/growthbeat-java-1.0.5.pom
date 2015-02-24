@@ -4,7 +4,7 @@
 	<groupId>com.growthbeat</groupId>
 	<artifactId>growthbeat-java</artifactId>
 	<name>Growthbeat Library</name>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 
 	<properties>
 		<github.global.server>github</github.global.server>
@@ -33,6 +33,11 @@
 			<groupId>com.fasterxml</groupId>
 			<artifactId>jackson-module-json-org</artifactId>
 			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.5.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
