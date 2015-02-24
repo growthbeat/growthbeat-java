@@ -16,6 +16,7 @@ public class User extends Model {
 	private String thumbnail;
 	private String company;
 	private String phone;
+	private boolean subscription;
 	private Date created;
 	private Account account;
 
@@ -49,6 +50,14 @@ public class User extends Model {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public boolean getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(boolean subscription) {
+		this.subscription = subscription;
 	}
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
@@ -116,7 +125,7 @@ public class User extends Model {
 		return post(context, "1/users", params, User.class);
 	}
 
-	public static User update(String accountId, String mail, String password, String company, String phone, boolean subscription,
+	public static User update(String accountId, String mail, String password, String company, String phone, Boolean subscription,
 			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
@@ -126,6 +135,8 @@ public class User extends Model {
 			params.put("company", company);
 		if (phone != null)
 			params.put("phone", phone);
+		if (subscription != null)
+			params.put("subscription", subscription);
 		return put(context, "1/users", params, User.class);
 	}
 
