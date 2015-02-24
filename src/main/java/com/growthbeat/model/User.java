@@ -91,7 +91,7 @@ public class User extends Model {
 
 	public static List<User> findByAccountIdAndApplicationId(String accountId, String applicationId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("accountId", applicationId);
+		params.put("accountId", accountId);
 		params.put("applicationId", applicationId);
 		return get(context, "1/users", params, new TypeReference<List<User>>() {
 		});
