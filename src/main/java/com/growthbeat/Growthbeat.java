@@ -81,8 +81,8 @@ public class Growthbeat {
 		return Client.create(applicationId, context);
 	}
 
-	public Consumption createConsumption(String accountId, String actionId, int count) {
-		return Consumption.create(accountId, actionId, count, context);
+	public Consumption createConsumption(String accountId, String resourceId, String actionId, int count) {
+		return Consumption.create(accountId, resourceId, actionId, count, context);
 	}
 
 	public Credential findCredentialByCredentialId(String credentialId) {

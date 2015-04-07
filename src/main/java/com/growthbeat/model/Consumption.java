@@ -12,6 +12,7 @@ public class Consumption extends Model {
 	private int count;
 	private Date created;
 	private Account account;
+	private Resource resource;
 	private Action action;
 
 	public int getCount() {
@@ -39,6 +40,14 @@ public class Consumption extends Model {
 		this.account = account;
 	}
 
+	public Resource getResource() {
+		return resource;
+	}
+
+	public void setResource(Resource resource) {
+		this.resource = resource;
+	}
+
 	public Action getAction() {
 		return action;
 	}
@@ -47,9 +56,10 @@ public class Consumption extends Model {
 		this.action = action;
 	}
 
-	public static Consumption create(String accountId, String actionId, int count, Context context) {
+	public static Consumption create(String accountId, String resourceId, String actionId, int count, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
+		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
 		params.put("count", count);
 		return post(context, "1/consumptions", params, Consumption.class);
