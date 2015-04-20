@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
+import com.growthbeat.constants.Constants;
 
 public class Session extends Model {
 
@@ -21,7 +22,7 @@ public class Session extends Model {
 		this.id = id;
 	}
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO_8601_DATETIME_FORMAT)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}
