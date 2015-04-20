@@ -2,10 +2,9 @@ package com.growthbeat.model;
 
 import java.util.Map;
 
-import org.codehaus.jackson.type.TypeReference;
-
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
-import com.growthbeat.http.JsonUtils;
+import com.growthbeat.utils.JsonUtils;
 
 public class Model {
 
