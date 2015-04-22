@@ -25,6 +25,7 @@ import org.apache.http.util.EntityUtils;
 import com.growthbeat.exception.ApiException;
 import com.growthbeat.exception.GrowthbeatException;
 import com.growthbeat.model.Error;
+import com.growthbeat.utils.JsonUtils;
 
 public class GrowthbeatHttpClient {
 
