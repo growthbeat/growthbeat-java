@@ -1,12 +1,15 @@
 package com.growthbeat;
 
 import java.util.List;
+import java.util.Map;
 
 import com.growthbeat.model.Account;
 import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
+import com.growthbeat.model.Intent;
+import com.growthbeat.model.Intent.Type;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
@@ -99,6 +102,46 @@ public class Growthbeat {
 
 	public Credential createCredential(String accountId) {
 		return Credential.create(accountId, context);
+	}
+
+	public int findIntentCountByApplicationId(String applicationId) {
+		return Intent.findCountByApplicationId(applicationId, context);
+	}
+
+	public Intent findIntentById(String intentId) {
+		return Intent.findById(intentId, context);
+	}
+
+	public List<Intent> findIntentsByApplicationId(String applicationId, Order order, Integer page, Integer limit) {
+		return Intent.findByApplicationId(applicationId, order, page, limit, context);
+	}
+
+	public Intent createIntent(String applicationId, String name, String description, Type type, Map<String, String> parameters) {
+		return Intent.create(applicationId, name, description, type, parameters, context);
+	}
+
+	public Intent createIntent(String applicationId, String name, String description, Type type) {
+		return Intent.create(applicationId, name, description, type, context);
+	}
+
+	public Intent createIntent(String applicationId, String name, String description, Type type, String url) {
+		return Intent.create(applicationId, name, description, type, url, context);
+	}
+
+	public Intent updateIntent(String intentId, String name, String description, Type type, Map<String, String> parameters) {
+		return Intent.update(intentId, name, description, type, parameters, context);
+	}
+
+	public Intent updateIntent(String intentId, String name, String description, Type type) {
+		return Intent.update(intentId, name, description, type, context);
+	}
+
+	public Intent updateIntent(String intentId, String name, String description, Type type, String url) {
+		return Intent.update(intentId, name, description, type, url, context);
+	}
+
+	public void deleteIntent(String intentId) {
+		Intent.delete(intentId, context);
 	}
 
 	public List<Permission> findPermissionsByAccountId(String accountId) {
