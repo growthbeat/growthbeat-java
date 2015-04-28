@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.codehaus.jackson.type.TypeReference;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
+import com.growthbeat.constants.Constants;
 
 public class Intent extends Model {
 
@@ -16,6 +17,7 @@ public class Intent extends Model {
 	private String name;
 	private String description;
 	private Type type;
+	private Date updated;
 	private Date created;
 
 	public String getId() {
@@ -58,6 +60,16 @@ public class Intent extends Model {
 		this.type = type;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.ISO_8601_DATETIME_FORMAT)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.ISO_8601_DATETIME_FORMAT)
 	public Date getCreated() {
 		return created;
 	}
@@ -85,7 +97,7 @@ public class Intent extends Model {
 			params.put("page", page);
 		if (limit != null)
 			params.put("limit", limit);
-		return get(context, "1/intents", new HashMap<String, Object>(), new TypeReference<List<Intent>>() {
+		return get(context, "1/intents", params, new TypeReference<List<Intent>>() {
 		});
 	}
 
