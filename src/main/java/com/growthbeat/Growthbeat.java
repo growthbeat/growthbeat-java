@@ -9,7 +9,7 @@ import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Intent;
-import com.growthbeat.model.Intent.Type;
+import com.growthbeat.model.IntentType;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
@@ -116,27 +116,27 @@ public class Growthbeat {
 		return Intent.findByApplicationId(applicationId, order, page, limit, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, Type type, Map<String, String> parameters) {
+	public Intent createIntent(String applicationId, String name, String description, IntentType type, Map<String, String> parameters) {
 		return Intent.create(applicationId, name, description, type, parameters, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, Type type) {
+	public Intent createIntent(String applicationId, String name, String description, IntentType type) {
 		return Intent.create(applicationId, name, description, type, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, Type type, String url) {
+	public Intent createIntent(String applicationId, String name, String description, IntentType type, String url) {
 		return Intent.create(applicationId, name, description, type, url, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, Type type, Map<String, String> parameters) {
+	public Intent updateIntent(String intentId, String name, String description, IntentType type, Map<String, String> parameters) {
 		return Intent.update(intentId, name, description, type, parameters, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, Type type) {
+	public Intent updateIntent(String intentId, String name, String description, IntentType type) {
 		return Intent.update(intentId, name, description, type, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, Type type, String url) {
+	public Intent updateIntent(String intentId, String name, String description, IntentType type, String url) {
 		return Intent.update(intentId, name, description, type, url, context);
 	}
 

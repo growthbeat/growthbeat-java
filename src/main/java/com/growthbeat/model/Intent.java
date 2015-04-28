@@ -7,16 +7,18 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
 
-public class Intent extends Model {
+@JsonDeserialize(using = JsonIntentDeserializer.class)
+public abstract class Intent extends Model {
 
 	private String id;
 	private String applicationId;
 	private String name;
 	private String description;
-	private Type type;
+	private IntentType type;
 	private Date updated;
 	private Date created;
 
@@ -52,11 +54,11 @@ public class Intent extends Model {
 		this.description = description;
 	}
 
-	public Type getType() {
+	public IntentType getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(IntentType type) {
 		this.type = type;
 	}
 
@@ -101,7 +103,7 @@ public class Intent extends Model {
 		});
 	}
 
-	public static Intent create(String applicationId, String name, String description, Type type, Map<String, String> parameters,
+	public static Intent create(String applicationId, String name, String description, IntentType type, Map<String, String> parameters,
 			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
@@ -112,7 +114,7 @@ public class Intent extends Model {
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent create(String applicationId, String name, String description, Type type, Context context) {
+	public static Intent create(String applicationId, String name, String description, IntentType type, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
@@ -121,7 +123,7 @@ public class Intent extends Model {
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent create(String applicationId, String name, String description, Type type, String url, Context context) {
+	public static Intent create(String applicationId, String name, String description, IntentType type, String url, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
@@ -131,7 +133,7 @@ public class Intent extends Model {
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, Type type, Map<String, String> parameters, Context context) {
+	public static Intent update(String id, String name, String description, IntentType type, Map<String, String> parameters, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
@@ -140,7 +142,7 @@ public class Intent extends Model {
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, Type type, Context context) {
+	public static Intent update(String id, String name, String description, IntentType type, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
@@ -148,7 +150,7 @@ public class Intent extends Model {
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, Type type, String url, Context context) {
+	public static Intent update(String id, String name, String description, IntentType type, String url, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
@@ -159,10 +161,6 @@ public class Intent extends Model {
 
 	public static void delete(String id, Context context) {
 		delete(context, String.format("1/intents/%s", id), new HashMap<String, Object>(), Void.class);
-	}
-
-	public enum Type {
-		custom, noop, url
 	}
 
 }
