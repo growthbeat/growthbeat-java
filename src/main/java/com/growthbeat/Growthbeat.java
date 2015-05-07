@@ -141,6 +141,10 @@ public class Growthbeat {
 		return User.findByAccountId(accountId, context);
 	}
 
+	public User findUserByMail(String mail) {
+		return User.findByMail(mail, context);
+	}
+
 	public List<User> findByAccountIdAndApplicationId(String accountId, String applicationId) {
 		return User.findByAccountIdAndApplicationId(accountId, applicationId, context);
 	}
@@ -152,6 +156,11 @@ public class Growthbeat {
 	public User createUserByAccountId(String accountId, String name, String mail, String password, String company, String phone,
 			boolean createApplication) {
 		return User.create(accountId, mail, password, name, company, phone, createApplication, context);
+	}
+
+	public User inviteUser(String mail, String password, String name, String company, String phone, String accountId, String resourceId,
+			String actionId) {
+		return User.invite(mail, password, name, company, phone, accountId, resourceId, actionId, context);
 	}
 
 	public User updateUser(String accountId, String mail, String password, String company, String phone, Boolean subscription) {
