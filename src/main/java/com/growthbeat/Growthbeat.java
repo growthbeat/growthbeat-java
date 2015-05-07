@@ -10,6 +10,7 @@ import com.growthbeat.model.Credential;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
+import com.growthbeat.model.RecoveryToken;
 import com.growthbeat.model.Session;
 import com.growthbeat.model.User;
 
@@ -135,6 +136,10 @@ public class Growthbeat {
 
 	public Plan findPlanByAccountId(String accountId) {
 		return Plan.findByAccountId(accountId, context);
+	}
+
+	public RecoveryToken createRecoveryTokenAndSendMail(String mail) {
+		return RecoveryToken.createAndSendMail(mail, context);
 	}
 
 	public Session findSessionBySessionId(String sessionId) {
