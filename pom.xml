@@ -8,6 +8,8 @@
 
 	<properties>
 		<github.global.server>github</github.global.server>
+		<org.slf4j-version>1.7.7</org.slf4j-version>
+		<ch.qos.logback-version>1.1.2</ch.qos.logback-version>
 	</properties>
 
 	<distributionManagement>
@@ -53,6 +55,27 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${ch.qos.logback-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${ch.qos.logback-version}</version>
 		</dependency>
 	</dependencies>
 
