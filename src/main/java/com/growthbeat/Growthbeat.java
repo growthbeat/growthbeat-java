@@ -161,8 +161,8 @@ public class Growthbeat {
 		return Permission.create(accountId, targetAccountId, resourceId, actionId, context);
 	}
 
-	public Permission createPermissionByMail(String accountId, String targetMail, String resourceId, String actionId) {
-		return Permission.createByMail(accountId, targetMail, resourceId, actionId, context);
+	public Permission createPermissionByMail(String accountId, String targetMail, String resourceId, String actionId, String serviceId) {
+		return Permission.createByMail(accountId, targetMail, resourceId, actionId, serviceId, context);
 	}
 
 	public void deletePermission(String accountId, String targetAccountId, String resourceId, String actionId) {
