@@ -90,12 +90,15 @@ public class Permission extends Model {
 		return post(context, "1/permissions", params, Permission.class);
 	}
 
-	public static Permission createByMail(String accountId, String targetMail, String resourceId, String actionId, Context context) {
+	public static Permission createByMail(String accountId, String targetMail, String resourceId, String actionId, String serviceId,
+			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
 		params.put("targetMail", targetMail);
 		params.put("resourceId", resourceId);
 		params.put("actionId", actionId);
+		if (serviceId != null)
+			params.put("serviceId", serviceId);
 		return post(context, "1/permissions", params, Permission.class);
 	}
 
