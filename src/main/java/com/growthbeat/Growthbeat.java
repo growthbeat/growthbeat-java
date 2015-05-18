@@ -211,8 +211,8 @@ public class Growthbeat {
 	}
 
 	public User inviteUser(String mail, String password, String name, String company, String phone, String accountId, String resourceId,
-			String actionId) {
-		return User.invite(mail, password, name, company, phone, accountId, resourceId, actionId, context);
+			String actionId, String serviceId) {
+		return User.invite(mail, password, name, company, phone, accountId, resourceId, actionId, serviceId, context);
 	}
 
 	public User updateUser(String accountId, String mail, String password, String company, String phone, Boolean subscription) {
