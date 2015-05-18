@@ -125,6 +125,23 @@ public class User extends Model {
 		return post(context, "1/users", params, User.class);
 	}
 
+	public static User invite(String mail, String password, String name, String company, String phone, String accountId, String resourceId,
+			String actionId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("mail", mail);
+		params.put("password", password);
+		if (name != null)
+			params.put("name", name);
+		if (company != null)
+			params.put("company", company);
+		if (phone != null)
+			params.put("phone", phone);
+		params.put("accountId", accountId);
+		params.put("resourceId", resourceId);
+		params.put("actionId", actionId);
+		return post(context, "1/users/invite", params, User.class);
+	}
+
 	public static User update(String accountId, String mail, String password, String company, String phone, Boolean subscription,
 			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();

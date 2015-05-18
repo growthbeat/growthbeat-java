@@ -13,6 +13,7 @@ import com.growthbeat.model.IntentType;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
+import com.growthbeat.model.RecoveryToken;
 import com.growthbeat.model.Session;
 import com.growthbeat.model.User;
 
@@ -160,6 +161,10 @@ public class Growthbeat {
 		return Permission.create(accountId, targetAccountId, resourceId, actionId, context);
 	}
 
+	public Permission createPermissionByMail(String accountId, String targetMail, String resourceId, String actionId) {
+		return Permission.createByMail(accountId, targetMail, resourceId, actionId, context);
+	}
+
 	public void deletePermission(String accountId, String targetAccountId, String resourceId, String actionId) {
 		Permission.delete(accountId, targetAccountId, resourceId, actionId, context);
 	}
@@ -176,12 +181,20 @@ public class Growthbeat {
 		return Plan.findByAccountId(accountId, context);
 	}
 
+	public RecoveryToken createRecoveryTokenAndSendMail(String mail) {
+		return RecoveryToken.createAndSendMail(mail, context);
+	}
+
 	public Session findSessionBySessionId(String sessionId) {
 		return Session.findById(sessionId, context);
 	}
 
 	public User findUserByAccountId(String accountId) {
 		return User.findByAccountId(accountId, context);
+	}
+
+	public User findUserByMail(String mail) {
+		return User.findByMail(mail, context);
 	}
 
 	public List<User> findByAccountIdAndApplicationId(String accountId, String applicationId) {
@@ -195,6 +208,11 @@ public class Growthbeat {
 	public User createUserByAccountId(String accountId, String name, String mail, String password, String company, String phone,
 			boolean createApplication) {
 		return User.create(accountId, mail, password, name, company, phone, createApplication, context);
+	}
+
+	public User inviteUser(String mail, String password, String name, String company, String phone, String accountId, String resourceId,
+			String actionId) {
+		return User.invite(mail, password, name, company, phone, accountId, resourceId, actionId, context);
 	}
 
 	public User updateUser(String accountId, String mail, String password, String company, String phone, Boolean subscription) {
