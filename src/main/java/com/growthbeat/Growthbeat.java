@@ -116,8 +116,8 @@ public class Growthbeat {
 		return Intent.findByApplicationId(applicationId, order, page, limit, context);
 	}
 
-	public Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> parameters) {
-		return Intent.createCustomIntent(applicationId, name, description, parameters, context);
+	public Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> extra) {
+		return Intent.createCustomIntent(applicationId, name, description, extra, context);
 	}
 
 	public Intent createNoopIntent(String applicationId, String name, String description) {
@@ -128,8 +128,8 @@ public class Growthbeat {
 		return Intent.createUrlIntent(applicationId, name, description, url, context);
 	}
 
-	public Intent updateCustomIntent(String intentId, String name, String description, Map<String, String> parameters) {
-		return Intent.updateCustomIntent(intentId, name, description, parameters, context);
+	public Intent updateCustomIntent(String intentId, String name, String description, Map<String, String> extra) {
+		return Intent.updateCustomIntent(intentId, name, description, extra, context);
 	}
 
 	public Intent updateNoopIntent(String intentId, String name, String description) {

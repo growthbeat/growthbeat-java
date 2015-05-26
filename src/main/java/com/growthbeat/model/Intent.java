@@ -103,14 +103,15 @@ public abstract class Intent extends Model {
 		});
 	}
 
-	public static Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> parameters,
+	public static Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> extra,
 			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
 		params.put("description", description);
 		params.put("type", IntentType.custom);
-		params.put("parameters", parameters);
+		for (Map.Entry<String, String> entry : extra.entrySet())
+			params.put(String.format("extra[%s]", entry.getKey()), entry.getValue());
 		return post(context, "1/intents", params, Intent.class);
 	}
 
@@ -133,12 +134,13 @@ public abstract class Intent extends Model {
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent updateCustomIntent(String id, String name, String description, Map<String, String> parameters, Context context) {
+	public static Intent updateCustomIntent(String id, String name, String description, Map<String, String> extra, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
 		params.put("type", IntentType.custom);
-		params.put("parameters", parameters);
+		for (Map.Entry<String, String> entry : extra.entrySet())
+			params.put(String.format("extra[%s]", entry.getKey()), entry.getValue());
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
 
