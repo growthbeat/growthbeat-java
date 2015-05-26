@@ -9,7 +9,6 @@ import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
 import com.growthbeat.model.Intent;
-import com.growthbeat.model.IntentType;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
@@ -117,28 +116,28 @@ public class Growthbeat {
 		return Intent.findByApplicationId(applicationId, order, page, limit, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, IntentType type, Map<String, String> parameters) {
-		return Intent.create(applicationId, name, description, type, parameters, context);
+	public Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> extra) {
+		return Intent.createCustomIntent(applicationId, name, description, extra, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, IntentType type) {
-		return Intent.create(applicationId, name, description, type, context);
+	public Intent createNoopIntent(String applicationId, String name, String description) {
+		return Intent.createNoopIntent(applicationId, name, description, context);
 	}
 
-	public Intent createIntent(String applicationId, String name, String description, IntentType type, String url) {
-		return Intent.create(applicationId, name, description, type, url, context);
+	public Intent createUrlIntent(String applicationId, String name, String description, String url) {
+		return Intent.createUrlIntent(applicationId, name, description, url, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, IntentType type, Map<String, String> parameters) {
-		return Intent.update(intentId, name, description, type, parameters, context);
+	public Intent updateCustomIntent(String intentId, String name, String description, Map<String, String> extra) {
+		return Intent.updateCustomIntent(intentId, name, description, extra, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, IntentType type) {
-		return Intent.update(intentId, name, description, type, context);
+	public Intent updateNoopIntent(String intentId, String name, String description) {
+		return Intent.updateNoopIntent(intentId, name, description, context);
 	}
 
-	public Intent updateIntent(String intentId, String name, String description, IntentType type, String url) {
-		return Intent.update(intentId, name, description, type, url, context);
+	public Intent updateUrlIntent(String intentId, String name, String description, String url) {
+		return Intent.updateUrlIntent(intentId, name, description, url, context);
 	}
 
 	public void deleteIntent(String intentId) {

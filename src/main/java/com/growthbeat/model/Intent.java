@@ -103,58 +103,60 @@ public abstract class Intent extends Model {
 		});
 	}
 
-	public static Intent create(String applicationId, String name, String description, IntentType type, Map<String, String> parameters,
+	public static Intent createCustomIntent(String applicationId, String name, String description, Map<String, String> extra,
 			Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
-		params.put("parameters", parameters);
+		params.put("type", IntentType.custom);
+		for (Map.Entry<String, String> entry : extra.entrySet())
+			params.put(String.format("extra[%s]", entry.getKey()), entry.getValue());
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent create(String applicationId, String name, String description, IntentType type, Context context) {
+	public static Intent createNoopIntent(String applicationId, String name, String description, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
+		params.put("type", IntentType.noop);
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent create(String applicationId, String name, String description, IntentType type, String url, Context context) {
+	public static Intent createUrlIntent(String applicationId, String name, String description, String url, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicationId", applicationId);
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
+		params.put("type", IntentType.url);
 		params.put("url", url);
 		return post(context, "1/intents", params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, IntentType type, Map<String, String> parameters, Context context) {
+	public static Intent updateCustomIntent(String id, String name, String description, Map<String, String> extra, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
-		params.put("parameters", parameters);
+		params.put("type", IntentType.custom);
+		for (Map.Entry<String, String> entry : extra.entrySet())
+			params.put(String.format("extra[%s]", entry.getKey()), entry.getValue());
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, IntentType type, Context context) {
+	public static Intent updateNoopIntent(String id, String name, String description, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
+		params.put("type", IntentType.noop);
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
 
-	public static Intent update(String id, String name, String description, IntentType type, String url, Context context) {
+	public static Intent updateUrlIntent(String id, String name, String description, String url, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("description", description);
-		params.put("type", type);
+		params.put("type", IntentType.url);
 		params.put("url", url);
 		return put(context, String.format("1/intents/%s", id), params, Intent.class);
 	}
