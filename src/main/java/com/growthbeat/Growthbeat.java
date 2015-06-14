@@ -102,7 +102,7 @@ public class Growthbeat {
 	}
 
 	public List<Credential> findCredentialsByTemporarySessionId(String temporarySessionId) {
-		return Credential.findBySessionId(temporarySessionId, context);
+		return Credential.findByTemporarySessionId(temporarySessionId, context);
 	}
 
 	public Credential createCredential(String accountId) {
