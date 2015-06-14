@@ -14,6 +14,7 @@ import com.growthbeat.model.Permission;
 import com.growthbeat.model.Plan;
 import com.growthbeat.model.RecoveryToken;
 import com.growthbeat.model.Session;
+import com.growthbeat.model.TemporarySession;
 import com.growthbeat.model.User;
 
 public class Growthbeat {
@@ -98,6 +99,10 @@ public class Growthbeat {
 
 	public List<Credential> findCredentialsBySessionId(String sessionId) {
 		return Credential.findBySessionId(sessionId, context);
+	}
+
+	public List<Credential> findCredentialsByTemporarySessionId(String temporarySessionId) {
+		return Credential.findByTemporarySessionId(temporarySessionId, context);
 	}
 
 	public Credential createCredential(String accountId) {
@@ -186,6 +191,14 @@ public class Growthbeat {
 
 	public Session findSessionBySessionId(String sessionId) {
 		return Session.findById(sessionId, context);
+	}
+
+	public TemporarySession findByTemporarySessionBytemporarySessionId(String temporarySessionId) {
+		return TemporarySession.findById(temporarySessionId, context);
+	}
+
+	public TemporarySession createTemporarySession(String accountId, String serviceId) {
+		return TemporarySession.create(accountId, serviceId, context);
 	}
 
 	public User findUserByAccountId(String accountId) {

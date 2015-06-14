@@ -59,6 +59,13 @@ public class Credential extends Model {
 		});
 	}
 
+	public static List<Credential> findByTemporarySessionId(String temporarySessionId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("temporarySessionId", temporarySessionId);
+		return get(context, "1/credentials", params, new TypeReference<List<Credential>>() {
+		});
+	}
+
 	public static Credential create(String accountId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("accountId", accountId);
