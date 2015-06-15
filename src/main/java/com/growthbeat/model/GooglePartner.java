@@ -65,6 +65,12 @@ public class GooglePartner extends Model {
 		return created;
 	}
 
+	public boolean isExpiredAccessToken() {
+		long expiry = updated.getTime() + expiresIn * 1000;
+		long now = new Date().getTime();
+		return expiry <= now;
+	}
+
 	public void setCreated(Date created) {
 		this.created = created;
 	}
@@ -74,11 +80,10 @@ public class GooglePartner extends Model {
 		});
 	}
 
-	public static List<GooglePartner> findByGoogleId(String googleId, Context context) {
+	public static GooglePartner findByGoogleId(String googleId, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("googleId", googleId);
-		return get(context, String.format("1/google_partners"), params, new TypeReference<List<GooglePartner>>() {
-		});
+		return get(context, String.format("1/google_partners"), params, GooglePartner.class);
 	}
 
 }
