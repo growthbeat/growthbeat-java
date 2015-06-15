@@ -3,6 +3,7 @@ package com.growthbeat.model;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -70,6 +71,13 @@ public class GooglePartner extends Model {
 
 	public static List<GooglePartner> find(Context context) {
 		return get(context, String.format("1/google_partners"), new HashMap<String, Object>(), new TypeReference<List<GooglePartner>>() {
+		});
+	}
+
+	public static List<GooglePartner> findByGoogleId(String googleId, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("googleId", googleId);
+		return get(context, String.format("1/google_partners"), params, new TypeReference<List<GooglePartner>>() {
 		});
 	}
 

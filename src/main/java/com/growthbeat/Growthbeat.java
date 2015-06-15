@@ -223,4 +223,8 @@ public class Growthbeat {
 		return GooglePartner.find(context);
 	}
 
+	public List<GooglePartner> findGooglePartnerByGoogleId(String googleId) {
+		return GooglePartner.findByGoogleId(googleId, context);
+	}
+
 }
