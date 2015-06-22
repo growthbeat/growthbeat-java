@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
+import com.growthbeat.utils.StringUtils;
 
 @JsonDeserialize(using = JsonIntentDeserializer.class)
 public abstract class Intent extends Model {
@@ -87,7 +88,7 @@ public abstract class Intent extends Model {
 	}
 
 	public static Intent findById(String id, Context context) {
-		return get(context, String.format("1/intents/%s", id), new HashMap<String, Object>(), Intent.class);
+		return get(context, String.format("1/intents/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Intent.class);
 	}
 
 	public static List<Intent> findByApplicationId(String applicationId, Order order, Integer page, Integer limit, Context context) {
@@ -141,7 +142,7 @@ public abstract class Intent extends Model {
 		params.put("type", IntentType.custom);
 		for (Map.Entry<String, String> entry : extra.entrySet())
 			params.put(String.format("extra[%s]", entry.getKey()), entry.getValue());
-		return put(context, String.format("1/intents/%s", id), params, Intent.class);
+		return put(context, String.format("1/intents/%s", StringUtils.urlEncode(id)), params, Intent.class);
 	}
 
 	public static Intent updateNoopIntent(String id, String name, String description, Context context) {
@@ -149,7 +150,7 @@ public abstract class Intent extends Model {
 		params.put("name", name);
 		params.put("description", description);
 		params.put("type", IntentType.noop);
-		return put(context, String.format("1/intents/%s", id), params, Intent.class);
+		return put(context, String.format("1/intents/%s", StringUtils.urlEncode(id)), params, Intent.class);
 	}
 
 	public static Intent updateUrlIntent(String id, String name, String description, String url, Context context) {
@@ -158,11 +159,11 @@ public abstract class Intent extends Model {
 		params.put("description", description);
 		params.put("type", IntentType.url);
 		params.put("url", url);
-		return put(context, String.format("1/intents/%s", id), params, Intent.class);
+		return put(context, String.format("1/intents/%s", StringUtils.urlEncode(id)), params, Intent.class);
 	}
 
 	public static void delete(String id, Context context) {
-		delete(context, String.format("1/intents/%s", id), new HashMap<String, Object>(), Void.class);
+		delete(context, String.format("1/intents/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Void.class);
 	}
 
 }
