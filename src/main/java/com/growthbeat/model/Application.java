@@ -60,10 +60,17 @@ public class Application extends Model {
 		return post(context, "1/applications", params, Application.class);
 	}
 
-	public static Application update(String id, String name, Context context) {
+	public static Application update(String id, String name, String ios, String android, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
+		params.put("ios", ios);
+		params.put("android", android);
 		return put(context, String.format("1/applications/%s", id), params, Application.class);
 	}
 
+	public static Application updateIcon(String id, MultipartFile icon, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("icon", icon);
+		return put(context, String.format("/1/applications/icon/%s", id), params, Application.class);
+	}
 }
