@@ -66,4 +66,9 @@ public class Account extends Model {
 		return put(context, "1/accounts/" + accountId, params, Account.class);
 	}
 
+	public static Account updateIcon(String id, MultipartFile icon, Context context) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("icon", icon);
+		return put(context, String.format("/1/accounts/icon/%s", id), params, Account.class);
+	}
 }
