@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
+import com.growthbeat.utils.StringUtils;
 
 public class Session extends Model {
 
@@ -48,7 +49,7 @@ public class Session extends Model {
 	}
 
 	public static Session findById(String id, Context context) {
-		return get(context, String.format("1/sessions/%s", id), new HashMap<String, Object>(), Session.class);
+		return get(context, String.format("1/sessions/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Session.class);
 	}
 
 }

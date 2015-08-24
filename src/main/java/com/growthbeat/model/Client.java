@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
+import com.growthbeat.utils.StringUtils;
 
 public class Client extends Model {
 
@@ -42,7 +43,7 @@ public class Client extends Model {
 	}
 
 	public static Client findById(String id, Context context) {
-		return get(context, String.format("1/clients/%s", id), new HashMap<String, Object>(), Client.class);
+		return get(context, String.format("1/clients/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Client.class);
 	}
 
 	public static List<Client> findByApplicationId(String applicationId, String id, Order order, Integer limit, Context context) {

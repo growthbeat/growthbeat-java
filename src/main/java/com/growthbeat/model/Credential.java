@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
+import com.growthbeat.utils.StringUtils;
 
 public class Credential extends Model {
 
@@ -42,7 +43,7 @@ public class Credential extends Model {
 	}
 
 	public static Credential findById(String id, Context context) {
-		return get(context, String.format("1/credentials/%s", id), new HashMap<String, Object>(), Credential.class);
+		return get(context, String.format("1/credentials/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Credential.class);
 	}
 
 	public static List<Credential> findByAccountId(String accountId, Context context) {

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
+import com.growthbeat.utils.StringUtils;
 
 public class Account extends Model {
 
@@ -42,7 +43,7 @@ public class Account extends Model {
 	}
 
 	public static Account findById(String id, Context context) {
-		return get(context, String.format("1/accounts/%s", id), new HashMap<String, Object>(), Account.class);
+		return get(context, String.format("1/accounts/%s", StringUtils.urlEncode(id)), new HashMap<String, Object>(), Account.class);
 	}
 
 	public static List<Account> findAccountsById(String id, Context context) {
@@ -60,10 +61,10 @@ public class Account extends Model {
 		return post(context, "1/accounts", params, Account.class);
 	}
 
-	public static Account update(String accountId, String name, Context context) {
+	public static Account update(String id, String name, Context context) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("name", name);
-		return put(context, "1/accounts/" + accountId, params, Account.class);
+		return put(context, String.format("1/accounts/%s", StringUtils.urlEncode(id)), params, Account.class);
 	}
 
 }
