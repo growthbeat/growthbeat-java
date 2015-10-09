@@ -10,17 +10,16 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import com.growthbeat.exception.ApiException;
 import com.growthbeat.exception.GrowthbeatException;
@@ -29,11 +28,11 @@ import com.growthbeat.utils.JsonUtils;
 
 public class GrowthbeatHttpClient {
 
-	private HttpClient httpClient = null;
+	private CloseableHttpClient httpClient = null;
 	private String baseUrl = null;
 	private RequestConfig config = defaultConfig();
 
-	private static final int DEFAULT_TIMEOUT = 60;
+	private static final int DEFAULT_TIMEOUT = 60 * 1000;
 
 	public GrowthbeatHttpClient() {
 		super();
@@ -122,27 +121,27 @@ public class GrowthbeatHttpClient {
 
 		CloseableHttpResponse httpResponse = null;
 		try {
-			httpResponse = (CloseableHttpResponse) httpClient.execute(httpRequest);
+			httpResponse = httpClient.execute(httpRequest);
 			if (httpResponse.getEntity() != null) {
 				InputStream inputStream = httpResponse.getEntity().getContent();
 				body = IOUtils.toString(inputStream);
 			}
+
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
+			if (statusCode < 200 || statusCode >= 300)
+				throw new ApiException(statusCode, JsonUtils.deserialize(body, Error.class));
+
 		} catch (IOException e) {
 			throw new GrowthbeatException(e);
 		} finally {
 			try {
 				if (httpResponse != null) {
-					EntityUtils.consume(httpResponse.getEntity());
 					httpResponse.close();
 				}
 			} catch (IOException e) {
 				throw new GrowthbeatException(e);
 			}
 		}
-
-		int statusCode = httpResponse.getStatusLine().getStatusCode();
-		if (statusCode < 200 || statusCode >= 300)
-			throw new ApiException(statusCode, JsonUtils.deserialize(body, Error.class));
 
 		return body;
 
