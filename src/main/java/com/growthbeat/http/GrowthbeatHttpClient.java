@@ -20,7 +20,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import com.growthbeat.exception.ApiException;
 import com.growthbeat.exception.GrowthbeatException;
@@ -137,7 +136,6 @@ public class GrowthbeatHttpClient {
 		} finally {
 			try {
 				if (httpResponse != null) {
-					EntityUtils.consume(httpResponse.getEntity());
 					httpResponse.close();
 				}
 			} catch (IOException e) {
