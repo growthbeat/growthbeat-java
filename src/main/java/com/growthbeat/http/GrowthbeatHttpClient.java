@@ -9,11 +9,11 @@ import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -31,16 +31,29 @@ public class GrowthbeatHttpClient {
 
 	private HttpClient httpClient = null;
 	private String baseUrl = null;
-	private RequestConfig config = null;
+	private RequestConfig config = defaultConfig();
+
+	private static final int DEFAULT_TIMEOUT = 60;
 
 	public GrowthbeatHttpClient() {
 		super();
 		this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
-				.setDefaultRequestConfig(RequestConfig.DEFAULT).build();
+				.setDefaultRequestConfig(config).build();
 	}
 
 	public GrowthbeatHttpClient(String baseUrl) {
 		this();
+		setBaseUrl(baseUrl);
+	}
+
+	public GrowthbeatHttpClient(RequestConfig config) {
+		setConfig(config);
+		this.httpClient = HttpClientBuilder.create().setConnectionManager(new PoolingHttpClientConnectionManager())
+				.setDefaultRequestConfig(getConfig()).build();
+	}
+
+	public GrowthbeatHttpClient(String baseUrl, RequestConfig config) {
+		this(config);
 		setBaseUrl(baseUrl);
 	}
 
@@ -58,6 +71,10 @@ public class GrowthbeatHttpClient {
 
 	public void setConfig(RequestConfig config) {
 		this.config = config;
+	}
+
+	private RequestConfig defaultConfig() {
+		return RequestConfig.custom().setConnectTimeout(DEFAULT_TIMEOUT).setConnectionRequestTimeout(DEFAULT_TIMEOUT).build();
 	}
 
 	public String get(String path, Map<String, Object> params) {
@@ -103,9 +120,9 @@ public class GrowthbeatHttpClient {
 
 		String body = null;
 
-		HttpResponse httpResponse = null;
+		CloseableHttpResponse httpResponse = null;
 		try {
-			httpResponse = httpClient.execute(httpRequest);
+			httpResponse = (CloseableHttpResponse) httpClient.execute(httpRequest);
 			if (httpResponse.getEntity() != null) {
 				InputStream inputStream = httpResponse.getEntity().getContent();
 				body = IOUtils.toString(inputStream);
@@ -114,8 +131,10 @@ public class GrowthbeatHttpClient {
 			throw new GrowthbeatException(e);
 		} finally {
 			try {
-				if (httpResponse != null)
+				if (httpResponse != null) {
 					EntityUtils.consume(httpResponse.getEntity());
+					httpResponse.close();
+				}
 			} catch (IOException e) {
 				throw new GrowthbeatException(e);
 			}
