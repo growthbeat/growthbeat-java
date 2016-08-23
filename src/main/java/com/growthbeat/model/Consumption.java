@@ -2,14 +2,11 @@ package com.growthbeat.model;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.growthbeat.Context;
 import com.growthbeat.constants.Constants;
-import com.growthbeat.utils.JsonUtils;
 
 public class Consumption extends Model {
 
@@ -67,13 +64,6 @@ public class Consumption extends Model {
 		params.put("actionId", actionId);
 		params.put("count", count);
 		return post(context, "1/consumptions", params, Consumption.class);
-	}
-
-	public static List<Consumption> create(List<Map<String, String>> consumptions, Context context) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("consumptions", JsonUtils.serialize(consumptions));
-		return post(context, "1/consumptions", params, new TypeReference<List<Consumption>>() {
-		});
 	}
 
 }
