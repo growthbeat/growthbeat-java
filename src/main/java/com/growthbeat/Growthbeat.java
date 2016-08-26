@@ -8,6 +8,7 @@ import com.growthbeat.model.Application;
 import com.growthbeat.model.Client;
 import com.growthbeat.model.Consumption;
 import com.growthbeat.model.Credential;
+import com.growthbeat.model.GooglePartner;
 import com.growthbeat.model.Intent;
 import com.growthbeat.model.Order;
 import com.growthbeat.model.Permission;
@@ -229,6 +230,14 @@ public class Growthbeat {
 
 	public User updateUser(String accountId, String mail, String password, String company, String phone, Boolean subscription) {
 		return User.update(accountId, mail, password, company, phone, subscription, context);
+	}
+
+	public List<GooglePartner> findGooglePartners() {
+		return GooglePartner.find(context);
+	}
+
+	public GooglePartner findGooglePartnerByGoogleId(String googleId) {
+		return GooglePartner.findByGoogleId(googleId, context);
 	}
 
 }
